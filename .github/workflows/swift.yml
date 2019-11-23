@@ -15,7 +15,7 @@ jobs:
     - name: Build
       run: |
           cd HerHack
-          unset CFProcessPath; bundle exec fastlane build_for_test
+          unset CFProcessPath
           xcodebuild clean build -project HerHack.xcodeproj -scheme HerHack -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
       env:
          destination: ${{ matrix.destination }}
