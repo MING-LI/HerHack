@@ -12,7 +12,6 @@
 		BB13DCDD2387F0930050B345 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCDC2387F0930050B345 /* ViewController.swift */; };
 		BB13DCF02387F0970050B345 /* HerHackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCEF2387F0970050B345 /* HerHackTests.swift */; };
 		BB7169C12389459200C34C5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB13DCE12387F0970050B345 /* Assets.xcassets */; };
-		BB7169C42389489F00C34C5F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7169C32389489F00C34C5F /* Default-568h@2x.png */; };
 		D23B7DB52388062000F92B1B /* HerHackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B7DB42388062000F92B1B /* HerHackUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		BB13DCEB2387F0970050B345 /* HerHackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HerHackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB13DCEF2387F0970050B345 /* HerHackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerHackTests.swift; sourceTree = "<group>"; };
 		BB13DCF12387F0970050B345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB7169C32389489F00C34C5F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D23B7DB22388062000F92B1B /* HerHackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HerHackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23B7DB42388062000F92B1B /* HerHackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerHackUITests.swift; sourceTree = "<group>"; };
 		D23B7DB62388062000F92B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 		BB13DCCC2387F0930050B345 = {
 			isa = PBXGroup;
 			children = (
-				BB7169C32389489F00C34C5F /* Default-568h@2x.png */,
 				BB13DCD72387F0930050B345 /* HerHack */,
 				BB13DCEE2387F0970050B345 /* HerHackTests */,
 				D23B7DB32388062000F92B1B /* HerHackUITests */,
@@ -232,7 +229,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB7169C12389459200C34C5F /* Assets.xcassets in Resources */,
-				BB7169C42389489F00C34C5F /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -410,7 +406,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
