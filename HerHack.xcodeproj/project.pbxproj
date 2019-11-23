@@ -10,8 +10,6 @@
 		BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCD82387F0930050B345 /* AppDelegate.swift */; };
 		BB13DCDB2387F0930050B345 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCDA2387F0930050B345 /* SceneDelegate.swift */; };
 		BB13DCDD2387F0930050B345 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCDC2387F0930050B345 /* ViewController.swift */; };
-		BB13DCE22387F0970050B345 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB13DCE12387F0970050B345 /* Assets.xcassets */; };
-		BB13DCE52387F0970050B345 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB13DCE32387F0970050B345 /* LaunchScreen.storyboard */; };
 		BB13DCF02387F0970050B345 /* HerHackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCEF2387F0970050B345 /* HerHackTests.swift */; };
 		D23B7DB52388062000F92B1B /* HerHackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B7DB42388062000F92B1B /* HerHackUITests.swift */; };
 /* End PBXBuildFile section */
@@ -229,8 +227,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB13DCE52387F0970050B345 /* LaunchScreen.storyboard in Resources */,
-				BB13DCE22387F0970050B345 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
