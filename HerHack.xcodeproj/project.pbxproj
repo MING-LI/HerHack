@@ -11,6 +11,7 @@
 		BB13DCDB2387F0930050B345 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCDA2387F0930050B345 /* SceneDelegate.swift */; };
 		BB13DCDD2387F0930050B345 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCDC2387F0930050B345 /* ViewController.swift */; };
 		BB13DCF02387F0970050B345 /* HerHackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCEF2387F0970050B345 /* HerHackTests.swift */; };
+		BB7169C12389459200C34C5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB13DCE12387F0970050B345 /* Assets.xcassets */; };
 		D23B7DB52388062000F92B1B /* HerHackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B7DB42388062000F92B1B /* HerHackUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -227,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7169C12389459200C34C5F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
