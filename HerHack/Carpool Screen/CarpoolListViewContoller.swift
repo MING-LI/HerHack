@@ -16,7 +16,7 @@ class CarpoolListViewContoller: UIViewController {
     let carPools = [
         Carpool(owner: "Ken", source: "屯門", dest: "將軍澳", startTime: 1800, endTime: 1930, passengers: ["John"]),
         Carpool(owner: "Mimosa", source: "筲箕灣", dest: "將軍澳", startTime: 1800, endTime: 1930, passengers: ["Aakash"]),
-        Carpool(owner: "Angus", source: "荃灣", dest: "奧運", startTime: 1800, endTime: 1930, passengers: ["Raymond"]),
+        Carpool(owner: "Angus", source: "荃灣", dest: "奧運", startTime: 1800, endTime: 1930, passengers: ["Raymond"])
     ]
     
     var filteredCarpools: [Carpool] = []
@@ -39,6 +39,7 @@ class CarpoolListViewContoller: UIViewController {
         })
         
         self.searchBar.delegate = self
+        self.searchBar.placeholder = "Find a carpool"
         
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints({ make in
