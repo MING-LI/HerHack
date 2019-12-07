@@ -38,6 +38,7 @@ class CarpoolListCell: UITableViewCell {
         self.addSubview(self.btnArea)
         self.btnArea.addSubview(self.carpoolCountLabel)
         self.btnArea.addSubview(self.joinBtn)
+        self.btnArea.addSubview(self.statusLabel)
     }
     
     fileprivate func infoAreaStyling() {
