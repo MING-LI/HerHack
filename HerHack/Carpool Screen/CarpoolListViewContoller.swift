@@ -8,19 +8,49 @@
 
 import UIKit
 
-class CarpoolListViewContoller: UITableViewController {
+class CarpoolListViewContoller: UIViewController {
+    
+    let searchBar: UISearchBar
+    let tableView: UITableView
     
     let carPools = [
-        Carpool(owner: "Ken", source: "TKO", dest: "YL", startTime: 1800, endTime: 1930, passengers: ["John"]),
-        Carpool(owner: "Mimosa", source: "TKO", dest: "YL", startTime: 1800, endTime: 1930, passengers: ["Aakash"]),
-        Carpool(owner: "Angus", source: "TKO", dest: "YL", startTime: 1800, endTime: 1930, passengers: ["Raymond"]),
+        Carpool(owner: "Ken", source: "屯門", dest: "將軍澳", startTime: 1800, endTime: 1930, passengers: ["John"]),
+        Carpool(owner: "Mimosa", source: "筲箕灣", dest: "將軍澳", startTime: 1800, endTime: 1930, passengers: ["Aakash"]),
+        Carpool(owner: "Angus", source: "荃灣", dest: "奧運", startTime: 1800, endTime: 1930, passengers: ["Raymond"]),
     ]
     
+    var filteredCarpools: [Carpool] = []
+    
     init() {
-//        self.searchController = UISearchController()
+        self.searchBar = UISearchBar()
+        self.tableView = UITableView()
+        
         super.init(nibName: nil, bundle: nil)
+        
+        self.filteredCarpools = self.carPools
+        
+        self.edgesForExtendedLayout = []
+        
+        self.view.addSubview(self.searchBar)
+        self.searchBar.snp.makeConstraints({ make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+        })
+        
+        self.searchBar.delegate = self
+        
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints({ make in
+            make.top.equalTo(self.searchBar.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        })
+        
         self.tableView.register(CarpoolListCell.self, forCellReuseIdentifier: "CarpoolCell")
-//        self.searchController.delegate = self
+        self.tableView.separatorStyle = .none
+        self.tableView.allowsSelection = false
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -29,22 +59,43 @@ class CarpoolListViewContoller: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .green
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "CarpoolCell", for: indexPath) as! CarpoolListCell
-        let data = self.carPools[indexPath.row]
+}
+
+extension CarpoolListViewContoller: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CarpoolCell", for: indexPath) as! CarpoolListCell
+        let data = self.filteredCarpools[indexPath.row]
         cell.plugData(data: data)
         return cell
     }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.carPools.count
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.filteredCarpools.count
     }
+}
 
+extension CarpoolListViewContoller: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == "" {
+            self.filteredCarpools = self.carPools
+        } else {
+            self.filteredCarpools = self.carPools.filter({ carpool in
+                return carpool.source.contains(searchText) || carpool.dest.contains(searchText)
+            })
+            
+            
+        }
+        
+        self.tableView.reloadData()
+    }
+    
 }

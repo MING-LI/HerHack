@@ -22,8 +22,102 @@ class CarpoolListCell: UITableViewCell {
     let carpoolCountLabel: UILabel
     let joinBtn: UIButton
     
-    private let infoAreaRatio: CGFloat = 0.75
-    private let padding: CGFloat = 2.5
+    private let infoAreaRatio: CGFloat = (2/3)
+    private let padding: CGFloat = 5
+    private let infoAreaBgColor: UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha:1.0)
+    
+    fileprivate func addingSubViews() {
+        self.addSubview(self.infoArea)
+        self.infoArea.addSubview(self.ownerLabel)
+        self.infoArea.addSubview(self.startTimeLabel)
+        self.infoArea.addSubview(self.endTimeLabel)
+        self.infoArea.addSubview(self.sourceLocLabel)
+        self.infoArea.addSubview(self.destLocLabel)
+        
+        self.addSubview(self.btnArea)
+        self.btnArea.addSubview(self.carpoolCountLabel)
+        self.btnArea.addSubview(self.joinBtn)
+    }
+    
+    fileprivate func infoAreaStyling() {
+        self.infoArea.snp.makeConstraints({ make in
+            make.top.equalToSuperview().offset(self.padding * 3)
+            make.left.equalToSuperview().offset(self.padding * 3)
+            make.bottom.equalToSuperview().offset(-self.padding * 3)
+            make.width.equalToSuperview().multipliedBy(self.infoAreaRatio)
+        })
+        
+        self.infoArea.backgroundColor = self.infoAreaBgColor
+        
+        DispatchQueue.main.async {
+            self.infoArea.layer.cornerRadius = self.infoArea.frame.height / 12
+        }
+    }
+    
+    fileprivate func btnAreaStyling() {
+        
+        self.btnArea.snp.makeConstraints({ make in
+            make.top.equalToSuperview().offset(self.padding * 3)
+            make.left.equalTo(self.infoArea.snp.right).offset(self.padding)
+            make.bottom.equalToSuperview().offset(-self.padding * 3)
+            make.right.equalToSuperview().offset(-self.padding * 3)
+        })
+        
+        self.btnArea.backgroundColor = self.infoAreaBgColor
+        
+        DispatchQueue.main.async {
+            self.btnArea.layer.cornerRadius = self.btnArea.frame.height / 12
+        }
+        
+    }
+    
+    fileprivate func ownerLabelStyling() {
+        self.ownerLabel.snp.makeConstraints({ make in
+            make.top.equalToSuperview().offset(self.padding)
+            make.left.equalToSuperview().offset(self.padding)
+            make.right.equalToSuperview().offset(-self.padding)
+        })
+        
+        self.ownerLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+    }
+    
+    fileprivate func startTimeLabelStyling() {
+        self.startTimeLabel.snp.makeConstraints({ make in
+            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding * 4)
+            make.left.equalToSuperview().offset(self.padding)
+        })
+        
+        self.startTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+    }
+    
+    fileprivate func endTimeLabelStyling() {
+        self.endTimeLabel.snp.makeConstraints({ make in
+            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding * 4)
+            make.right.equalToSuperview().offset(-self.padding)
+        })
+        
+        self.startTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+    }
+    
+    fileprivate func sourceLabelStyling() {
+        self.sourceLocLabel.snp.makeConstraints({ make in
+            make.top.equalTo(self.startTimeLabel.snp.bottom).offset(self.padding)
+            make.left.equalToSuperview().offset(self.padding)
+            make.bottom.equalToSuperview().offset(-self.padding)
+        })
+        
+        self.sourceLocLabel.textColor = .lightText
+    }
+    
+    fileprivate func destLocLabelStyling() {
+        self.destLocLabel.snp.makeConstraints({ make in
+            make.top.equalTo(self.endTimeLabel.snp.bottom).offset(self.padding)
+            make.right.equalToSuperview().offset(-self.padding)
+            make.bottom.equalToSuperview().offset(-self.padding)
+        })
+        
+        self.destLocLabel.textColor = .lightText
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.infoArea = UIView()
@@ -39,48 +133,19 @@ class CarpoolListCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(self.infoArea)
-        self.infoArea.addSubview(self.ownerLabel)
-        self.infoArea.addSubview(self.startTimeLabel)
-        self.infoArea.addSubview(self.endTimeLabel)
-        self.infoArea.addSubview(self.sourceLocLabel)
-        self.infoArea.addSubview(self.destLocLabel)
+        self.backgroundColor = .clear
         
-        self.addSubview(self.btnArea)
-        self.btnArea.addSubview(self.carpoolCountLabel)
-        self.btnArea.addSubview(self.joinBtn)
+        self.addingSubViews()
+        self.infoAreaStyling()
+        self.btnAreaStyling()
         
-        self.infoArea.snp.makeConstraints({ make in
-            make.top.equalToSuperview().offset(self.padding)
-            make.left.equalToSuperview().offset(self.padding)
-            make.bottom.equalToSuperview().offset(-self.padding)
-            make.width.equalToSuperview().multipliedBy(self.infoAreaRatio)
-        })
+        self.ownerLabelStyling()
         
-        self.btnArea.snp.makeConstraints({ make in
-            make.top.equalToSuperview().offset(self.padding)
-            make.left.equalTo(self.infoArea).offset(self.padding)
-            make.bottom.equalToSuperview().offset(-self.padding)
-            make.right.equalToSuperview().offset(-self.padding)
-        })
+        self.startTimeLabelStyling()
+        self.sourceLabelStyling()
         
-        self.ownerLabel.snp.makeConstraints({ make in
-            make.top.equalToSuperview().offset(self.padding)
-            make.left.equalToSuperview().offset(self.padding)
-            make.right.equalToSuperview().offset(-self.padding)
-        })
-        
-        self.startTimeLabel.snp.makeConstraints({ make in
-            make.top.equalTo(self.ownerLabel).offset(self.padding * 2)
-            make.left.equalToSuperview().offset(self.padding)
-        })
-        
-        self.sourceLocLabel.snp.makeConstraints({ make in
-            make.top.equalTo(self.startTimeLabel).offset(self.padding)
-            make.left.equalToSuperview().offset(self.padding)
-            make.bottom.equalToSuperview().offset(-self.padding)
-        })
-        
+        self.endTimeLabelStyling()
+        self.destLocLabelStyling()
     }
     
     required init?(coder: NSCoder) {
