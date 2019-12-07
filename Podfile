@@ -7,7 +7,6 @@ target 'HerHack' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-  pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
 
   target 'HerHackTests' do
