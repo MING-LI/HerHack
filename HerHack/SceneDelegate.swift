@@ -17,9 +17,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene as! UIWindowScene)
         self.window?.makeKeyAndVisible()
         
-//        self.window?.rootViewController = UINavigationController(rootViewController: CarpoolListViewContoller())
+        let tbvc = UITabBarController()
         
-                self.window?.rootViewController = UINavigationController(rootViewController: MapViewController())
+        let landingScreen = UINavigationController(rootViewController: CarpoolListViewContoller())
+        landingScreen.tabBarItem.title = Constants.CarpoolScreenName
+        landingScreen.tabBarItem.image = #imageLiteral(resourceName: "car")
+        
+        let googleMapScreen = UINavigationController(rootViewController: MapViewController())
+        googleMapScreen.tabBarItem.title = Constants.MapViewScreenName
+        googleMapScreen.tabBarItem.image = #imageLiteral(resourceName: "map")
+        
+        tbvc.viewControllers = [landingScreen, googleMapScreen]
+        
+        self.window?.rootViewController = tbvc
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }

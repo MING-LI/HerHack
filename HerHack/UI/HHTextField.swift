@@ -15,9 +15,9 @@ class HHTextField: UITextField {
         super.init(frame: frame)
         
         self.text = "Your location"
-        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.minimumSpacing, height: Constants.minimumSpacing))
+        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.MinimumSpacing, height: Constants.MinimumSpacing))
         self.leftViewMode = UITextField.ViewMode.always
-        self.font = Constants.regularFont
+        self.font = Constants.Fonts.RegularFont
         self.textColor = .black
         self.backgroundColor = .white
         self.textAlignment = .left
@@ -25,7 +25,7 @@ class HHTextField: UITextField {
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
-        self.layer.borderColor = Constants.greyColor.cgColor
+        self.layer.borderColor = Constants.Colors.GreyColor.cgColor
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: 44)

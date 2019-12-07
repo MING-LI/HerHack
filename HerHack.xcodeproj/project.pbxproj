@@ -23,7 +23,7 @@
 		BB7169C12389459200C34C5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB13DCE12387F0970050B345 /* Assets.xcassets */; };
 		C263D41A48E99D5448B8C3AE /* libPods-HerHack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D31AE046479B7B2083D1DA7 /* libPods-HerHack.a */; };
 		D23B7DB52388062000F92B1B /* HerHackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B7DB42388062000F92B1B /* HerHackUITests.swift */; };
-		D26E07B5239A3CFD00C028BF /* CarpoolSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E07B4239A3CFD00C028BF /* CarpoolSearchResultViewController.swift */; };
+		D249527C239C0C2C009382F2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D249527B239C0C2C009382F2 /* Date.swift */; };
 		D26E07B7239A3FF400C028BF /* Carpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E07B6239A3FF400C028BF /* Carpool.swift */; };
 		D26E07BA239A41E100C028BF /* CarpoolListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E07B9239A41E100C028BF /* CarpoolListCell.swift */; };
 /* End PBXBuildFile section */
@@ -72,7 +72,7 @@
 		D23B7DB22388062000F92B1B /* HerHackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HerHackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23B7DB42388062000F92B1B /* HerHackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerHackUITests.swift; sourceTree = "<group>"; };
 		D23B7DB62388062000F92B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D26E07B4239A3CFD00C028BF /* CarpoolSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolSearchResultViewController.swift; sourceTree = "<group>"; };
+		D249527B239C0C2C009382F2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D26E07B6239A3FF400C028BF /* Carpool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carpool.swift; sourceTree = "<group>"; };
 		D26E07B9239A41E100C028BF /* CarpoolListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolListCell.swift; sourceTree = "<group>"; };
 		F5EC1AAE816622E71B008220 /* Pods-HerHackUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.release.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,13 +181,14 @@
 		BB13DCD72387F0930050B345 /* HerHack */ = {
 			isa = PBXGroup;
 			children = (
-				1BC05F00239BCF37003EA539 /* UI */,
-				1BC05EF9239BC3BA003EA539 /* Constants.swift */,
-				1BC05EF6239BC219003EA539 /* MapScreen */,
 				BB13DCD82387F0930050B345 /* AppDelegate.swift */,
 				BB13DCDA2387F0930050B345 /* SceneDelegate.swift */,
+				1BC05EF9239BC3BA003EA539 /* Constants.swift */,
+				1BC05F00239BCF37003EA539 /* UI */,
+				1BC05EF6239BC219003EA539 /* MapScreen */,
 				D26E07BB239A41F800C028BF /* Carpool Screen */,
 				D26E07B8239A3FF800C028BF /* Model */,
+				D249527D239C0C6D009382F2 /* Extensions */,
 				BB13DCE12387F0970050B345 /* Assets.xcassets */,
 				BB13DCE32387F0970050B345 /* LaunchScreen.storyboard */,
 				BB13DCE62387F0970050B345 /* Info.plist */,
@@ -214,6 +215,14 @@
 			path = HerHackUITests;
 			sourceTree = "<group>";
 		};
+		D249527D239C0C6D009382F2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D249527B239C0C2C009382F2 /* Date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D26E07B8239A3FF800C028BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +238,6 @@
 			children = (
 				BB13DCDC2387F0930050B345 /* CarpoolListViewContoller.swift */,
 				D26E07B9239A41E100C028BF /* CarpoolListCell.swift */,
-				D26E07B4239A3CFD00C028BF /* CarpoolSearchResultViewController.swift */,
 			);
 			path = "Carpool Screen";
 			sourceTree = "<group>";
@@ -458,10 +466,10 @@
 				BB13DCDD2387F0930050B345 /* CarpoolListViewContoller.swift in Sources */,
 				BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */,
 				D26E07BA239A41E100C028BF /* CarpoolListCell.swift in Sources */,
-				D26E07B5239A3CFD00C028BF /* CarpoolSearchResultViewController.swift in Sources */,
 				D26E07B7239A3FF400C028BF /* Carpool.swift in Sources */,
 				BB13DCDB2387F0930050B345 /* SceneDelegate.swift in Sources */,
 				1BC05EF8239BC2D4003EA539 /* MapViewController.swift in Sources */,
+				D249527C239C0C2C009382F2 /* Date.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
 				1BC05F02239BCF55003EA539 /* HHTextField.swift in Sources */,
 				492FD467239BFBB200573B1F /* Location.swift in Sources */,

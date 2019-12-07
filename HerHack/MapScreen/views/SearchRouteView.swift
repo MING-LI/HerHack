@@ -8,16 +8,15 @@
 
 import UIKit
 
-
-protocol HHTextFieldProtocol :class{
+protocol HHTextFieldProtocol {
     func didClickedTextField(textField: HHTextField)
 }
 
 class SearchRouteView: UIView {
     
-    var delegate: HHTextFieldProtocol?
+    var delegate: HHTextFieldProtocol
     
-    var stackView: UIStackView = {
+    lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
         stack.axis = .vertical
         stack.spacing = 10
@@ -25,14 +24,14 @@ class SearchRouteView: UIView {
         return stack
     }()
     
-    var sourceTextField: HHTextField = {
+    lazy var sourceTextField: HHTextField = {
         let txtfld = HHTextField()
         txtfld.setIcon(UIImage.init(named: "current")!)
         txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
         return txtfld
     }()
 
-    var destTextField: HHTextField = {
+    lazy var destTextField: HHTextField = {
         let txtfld = HHTextField()
         txtfld.text = "Destination"
         txtfld.setIcon(UIImage.init(named: "location")!)
@@ -40,7 +39,7 @@ class SearchRouteView: UIView {
         return txtfld
     }()
     
-    var button: UIButton = {
+    lazy var button: UIButton = {
         let button = UIButton()
         
         button.setTitle("Search", for: .normal)
@@ -48,13 +47,10 @@ class SearchRouteView: UIView {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(delegate: HHTextFieldProtocol) {
+        self.delegate = delegate
+        super.init(frame: .zero)
         setupViews()
-    }
-
-    convenience init() {
-        self.init(frame: CGRect.zero)
     }
     
     required init?(coder: NSCoder) {
@@ -76,15 +72,15 @@ class SearchRouteView: UIView {
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.appMargin),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.appMargin),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.AppMargin),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.AppMargin),
             self.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20)
         ])
     }
     
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
-        delegate?.didClickedTextField(textField: textField)
+        delegate.didClickedTextField(textField: textField)
     }
     
     @objc func onTapSearch(button: UIButton) {

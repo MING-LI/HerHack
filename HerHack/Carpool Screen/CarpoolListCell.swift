@@ -23,8 +23,8 @@ class CarpoolListCell: UITableViewCell {
     private let joinBtn: UIButton
     
     private let infoAreaRatio: CGFloat = (2/3)
-    private let padding: CGFloat = 5
-    private let infoAreaBgColor: UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha:1.0)
+    private let padding: CGFloat = Constants.MinimumSpacing
+    private let infoAreaBgColor: UIColor = Constants.Colors.LightGreyColor
     
     fileprivate func addingSubViews() {
         self.addSubview(self.infoArea)
@@ -41,9 +41,9 @@ class CarpoolListCell: UITableViewCell {
     
     fileprivate func infoAreaStyling() {
         self.infoArea.snp.makeConstraints({ make in
-            make.top.equalToSuperview().offset(self.padding * 3)
-            make.left.equalToSuperview().offset(self.padding * 3)
-            make.bottom.equalToSuperview().offset(-self.padding * 3)
+            make.top.equalToSuperview().offset(self.padding)
+            make.left.equalToSuperview().offset(self.padding)
+            make.bottom.equalToSuperview().offset(-self.padding)
             make.width.equalToSuperview().multipliedBy(self.infoAreaRatio)
         })
         
@@ -57,10 +57,10 @@ class CarpoolListCell: UITableViewCell {
     fileprivate func btnAreaStyling() {
         
         self.btnArea.snp.makeConstraints({ make in
-            make.top.equalToSuperview().offset(self.padding * 3)
+            make.top.equalToSuperview().offset(self.padding)
             make.left.equalTo(self.infoArea.snp.right).offset(self.padding)
-            make.bottom.equalToSuperview().offset(-self.padding * 3)
-            make.right.equalToSuperview().offset(-self.padding * 3)
+            make.bottom.equalToSuperview().offset(-self.padding)
+            make.right.equalToSuperview().offset(-self.padding)
         })
         
         self.btnArea.backgroundColor = self.infoAreaBgColor
@@ -78,25 +78,25 @@ class CarpoolListCell: UITableViewCell {
             make.right.equalToSuperview().offset(-self.padding)
         })
         
-        self.ownerLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        self.ownerLabel.font = Constants.Fonts.BoldFont
     }
     
     fileprivate func startTimeLabelStyling() {
         self.startTimeLabel.snp.makeConstraints({ make in
-            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding * 4)
+            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding)
             make.left.equalToSuperview().offset(self.padding)
         })
         
-        self.startTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        self.startTimeLabel.font = Constants.Fonts.SemiBold
     }
     
     fileprivate func endTimeLabelStyling() {
         self.endTimeLabel.snp.makeConstraints({ make in
-            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding * 4)
+            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding)
             make.right.equalToSuperview().offset(-self.padding)
         })
         
-        self.startTimeLabel.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        self.endTimeLabel.font = Constants.Fonts.SemiBold
     }
     
     fileprivate func sourceLabelStyling() {
@@ -106,7 +106,7 @@ class CarpoolListCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-self.padding)
         })
         
-        self.sourceLocLabel.textColor = .lightText
+        self.sourceLocLabel.textColor = Constants.Colors.GreyColor
     }
     
     fileprivate func destLocLabelStyling() {
@@ -116,7 +116,7 @@ class CarpoolListCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-self.padding)
         })
         
-        self.destLocLabel.textColor = .lightText
+        self.destLocLabel.textColor = Constants.Colors.GreyColor
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -151,16 +151,12 @@ class CarpoolListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func stringFromDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
-    }
+
     
     func plugData(data: Carpool) {
         self.ownerLabel.text = data.user_offer_ride
-        self.startTimeLabel.text = stringFromDate(data.start_at)
-        self.endTimeLabel.text = stringFromDate(data.end_at)
+        self.startTimeLabel.text = data.start_at.toString(format: "HH:mm")
+        self.endTimeLabel.text = data.end_at.toString(format: "HH:mm")
         self.sourceLocLabel.text = data.source
         self.destLocLabel.text = data.destination
         self.carpoolCountLabel.text = String(data.users_request_ride.count)
