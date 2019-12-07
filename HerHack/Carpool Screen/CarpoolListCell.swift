@@ -85,7 +85,7 @@ class CarpoolListCell: UITableViewCell {
     
     fileprivate func startTimeLabelStyling() {
         self.startTimeLabel.snp.makeConstraints({ make in
-            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding)
+            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding * 2)
             make.left.equalToSuperview().offset(self.padding)
         })
         
