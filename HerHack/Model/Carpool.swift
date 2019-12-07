@@ -8,13 +8,24 @@
 
 import Foundation
 
+struct CarpoolRequest {
+    var user_id: String
+    var is_accepted : Bool
+}
+
+enum CarpoolStatus {
+    case OPEN, FULL, ENDED
+}
+
 struct Carpool {
-    
-    let owner: String
-    let source: String
-    let dest: String
-    let startTime: Int
-    let endTime: Int
-    let passengers: [String]
-    
+    var source: String
+    var destination: String
+    var offered_seats : Int
+    var created_at: Date
+    var start_at: Date
+//  arrived_at: calculate by using the estimated time fetched from Google API
+    var end_at: Date
+    var user_offer_ride: String
+    var users_request_ride: [CarpoolRequest]
+    var status: CarpoolStatus
 }
