@@ -11,16 +11,16 @@ import SnapKit
 
 class CarpoolListCell: UITableViewCell {
     
-    let infoArea: UIView
-    let ownerLabel: UILabel
-    let startTimeLabel: UILabel
-    let endTimeLabel: UILabel
-    let sourceLocLabel: UILabel
-    let destLocLabel: UILabel
+    private let infoArea: UIView
+    private let ownerLabel: UILabel
+    private let startTimeLabel: UILabel
+    private let endTimeLabel: UILabel
+    private let sourceLocLabel: UILabel
+    private let destLocLabel: UILabel
     
-    let btnArea: UIView
-    let carpoolCountLabel: UILabel
-    let joinBtn: UIButton
+    private let btnArea: UIView
+    private let carpoolCountLabel: UILabel
+    private let joinBtn: UIButton
     
     private let infoAreaRatio: CGFloat = (2/3)
     private let padding: CGFloat = 5
