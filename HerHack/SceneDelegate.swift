@@ -21,9 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let landingScreen = UINavigationController(rootViewController: CarpoolListViewContoller())
         landingScreen.tabBarItem.title = Constants.CarpoolScreenName
+        landingScreen.tabBarItem.image = #imageLiteral(resourceName: "car")
         
         let googleMapScreen = UINavigationController(rootViewController: MapViewController())
         googleMapScreen.tabBarItem.title = Constants.MapViewScreenName
+        googleMapScreen.tabBarItem.image = #imageLiteral(resourceName: "map")
         
         tbvc.viewControllers = [landingScreen, googleMapScreen]
         
