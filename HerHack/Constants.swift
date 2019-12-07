@@ -17,6 +17,7 @@ struct Constants {
     static let AppMargin: CGFloat = 15
     
     static let Fonts = (
+        LargeBoldFont: UIFont.boldSystemFont(ofSize: 24),
         BoldFont: UIFont.boldSystemFont(ofSize: 18),
         SemiBold: UIFont.boldSystemFont(ofSize: 16),
         RegularFont: UIFont.systemFont(ofSize: UIFont.systemFontSize),
