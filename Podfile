@@ -8,7 +8,6 @@ target 'HerHack' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Firebase/Analytics'
-  pod 'Firebase/Core'
   pod 'Firebase/Firestore'
 
   target 'HerHackTests' do

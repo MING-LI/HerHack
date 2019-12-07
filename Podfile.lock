@@ -277,7 +277,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.2)
   - Firebase/Analytics
-  - Firebase/Core
   - Firebase/Firestore
   - GoogleMaps
   - GooglePlaces
@@ -335,6 +334,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 5db347bec3da4727acbd94db6bd3cfa9224256b2
+PODFILE CHECKSUM: 3672b206760b28f8702462b4b2d8611a35d09a8a
 
 COCOAPODS: 1.8.4
