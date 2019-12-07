@@ -14,9 +14,9 @@ class CarpoolListViewContoller: UIViewController {
     let tableView: UITableView
     
     let carPools = [
-        Carpool(owner: "Ken", source: "屯門", dest: "將軍澳", startTime: 1800, endTime: 1930, passengers: ["John"]),
-        Carpool(owner: "Mimosa", source: "筲箕灣", dest: "將軍澳", startTime: 1800, endTime: 1930, passengers: ["Aakash"]),
-        Carpool(owner: "Angus", source: "荃灣", dest: "奧運", startTime: 1800, endTime: 1930, passengers: ["Raymond"])
+        Carpool(source: "屯門", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at: ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!, user_offer_ride: "Ken", users_request_ride: [CarpoolRequest(user_id:"John",is_accepted:false)], status: CarpoolStatus.OPEN),
+        Carpool(source: "筲箕灣", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!,start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Mimosa", users_request_ride: [CarpoolRequest(user_id:"Aakash",is_accepted:false)], status: CarpoolStatus.OPEN),
+        Carpool(source: "荃灣", destination: "奧運", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Angus", users_request_ride: [CarpoolRequest(user_id:"Raymond",is_accepted:false)], status: CarpoolStatus.OPEN),
     ]
     
     var filteredCarpools: [Carpool] = []
@@ -90,7 +90,7 @@ extension CarpoolListViewContoller: UISearchBarDelegate {
             self.filteredCarpools = self.carPools
         } else {
             self.filteredCarpools = self.carPools.filter({ carpool in
-                return carpool.source.contains(searchText) || carpool.dest.contains(searchText)
+                return carpool.source.contains(searchText) || carpool.destination.contains(searchText)
             })
             
             

@@ -151,14 +151,19 @@ class CarpoolListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    func stringFromDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
+    }
     
     func plugData(data: Carpool) {
-        self.ownerLabel.text = data.owner
-        self.startTimeLabel.text = String(data.startTime)
-        self.endTimeLabel.text = String(data.endTime)
+        self.ownerLabel.text = data.user_offer_ride
+        self.startTimeLabel.text = stringFromDate(data.start_at)
+        self.endTimeLabel.text = stringFromDate(data.end_at)
         self.sourceLocLabel.text = data.source
-        self.destLocLabel.text = data.dest
-        self.carpoolCountLabel.text = String(data.passengers.count)
+        self.destLocLabel.text = data.destination
+        self.carpoolCountLabel.text = String(data.users_request_ride.count)
     }
     
     override func prepareForReuse() {

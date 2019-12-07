@@ -11,6 +11,9 @@
 		1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05EF9239BC3BA003EA539 /* Constants.swift */; };
 		1BC05EFF239BC93A003EA539 /* SearchRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05EFE239BC93A003EA539 /* SearchRouteView.swift */; };
 		1BC05F02239BCF55003EA539 /* HHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05F01239BCF55003EA539 /* HHTextField.swift */; };
+		492FD465239BFBA500573B1F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD464239BFBA500573B1F /* User.swift */; };
+		492FD467239BFBB200573B1F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD466239BFBB200573B1F /* Location.swift */; };
+		492FD469239BFCD700573B1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 492FD468239BFCD700573B1F /* GoogleService-Info.plist */; };
 		688C3A60C062137A14F73077 /* libPods-HerHackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41607AA64638F36FBAD1DA0E /* libPods-HerHackTests.a */; };
 		BA74DE1071FF8539B270ACBC /* libPods-HerHackUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6FEAA1C42707D0E4C96624 /* libPods-HerHackUITests.a */; };
 		BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCD82387F0930050B345 /* AppDelegate.swift */; };
@@ -50,6 +53,9 @@
 		1BC05F01239BCF55003EA539 /* HHTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHTextField.swift; sourceTree = "<group>"; };
 		37E88A72404C8EBE23BBE649 /* Pods-HerHackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackTests.debug.xcconfig"; path = "Target Support Files/Pods-HerHackTests/Pods-HerHackTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41607AA64638F36FBAD1DA0E /* libPods-HerHackTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HerHackTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		492FD464239BFBA500573B1F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		492FD466239BFBB200573B1F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		492FD468239BFCD700573B1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70828AFA5757239AB5A5B262 /* Pods-HerHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHack.release.xcconfig"; path = "Target Support Files/Pods-HerHack/Pods-HerHack.release.xcconfig"; sourceTree = "<group>"; };
 		A2AF7E7584F0ABA1A3C7C3BB /* Pods-HerHackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackTests.release.xcconfig"; path = "Target Support Files/Pods-HerHackTests/Pods-HerHackTests.release.xcconfig"; sourceTree = "<group>"; };
 		A94F279E521E12B41CA23404 /* Pods-HerHackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.debug.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				BB13DCE12387F0970050B345 /* Assets.xcassets */,
 				BB13DCE32387F0970050B345 /* LaunchScreen.storyboard */,
 				BB13DCE62387F0970050B345 /* Info.plist */,
+				492FD468239BFCD700573B1F /* GoogleService-Info.plist */,
 			);
 			path = HerHack;
 			sourceTree = "<group>";
@@ -211,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				D26E07B6239A3FF400C028BF /* Carpool.swift */,
+				492FD464239BFBA500573B1F /* User.swift */,
+				492FD466239BFBB200573B1F /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB7169C12389459200C34C5F /* Assets.xcassets in Resources */,
+				492FD469239BFCD700573B1F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +464,8 @@
 				1BC05EF8239BC2D4003EA539 /* MapViewController.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
 				1BC05F02239BCF55003EA539 /* HHTextField.swift in Sources */,
+				492FD467239BFBB200573B1F /* Location.swift in Sources */,
+				492FD465239BFBA500573B1F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

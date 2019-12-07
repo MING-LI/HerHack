@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+struct Geopoint {
+    var lat : Float
+    var lng : Float
+}
+struct Location {
+    var address: String
+    var area : String
+    var coordinates: Geopoint
+}
