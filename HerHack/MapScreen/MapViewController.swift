@@ -14,24 +14,32 @@ class MapViewController: UIViewController {
     
     let hk = CLLocationCoordinate2D(latitude: 22.3193, longitude:114.1694)
     
-    lazy var  camera = {
-        return GMSCameraPosition.camera(withLatitude: hk.latitude, longitude: hk.longitude, zoom: 13.0)
-    }()
+    let camera: GMSCameraPosition
+    
+    var searchRouteTextField: HHTextField
     
     lazy var mapView = {
-        return GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        return GMSMapView.map(withFrame: CGRect.zero, camera: self.camera)
     }()
     
-    var searchRouteView = {
-        return SearchRouteView()
+    lazy var searchRouteView: SearchRouteView = {
+        return SearchRouteView(delegate: self)
     }()
     
-    var searchRouteTextField: HHTextField?
-      
+    init() {
+        self.camera = GMSCameraPosition.camera(withLatitude: hk.latitude, longitude: hk.longitude, zoom: 13.0)
+        self.searchRouteTextField = HHTextField()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Map"
-        view = mapView
+        self.title = Constants.MapViewScreenName
+        self.view = mapView
         
         setupViews()
     }
@@ -65,23 +73,21 @@ extension MapViewController: HHTextFieldProtocol {
 
 
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
-  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-    
-    if let textField = self.searchRouteTextField {
-        textField.text = place.name
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+        self.searchRouteTextField.text = place.name
+        
+        // Dismiss the GMSAutocompleteViewController when something is selected
+        dismiss(animated: true, completion: nil)
     }
-    
-// Dismiss the GMSAutocompleteViewController when something is selected
-    dismiss(animated: true, completion: nil)
-  }
-func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-    // Handle the error
-    print("Error: ", error.localizedDescription)
-  }
-func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-    // Dismiss when the user canceled the action
-    dismiss(animated: true, completion: nil)
-  }
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // Handle the error
+        print("Error: ", error.localizedDescription)
+    }
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        // Dismiss when the user canceled the action
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 

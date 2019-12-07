@@ -27,13 +27,16 @@ class CarpoolListViewContoller: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        self.view.backgroundColor = .white
+        
         self.filteredCarpools = self.carPools
         
-        self.edgesForExtendedLayout = []
+        let safeArea = self.view.layoutMarginsGuide
+//        self.edgesForExtendedLayout = []
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints({ make in
-            make.top.equalToSuperview()
+            make.top.equalTo(safeArea.snp.top)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         })
@@ -60,6 +63,7 @@ class CarpoolListViewContoller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = Constants.CarpoolScreenName
     }
     
 }
