@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene as! UIWindowScene)
         self.window?.makeKeyAndVisible()
         
-        self.window?.rootViewController = UINavigationController(rootViewController: CarpoolListViewContoller())
+//        self.window?.rootViewController = UINavigationController(rootViewController: CarpoolListViewContoller())
+        
+                self.window?.rootViewController = UINavigationController(rootViewController: MapViewController())
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
