@@ -8,8 +8,9 @@
 
 import Foundation
 
-struct Carrpool {
+struct Carpool {
     
+    let owner: String
     let source: String
     let dest: String
     let startTime: Int
