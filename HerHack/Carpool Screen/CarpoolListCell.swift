@@ -27,7 +27,7 @@ class CarpoolListCell: UITableViewCell {
     
     private let infoAreaRatio: CGFloat = (2/3)
     private let padding: CGFloat = Constants.MinimumSpacing
-    private let infoAreaBgColor: UIColor = Constants.Colors.LightGreyColor
+    private let infoAreaBgColor: UIColor = .white
     
     fileprivate func addingSubViews() {
         self.addSubview(self.infoArea)
@@ -183,7 +183,7 @@ class CarpoolListCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = .clear
+        self.backgroundColor = Constants.Colors.PaleGreyColor
         
         self.addingSubViews()
         

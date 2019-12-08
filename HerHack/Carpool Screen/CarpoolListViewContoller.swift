@@ -51,6 +51,7 @@ class CarpoolListViewContoller: UIViewController {
             make.left.right.bottom.equalToSuperview()
         })
         
+        self.tableView.backgroundColor = Constants.Colors.PaleGreyColor
         self.tableView.register(CarpoolListCell.self, forCellReuseIdentifier: "CarpoolCell")
         self.tableView.separatorStyle = .none
         self.tableView.allowsSelection = false
