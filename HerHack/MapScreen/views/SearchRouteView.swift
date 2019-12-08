@@ -8,13 +8,14 @@
 
 import UIKit
 
-protocol HHTextFieldProtocol {
+protocol SearchRouteViewProtocol {
     func didClickedTextField(textField: HHTextField)
+    func didClickedSearch()
 }
 
 class SearchRouteView: UIView {
     
-    var delegate: HHTextFieldProtocol
+    var delegate: SearchRouteViewProtocol
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
@@ -49,7 +50,7 @@ class SearchRouteView: UIView {
         return button
     }()
     
-    init(delegate: HHTextFieldProtocol) {
+    init(delegate: SearchRouteViewProtocol) {
         self.delegate = delegate
         super.init(frame: .zero)
         setupViews()
@@ -86,8 +87,7 @@ class SearchRouteView: UIView {
     }
     
     @objc func onTapSearch(button: UIButton) {
-        print("search")
-//        fetchRoute()
+        delegate.didClickedSearch()
     }
 }
 
