@@ -9,14 +9,9 @@
 import UIKit
 import GooglePlaces
 
-protocol OfferFormViewProtocol {
-    func didClickedTextField(textField: HHTextField)
-    func didClickedContinue(departure: String)
-}
-
 class OfferFormView: UIView {
     
-    var delegate: OfferFormViewProtocol
+    var delegate: OfferFormViewDelegate
     
     var timePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -33,16 +28,17 @@ class OfferFormView: UIView {
         return stack
     }()
     
-    lazy var sourceTextField: HHTextField = {
-        let txtfld = HHTextField()
+    lazy var sourceTextField: LocationTextField = {
+        let txtfld = LocationTextField()
+        txtfld.text = "Source"
         txtfld.setIcon(UIImage.init(named: "current")!)
         txtfld.tag = 0
         txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
         return txtfld
     }()
 
-    lazy var destTextField: HHTextField = {
-        let txtfld = HHTextField()
+    lazy var destTextField: LocationTextField = {
+        let txtfld = LocationTextField()
         txtfld.text = "Destination"
         txtfld.tag = 1
         txtfld.setIcon(UIImage.init(named: "location")!)
@@ -51,13 +47,11 @@ class OfferFormView: UIView {
     }()
     
     lazy var pickerToolbar: HHPickerToolbar = {
-        let toolbar = HHPickerToolbar()
-        toolbar.toolbarDelegate = self
-        return toolbar
+        return HHPickerToolbar(delegate: self)
     }()
     
-    lazy var departureTextField: HHTextField = {
-        let txtfld = HHTextField()
+    lazy var departureTextField: LocationTextField = {
+        let txtfld = LocationTextField()
         txtfld.text = "Departure Time"
         txtfld.setIcon(UIImage.init(named: "clock")!)
         txtfld.inputView = timePicker
@@ -74,7 +68,7 @@ class OfferFormView: UIView {
         return button
     }()
     
-    init(delegate: OfferFormViewProtocol) {
+    init(delegate: OfferFormViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
         setupViews()
@@ -107,7 +101,7 @@ class OfferFormView: UIView {
         button.alpha = 0.5;
     }
     
-    @objc func onTextFieldTap(textField: HHTextField) {
+    @objc func onTextFieldTap(textField: LocationTextField) {
         textField.resignFirstResponder()
         delegate.didClickedTextField(textField: textField)
         
@@ -125,7 +119,7 @@ class OfferFormView: UIView {
 }
 
 
-extension OfferFormView: HHPickerToolbarProtocol {
+extension OfferFormView: HHPickerToolbarDelegate {
     func didTapDone() {
         departureTextField.resignFirstResponder()
         

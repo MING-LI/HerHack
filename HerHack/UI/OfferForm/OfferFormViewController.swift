@@ -12,7 +12,7 @@ import GooglePlaces
 class OfferFormViewController: UIViewController {
     
     var scrollView = UIScrollView()
-    var searchRouteTextField = HHTextField()
+    var searchRouteTextField = LocationTextField()
     var source = CLLocationCoordinate2D()
     var destination = CLLocationCoordinate2D()
     lazy var offerFormView: OfferFormView = {
@@ -57,8 +57,8 @@ class OfferFormViewController: UIViewController {
     }
 }
 
-extension OfferFormViewController: OfferFormViewProtocol {
-    func didClickedTextField(textField: HHTextField) {
+extension OfferFormViewController: OfferFormViewDelegate {
+    func didClickedTextField(textField: LocationTextField) {
         searchRouteTextField = textField
         let acController = GMSAutocompleteViewController()
         acController.delegate = self

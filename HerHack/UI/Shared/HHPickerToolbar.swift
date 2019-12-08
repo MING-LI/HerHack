@@ -8,15 +8,12 @@
 
 import UIKit
 
-protocol HHPickerToolbarProtocol: class {
-    func didTapDone()
-    func didTapCancel()
-}
-
 class HHPickerToolbar: UIToolbar {
-    var toolbarDelegate: HHPickerToolbarProtocol?
+    let toolbarDelegate: HHPickerToolbarDelegate
     
-    override init(frame: CGRect) {
+    init(delegate: HHPickerToolbarDelegate) {
+        self.toolbarDelegate = delegate
+        
         super.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
         
         self.barStyle = UIBarStyle.default
@@ -31,17 +28,17 @@ class HHPickerToolbar: UIToolbar {
         self.setItems([ cancelButton, spaceButton, doneButton], animated: false)
         self.isUserInteractionEnabled = true
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     @objc func doneTapped() {
         print("doneTapped")
-        toolbarDelegate?.didTapDone()
+        toolbarDelegate.didTapDone()
     }
     
     @objc func cancelTapped() {
-        toolbarDelegate?.didTapCancel()
+        toolbarDelegate.didTapCancel()
     }
 }
