@@ -14,9 +14,11 @@ class CarpoolListViewContoller: UIViewController {
     let tableView: UITableView
     
     let carPools = [
-        Carpool(source: "屯門", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at: ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!, user_offer_ride: "Ken", users_request_ride: [CarpoolRequest(user_id:"John",is_accepted:false)], status: CarpoolStatus.OPEN),
+        Carpool(source: "屯門", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at: ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!, user_offer_ride: "Ken", users_request_ride: [CarpoolRequest(user_id:"John",is_accepted:true),
+                                                                                                                                                                                                                                                                                                                                                      CarpoolRequest(user_id:"Sam",is_accepted:true),
+                                                                                                                                                                                                                                                                                                                                                      CarpoolRequest(user_id:"Hitesh",is_accepted:true)], status: CarpoolStatus.FULL),
         Carpool(source: "筲箕灣", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!,start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Mimosa", users_request_ride: [CarpoolRequest(user_id:"Aakash",is_accepted:false)], status: CarpoolStatus.OPEN),
-        Carpool(source: "荃灣", destination: "奧運", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Angus", users_request_ride: [CarpoolRequest(user_id:"Raymond",is_accepted:false)], status: CarpoolStatus.OPEN),
+        Carpool(source: "荃灣", destination: "奧運", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Angus", users_request_ride: [CarpoolRequest(user_id:"Raymond",is_accepted:false)], status: CarpoolStatus.ENDED),
     ]
     
     var filteredCarpools: [Carpool] = []
@@ -32,7 +34,6 @@ class CarpoolListViewContoller: UIViewController {
         self.filteredCarpools = self.carPools
         
         let safeArea = self.view.layoutMarginsGuide
-        //        self.edgesForExtendedLayout = []
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints({ make in

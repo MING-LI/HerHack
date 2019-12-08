@@ -10,31 +10,35 @@ import Foundation
 import Firebase
 
 class FirestoreService {
+    
     private var db: Firestore
+    
     init () {
         FirebaseApp.configure()
         self.db = Firestore.firestore()
     }
-
-    func retrieveData (from collection:String, document: String? = nil) {
-        if let doc = document {
-            db.collection(collection).document(doc).getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                    print("Document data: \(dataDescription)")
-                } else {
-                    print("Document does not exist")
+    
+    func retrieveData(from collection: String) {
+        
+        db.collection(collection).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
                 }
             }
-        } else {
-            db.collection(collection).getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
-                    }
-                }
+        }
+    }
+    
+    func retrieveData (from collection:String, document: String) {
+        db.collection(collection).document(document).getDocument { (returnedDoc, error) in
+            guard let `returnedDoc` = returnedDoc else { return }
+            if returnedDoc.exists {
+                let dataDescription = returnedDoc.data()
+                print("Document data: \(dataDescription)")
+            } else {
+                print("Document does not exist")
             }
         }
     }

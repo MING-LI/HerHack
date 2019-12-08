@@ -43,7 +43,7 @@ class SearchRouteView: UIView {
         let button = UIButton()
         
         button.setTitle("Search", for: .normal)
-        button.backgroundColor = .red
+        button.backgroundColor = Constants.Colors.Red
         return button
     }()
     

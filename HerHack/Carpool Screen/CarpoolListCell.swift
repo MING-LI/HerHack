@@ -23,6 +23,8 @@ class CarpoolListCell: UITableViewCell {
     private let joinBtn: UIButton
     private let statusLabel: UILabel
     
+    private let arrowLabel: UILabel
+    
     private let infoAreaRatio: CGFloat = (2/3)
     private let padding: CGFloat = Constants.MinimumSpacing
     private let infoAreaBgColor: UIColor = Constants.Colors.LightGreyColor
@@ -34,6 +36,7 @@ class CarpoolListCell: UITableViewCell {
         self.infoArea.addSubview(self.endTimeLabel)
         self.infoArea.addSubview(self.sourceLocLabel)
         self.infoArea.addSubview(self.destLocLabel)
+        self.infoArea.addSubview(self.arrowLabel)
         
         self.addSubview(self.btnArea)
         self.btnArea.addSubview(self.carpoolCountLabel)
@@ -94,7 +97,7 @@ class CarpoolListCell: UITableViewCell {
     
     fileprivate func endTimeLabelStyling() {
         self.endTimeLabel.snp.makeConstraints({ make in
-            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding)
+            make.top.equalTo(self.ownerLabel.snp.bottom).offset(self.padding * 2)
             make.right.equalToSuperview().offset(-self.padding)
         })
         
@@ -107,8 +110,6 @@ class CarpoolListCell: UITableViewCell {
             make.left.equalToSuperview().offset(self.padding)
             make.bottom.equalToSuperview().offset(-self.padding)
         })
-        
-//        self.sourceLocLabel.textColor = Constants.Colors.GreyColor
     }
     
     fileprivate func destLocLabelStyling() {
@@ -117,8 +118,6 @@ class CarpoolListCell: UITableViewCell {
             make.right.equalToSuperview().offset(-self.padding)
             make.bottom.equalToSuperview().offset(-self.padding)
         })
-        
-//        self.destLocLabel.textColor = Constants.Colors.GreyColor
     }
     
     fileprivate func carpoolCountLabelStyling() {
@@ -138,8 +137,12 @@ class CarpoolListCell: UITableViewCell {
         })
         
         self.joinBtn.titleLabel?.font = Constants.Fonts.SmallFont
-        self.joinBtn.setTitleColor(.black, for: .normal)
         self.joinBtn.setTitle("Join", for: .normal)
+        self.joinBtn.backgroundColor = Constants.Colors.Green
+        
+        DispatchQueue.main.async {
+            self.joinBtn.layer.cornerRadius = self.joinBtn.frame.height / 12
+        }
     }
     
     fileprivate func statusLabelStyling() {
@@ -151,6 +154,16 @@ class CarpoolListCell: UITableViewCell {
         })
         
         self.carpoolCountLabel.font = Constants.Fonts.LargeBoldFont
+    }
+    
+    fileprivate func arrowLabelStyling() {
+        self.arrowLabel.snp.makeConstraints({ make in
+            make.bottom.equalToSuperview().offset(-self.padding)
+            make.centerX.equalToSuperview()
+        })
+        
+        self.arrowLabel.text = "⟶"
+        self.arrowLabel.font = Constants.Fonts.LargeBoldFont
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -166,11 +179,14 @@ class CarpoolListCell: UITableViewCell {
         self.carpoolCountLabel = UILabel()
         self.joinBtn = UIButton()
         
+        self.arrowLabel = UILabel()
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = .clear
         
         self.addingSubViews()
+        
         self.infoAreaStyling()
         self.btnAreaStyling()
         
@@ -185,6 +201,8 @@ class CarpoolListCell: UITableViewCell {
         self.carpoolCountLabelStyling()
         self.joinBtnStyling()
         self.statusLabelStyling()
+        
+        self.arrowLabelStyling()
     }
     
     required init?(coder: NSCoder) {
@@ -200,6 +218,7 @@ class CarpoolListCell: UITableViewCell {
         self.destLocLabel.text = data.destination
         self.carpoolCountLabel.text = "\(data.users_request_ride.count)/\(data.offered_seats)"
         self.joinBtn.isEnabled = data.status == .OPEN
+        self.joinBtn.alpha = data.status == .OPEN ? 1 : (1/3)
         self.statusLabel.text = {
             switch (data.status) {
             case .OPEN:
@@ -210,6 +229,16 @@ class CarpoolListCell: UITableViewCell {
                 return "Ended"
             }
         }()
+        self.statusLabel.textColor = {
+                   switch (data.status) {
+                   case .OPEN:
+                    return Constants.Colors.Green
+                   case .FULL:
+                    return Constants.Colors.Red
+                   case .ENDED:
+                    return Constants.Colors.GreyColor
+                   }
+               }()
     }
     
     override func prepareForReuse() {
