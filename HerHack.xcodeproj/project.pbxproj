@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1BC05EF8239BC2D4003EA539 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05EF7239BC2D4003EA539 /* MapViewController.swift */; };
 		1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05EF9239BC3BA003EA539 /* Constants.swift */; };
-		1BC05F02239BCF55003EA539 /* HHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05F01239BCF55003EA539 /* HHTextField.swift */; };
+		1BC05F02239BCF55003EA539 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC05F01239BCF55003EA539 /* LocationTextField.swift */; };
 		1BE85479239D21FA0094E944 /* OfferFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE85478239D21FA0094E944 /* OfferFormViewController.swift */; };
 		1BE8547B239D25BA0094E944 /* OfferFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE8547A239D25BA0094E944 /* OfferFormView.swift */; };
 		1BE8547E239D32080094E944 /* HHPickerToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE8547D239D32080094E944 /* HHPickerToolbar.swift */; };
@@ -59,7 +59,7 @@
 		0D31AE046479B7B2083D1DA7 /* libPods-HerHack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HerHack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BC05EF7239BC2D4003EA539 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1BC05EF9239BC3BA003EA539 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		1BC05F01239BCF55003EA539 /* HHTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHTextField.swift; sourceTree = "<group>"; };
+		1BC05F01239BCF55003EA539 /* LocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		1BE85478239D21FA0094E944 /* OfferFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFormViewController.swift; sourceTree = "<group>"; };
 		1BE8547A239D25BA0094E944 /* OfferFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFormView.swift; sourceTree = "<group>"; };
 		1BE8547D239D32080094E944 /* HHPickerToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHPickerToolbar.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		1BE8547C239D31BD0094E944 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1BC05F01239BCF55003EA539 /* HHTextField.swift */,
+				1BC05F01239BCF55003EA539 /* LocationTextField.swift */,
 				1BE8547D239D32080094E944 /* HHPickerToolbar.swift */,
 			);
 			path = Shared;
@@ -549,7 +549,7 @@
 				D249527C239C0C2C009382F2 /* Date.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
 				D2D26E7E239CC8FD0071B47A /* CarpoolList.swift in Sources */,
-				1BC05F02239BCF55003EA539 /* HHTextField.swift in Sources */,
+				1BC05F02239BCF55003EA539 /* LocationTextField.swift in Sources */,
 				492FD467239BFBB200573B1F /* Location.swift in Sources */,
 				1BE8547E239D32080094E944 /* HHPickerToolbar.swift in Sources */,
 				492FD465239BFBA500573B1F /* User.swift in Sources */,
