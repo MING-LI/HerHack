@@ -27,6 +27,9 @@
 		D26E07B7239A3FF400C028BF /* Carpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E07B6239A3FF400C028BF /* Carpool.swift */; };
 		D26E07BA239A41E100C028BF /* CarpoolListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E07B9239A41E100C028BF /* CarpoolListCell.swift */; };
 		D2C1277E239C102D00D308C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C1277D239C102D00D308C0 /* GoogleService-Info.plist */; };
+		D2D26E7E239CC8FD0071B47A /* CarpoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D26E7D239CC8FD0071B47A /* CarpoolList.swift */; };
+		D2D26E82239CCD310071B47A /* DataRefreashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D26E81239CCD310071B47A /* DataRefreashable.swift */; };
+		D2D26E85239CCD690071B47A /* HHTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D26E84239CCD690071B47A /* HHTextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		D26E07B6239A3FF400C028BF /* Carpool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carpool.swift; sourceTree = "<group>"; };
 		D26E07B9239A41E100C028BF /* CarpoolListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolListCell.swift; sourceTree = "<group>"; };
 		D2C1277D239C102D00D308C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2D26E7D239CC8FD0071B47A /* CarpoolList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolList.swift; sourceTree = "<group>"; };
+		D2D26E81239CCD310071B47A /* DataRefreashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRefreashable.swift; sourceTree = "<group>"; };
+		D2D26E84239CCD690071B47A /* HHTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHTextFieldDelegate.swift; sourceTree = "<group>"; };
 		F5EC1AAE816622E71B008220 /* Pods-HerHackUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.release.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FD6FEAA1C42707D0E4C96624 /* libPods-HerHackUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HerHackUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF64FC2DCAE2583B1EDCF19F /* Pods-HerHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHack.debug.xcconfig"; path = "Target Support Files/Pods-HerHack/Pods-HerHack.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,24 +119,18 @@
 		1BC05EF6239BC219003EA539 /* MapScreen */ = {
 			isa = PBXGroup;
 			children = (
-				1BC05EFD239BC8FE003EA539 /* views */,
+				1BC05F01239BCF55003EA539 /* HHTextField.swift */,
 				1BC05EF7239BC2D4003EA539 /* MapViewController.swift */,
-			);
-			path = MapScreen;
-			sourceTree = "<group>";
-		};
-		1BC05EFD239BC8FE003EA539 /* views */ = {
-			isa = PBXGroup;
-			children = (
 				1BC05EFE239BC93A003EA539 /* SearchRouteView.swift */,
 			);
-			path = views;
+			path = MapScreen;
 			sourceTree = "<group>";
 		};
 		1BC05F00239BCF37003EA539 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				1BC05F01239BCF55003EA539 /* HHTextField.swift */,
+				1BC05EF6239BC219003EA539 /* MapScreen */,
+				D26E07BB239A41F800C028BF /* Carpool Screen */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -186,16 +186,15 @@
 				BB13DCD82387F0930050B345 /* AppDelegate.swift */,
 				BB13DCDA2387F0930050B345 /* SceneDelegate.swift */,
 				1BC05EF9239BC3BA003EA539 /* Constants.swift */,
+				D2C1277F239CC49400D308C0 /* API */,
 				1BC05F00239BCF37003EA539 /* UI */,
-				1BC05EF6239BC219003EA539 /* MapScreen */,
-				D26E07BB239A41F800C028BF /* Carpool Screen */,
 				D26E07B8239A3FF800C028BF /* Model */,
+				D2D26E83239CCD490071B47A /* Protocol */,
 				D249527D239C0C6D009382F2 /* Extensions */,
 				BB13DCE12387F0970050B345 /* Assets.xcassets */,
 				BB13DCE32387F0970050B345 /* LaunchScreen.storyboard */,
 				BB13DCE62387F0970050B345 /* Info.plist */,
 				D2C1277D239C102D00D308C0 /* GoogleService-Info.plist */,
-				492FD472239C30CF00573B1F /* FirestoreService.swift */,
 			);
 			path = HerHack;
 			sourceTree = "<group>";
@@ -229,9 +228,8 @@
 		D26E07B8239A3FF800C028BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D26E07B6239A3FF400C028BF /* Carpool.swift */,
-				492FD464239BFBA500573B1F /* User.swift */,
-				492FD466239BFBB200573B1F /* Location.swift */,
+				D2D26E7C239CC8E70071B47A /* Data Model */,
+				D2D26E7F239CC9440071B47A /* View Model */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +241,41 @@
 				D26E07B9239A41E100C028BF /* CarpoolListCell.swift */,
 			);
 			path = "Carpool Screen";
+			sourceTree = "<group>";
+		};
+		D2C1277F239CC49400D308C0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				492FD472239C30CF00573B1F /* FirestoreService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D2D26E7C239CC8E70071B47A /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				D26E07B6239A3FF400C028BF /* Carpool.swift */,
+				492FD464239BFBA500573B1F /* User.swift */,
+				492FD466239BFBB200573B1F /* Location.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		D2D26E7F239CC9440071B47A /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2D26E7D239CC8FD0071B47A /* CarpoolList.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		D2D26E83239CCD490071B47A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D2D26E81239CCD310071B47A /* DataRefreashable.swift */,
+				D2D26E84239CCD690071B47A /* HHTextFieldDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,15 +502,18 @@
 				BB13DCDD2387F0930050B345 /* CarpoolListViewContoller.swift in Sources */,
 				BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */,
 				492FD473239C30CF00573B1F /* FirestoreService.swift in Sources */,
+				D2D26E82239CCD310071B47A /* DataRefreashable.swift in Sources */,
 				D26E07BA239A41E100C028BF /* CarpoolListCell.swift in Sources */,
 				D26E07B7239A3FF400C028BF /* Carpool.swift in Sources */,
 				BB13DCDB2387F0930050B345 /* SceneDelegate.swift in Sources */,
 				1BC05EF8239BC2D4003EA539 /* MapViewController.swift in Sources */,
 				D249527C239C0C2C009382F2 /* Date.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
+				D2D26E7E239CC8FD0071B47A /* CarpoolList.swift in Sources */,
 				1BC05F02239BCF55003EA539 /* HHTextField.swift in Sources */,
 				492FD467239BFBB200573B1F /* Location.swift in Sources */,
 				492FD465239BFBA500573B1F /* User.swift in Sources */,
+				D2D26E85239CCD690071B47A /* HHTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

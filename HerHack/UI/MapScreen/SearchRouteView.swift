@@ -50,7 +50,11 @@ class SearchRouteView: UIView {
         return button
     }()
     
+<<<<<<< HEAD:HerHack/MapScreen/views/SearchRouteView.swift
     init(delegate: SearchRouteViewProtocol) {
+=======
+    init(delegate: HHTextFieldDelegate) {
+>>>>>>> 6876c8efb9eed66c749db2792fa86cfc95b195e2:HerHack/UI/MapScreen/SearchRouteView.swift
         self.delegate = delegate
         super.init(frame: .zero)
         setupViews()

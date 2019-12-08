@@ -11,28 +11,27 @@ import Firebase
 
 class FirestoreService {
     
+    public static let shared = FirestoreService()
     private var db: Firestore
     
-    init () {
+    private init () {
         FirebaseApp.configure()
         self.db = Firestore.firestore()
     }
     
-    func retrieveData(from collection: String) {
-        
-        db.collection(collection).getDocuments() { (querySnapshot, err) in
+    func retrieveData(from collection: String, completion: @escaping ([QueryDocumentSnapshot]) -> ()) {
+        self.db.collection(collection).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
+                guard let snapshot = querySnapshot else { return }
+                completion(snapshot.documents)
             }
         }
     }
     
-    func retrieveData (from collection:String, document: String) {
-        db.collection(collection).document(document).getDocument { (returnedDoc, error) in
+    func retrieveData(from collection:String, document: String) {
+        self.db.collection(collection).document(document).getDocument { (returnedDoc, error) in
             guard let `returnedDoc` = returnedDoc else { return }
             if returnedDoc.exists {
                 let dataDescription = returnedDoc.data()

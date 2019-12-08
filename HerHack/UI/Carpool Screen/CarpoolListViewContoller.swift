@@ -13,25 +13,17 @@ class CarpoolListViewContoller: UIViewController {
     let searchBar: UISearchBar
     let tableView: UITableView
     
-    let carPools = [
-        Carpool(source: "屯門", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at: ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!, user_offer_ride: "Ken", users_request_ride: [CarpoolRequest(user_id:"John",is_accepted:true),
-                                                                                                                                                                                                                                                                                                                                                      CarpoolRequest(user_id:"Sam",is_accepted:true),
-                                                                                                                                                                                                                                                                                                                                                      CarpoolRequest(user_id:"Hitesh",is_accepted:true)], status: CarpoolStatus.FULL),
-        Carpool(source: "筲箕灣", destination: "將軍澳", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!,start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Mimosa", users_request_ride: [CarpoolRequest(user_id:"Aakash",is_accepted:false)], status: CarpoolStatus.OPEN),
-        Carpool(source: "荃灣", destination: "奧運", offered_seats: 3, created_at: ISO8601DateFormatter().date(from:"2019-12-09T07:00:00+0800")!, start_at:ISO8601DateFormatter().date(from:"2019-12-09T08:00:00+0800")!, end_at: ISO8601DateFormatter().date(from:"2019-12-09T09:30:00+0800")!,user_offer_ride: "Angus", users_request_ride: [CarpoolRequest(user_id:"Raymond",is_accepted:false)], status: CarpoolStatus.ENDED),
-    ]
-    
+    let carPoolList: CarpoolList
     var filteredCarpools: [Carpool] = []
     
     init() {
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
+        self.carPoolList = CarpoolList()
         
         super.init(nibName: nil, bundle: nil)
         
         self.view.backgroundColor = .white
-        
-        self.filteredCarpools = self.carPools
         
         let safeArea = self.view.layoutMarginsGuide
         
@@ -57,6 +49,8 @@ class CarpoolListViewContoller: UIViewController {
         self.tableView.allowsSelection = false
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        self.filteredCarpools = self.carPoolList.carpools
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +60,10 @@ class CarpoolListViewContoller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = Constants.CarpoolScreenName
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.carPoolList.retrieveCarpool(refreshable: self)
     }
     
 }
@@ -93,16 +91,22 @@ extension CarpoolListViewContoller: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText == "" {
-            self.filteredCarpools = self.carPools
+            self.filteredCarpools = self.carPoolList.carpools
         } else {
-            self.filteredCarpools = self.carPools.filter({ carpool in
+            self.filteredCarpools = self.carPoolList.carpools.filter({ carpool in
                 return carpool.source.contains(searchText) || carpool.destination.contains(searchText)
             })
-            
-            
         }
         
         self.tableView.reloadData()
     }
     
+}
+
+extension CarpoolListViewContoller: DataRefreashable {
+    
+    func refresh() {
+        self.filteredCarpools = self.carPoolList.carpools
+        self.tableView.reloadData()
+    }
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 struct CarpoolRequest {
-    var user_id: String
-    var is_accepted : Bool
+    let user_id: String
+    let is_accepted : Bool
 }
 
 enum CarpoolStatus {
@@ -18,14 +18,14 @@ enum CarpoolStatus {
 }
 
 struct Carpool {
-    var source: String
-    var destination: String
-    var offered_seats : Int
-    var created_at: Date
-    var start_at: Date
+    let source: String
+    let destination: String
+    let offered_seats : Int
+    let created_at: Date
+    let start_at: Date
 //  arrived_at: calculate by using the estimated time fetched from Google API
-    var end_at: Date
-    var user_offer_ride: String
-    var users_request_ride: [CarpoolRequest]
-    var status: CarpoolStatus
+    let end_at: Date
+    let user_offer_ride: String
+    let users_request_ride: [CarpoolRequest]
+    let status: CarpoolStatus
 }

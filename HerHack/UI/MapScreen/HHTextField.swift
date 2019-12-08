@@ -10,7 +10,6 @@ import UIKit
 
 class HHTextField: UITextField {
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
