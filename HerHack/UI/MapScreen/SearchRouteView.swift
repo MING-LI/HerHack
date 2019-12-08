@@ -44,7 +44,6 @@ class SearchRouteView: UIView {
     
     lazy var button: UIButton = {
         let button = UIButton()
-        
         button.setTitle("Search", for: .normal)
         button.backgroundColor = Constants.Colors.Red
         return button
@@ -81,6 +80,11 @@ class SearchRouteView: UIView {
         ])
     }
     
+    func disableSearchBtn() {
+        button.isEnabled = false
+        button.alpha = 0.5;
+    }
+    
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
         delegate.didClickedTextField(textField: textField)
@@ -88,6 +92,7 @@ class SearchRouteView: UIView {
     
     @objc func onTapSearch(button: UIButton) {
         delegate.didClickedSearch()
+        self.disableSearchBtn()
     }
 }
 
