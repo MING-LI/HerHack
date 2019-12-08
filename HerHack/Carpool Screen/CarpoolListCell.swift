@@ -212,8 +212,8 @@ class CarpoolListCell: UITableViewCell {
     
     func plugData(data: Carpool) {
         self.ownerLabel.text = data.user_offer_ride
-        self.startTimeLabel.text = data.start_at.toString(format: "HH:mm")
-        self.endTimeLabel.text = data.end_at.toString(format: "HH:mm")
+        self.startTimeLabel.text = data.start_at.toString(format: "HH:mm a")
+        self.endTimeLabel.text = data.end_at.toString(format: "HH:mm a")
         self.sourceLocLabel.text = data.source
         self.destLocLabel.text = data.destination
         self.carpoolCountLabel.text = "\(data.users_request_ride.count)/\(data.offered_seats)"
