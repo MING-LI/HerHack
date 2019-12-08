@@ -30,15 +30,27 @@ class FirestoreService {
         }
     }
     
-    func retrieveData(from collection:String, document: String) {
-        self.db.collection(collection).document(document).getDocument { (returnedDoc, error) in
-            guard let `returnedDoc` = returnedDoc else { return }
-            if returnedDoc.exists {
-                let dataDescription = returnedDoc.data()
-                print("Document data: \(dataDescription)")
+    func createCarpool(data:Carpool) {
+        self.db.collection("carpool").document(data.id!).setData([
+            "source": data.source,
+            "source_coordinates": GeoPoint(latitude: data.source_coordinates.latitude, longitude: data.source_coordinates.longitude),
+            "destination": data.destination,
+            "destination_coordinates": GeoPoint(latitude: data.destination_coordinates.latitude, longitude: data.destination_coordinates.longitude),
+            "offered_seats": data.offered_seats,
+            "created_at": Timestamp(date:data.created_at),
+            "start_at": Timestamp(date:data.start_at),
+            "end_at": Timestamp(date:data.end_at),
+            "user_offer_ride": data.user_offer_ride,
+            "users_request_ride": data.users_request_ride,
+            "status": data.status,
+            "vehicle_id": data.vehicle_id
+        ]){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
             } else {
-                print("Document does not exist")
+                print("Document successfully written!")
             }
         }
+
     }
 }

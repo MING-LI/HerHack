@@ -15,7 +15,6 @@ class CarpoolList {
             for carpoolDoc in carpoolDocs {
                 var carpool = Carpool(dict: carpoolDoc.data())
                 carpool.id = carpoolDoc.documentID
-                print(carpool)
                 self.carpools.append(carpool)
             }
             refreshable.refresh()

@@ -31,16 +31,15 @@ enum CarpoolStatus: String {
 }
 
 struct Carpool {
-    var id: String? // document id in firestoer
+    var id: String? // document id in firestore
     let source: String
     let source_coordinates: CLLocationCoordinate2D
     let destination: String
-    let destination_coordintes: CLLocationCoordinate2D
+    let destination_coordinates: CLLocationCoordinate2D
     let offered_seats : Int
     let created_at: Date
     let start_at: Date
-    let arrived_at: Date? // calculated using estimated time from Google Direction API
-    let end_at: Date?
+    let end_at: Date // calculated using estimated time from Google Direction API
     let user_offer_ride: CarpoolUser
     let users_request_ride: [CarpoolUser]
     let status: CarpoolStatus
@@ -53,26 +52,22 @@ extension Carpool {
         let source_coordinates = CLLocationCoordinate2D(latitude: source_geopoint.latitude, longitude: source_geopoint.longitude);
         let destination_geopoint = dict["destination_coordinates"] as! GeoPoint
         let destination_coordinates = CLLocationCoordinate2D(latitude: destination_geopoint.latitude, longitude: destination_geopoint.longitude)
-        let created_at = dict["created_at"] as! Timestamp
-        let start_at = dict["start_at"] as! Timestamp
         let user_offer_ride = CarpoolUser(dict: (dict["user_offer_ride"] as! NSDictionary) as! [String : Any])
         let users_request_ride = (dict["users_request_ride"] as! [NSDictionary]).map{CarpoolUser(dict: $0 as! [String : Any])}
-        let status = CarpoolStatus(rawValue:dict["status"] as! String)!
-        
+       
         self.init(
             id: nil,
             source:dict["source"] as! String,
             source_coordinates:source_coordinates,
             destination:dict["destination"] as! String,
-            destination_coordintes:destination_coordinates,
+            destination_coordinates:destination_coordinates,
             offered_seats:dict["offered_seats"] as! Int,
-            created_at:created_at.dateValue(),
-            start_at:start_at.dateValue(),
-            arrived_at: nil,
-            end_at:nil,
+            created_at:(dict["created_at"] as! Timestamp).dateValue(),
+            start_at:(dict["start_at"] as! Timestamp).dateValue(),
+            end_at:(dict["end_at"] as! Timestamp).dateValue(),
             user_offer_ride:user_offer_ride,
             users_request_ride:users_request_ride,
-            status:status,
+            status:CarpoolStatus(rawValue:dict["status"] as! String)!,
             vehicle_id:(dict["vehicle_id"] as! DocumentReference).documentID
         )
     }
