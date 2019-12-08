@@ -15,6 +15,7 @@ class OfferFormViewController: UIViewController {
     var searchRouteTextField = LocationTextField()
     var source = CLLocationCoordinate2D()
     var destination = CLLocationCoordinate2D()
+    let mapViewController = MapViewController()
     lazy var offerFormView: OfferFormView = {
         return OfferFormView(delegate: self)
     }()
@@ -66,11 +67,9 @@ extension OfferFormViewController: OfferFormViewDelegate {
     }
     
     func didClickedContinue(departure: String) {
-        let mapViewController = MapViewController()
-        mapViewController.source = source
-        mapViewController.destination = destination
-        mapViewController.fetchRoute()
+        
         navigationController?.pushViewController(mapViewController, animated: true)
+        mapViewController.updateRoute(source: source, destination: destination)
     }
 }
 

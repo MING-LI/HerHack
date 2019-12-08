@@ -22,6 +22,8 @@ class MapViewController: UIViewController {
     var markers = [GMSMarker]()
     var bounds = GMSCoordinateBounds()
     
+    var isUpdateRoute = false
+    
     lazy var mapView = {
         return GMSMapView.map(withFrame: CGRect.zero, camera: self.camera)
     }()
@@ -42,6 +44,17 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.title = Constants.MapViewScreenName
         self.view = mapView
+        mapView.delegate = self
+    }
+    
+    open func updateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
+        self.isUpdateRoute = true
+        self.source = source
+        self.destination = destination
+        mapView.clear()
+        markers = []
+        addMarker(coordinate: source)
+        addMarker(coordinate: destination)
     }
     
     func addMarker(coordinate: CLLocationCoordinate2D) {
@@ -52,20 +65,14 @@ class MapViewController: UIViewController {
     }
     
     func fitBound() {
+        print(self.markers)
         for marker in self.markers {
             bounds = bounds.includingCoordinate(marker.position)
         }
-        self.mapView.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0)))
+        self.mapView.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 50.0))
     }
     
-    func updateCamera() {
-        markers = []
-        addMarker(coordinate: source)
-        addMarker(coordinate: destination)
-        fitBound()
-    }
-    
-    open func fetchRoute() {
+    func fetchRoute() {
         guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination) else {
             print("Failed to parse URL.")
             return
@@ -102,5 +109,16 @@ class MapViewController: UIViewController {
             polyline.strokeColor = Constants.Colors.Blue
             polyline.map = self.mapView // Google MapView
         })
+    }
+}
+
+extension MapViewController: GMSMapViewDelegate {
+    func  mapViewDidFinishTileRendering(_ mapView: GMSMapView) {
+        if(isUpdateRoute) {
+            isUpdateRoute = false
+            fitBound()
+            fetchRoute()
+            
+        }
     }
 }
