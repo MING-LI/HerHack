@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 struct Constants {
     static let CarpoolScreenName = "Carpool"
@@ -32,5 +33,9 @@ struct Constants {
         Red: UIColor(red: 219/255.0, green: 0.0/255.0, blue: 17/255.0, alpha: 1),
         Blue: UIColor(red: 34/255.0, green: 108/255.0, blue: 224/255.0, alpha: 1)
     )
+    
+    static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D) -> URL? {
+        return URL(string:  "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dest.latitude),\(dest.longitude)&sensor=false&mode=driving&key=" + Constants.Key)
+    }
 }
 

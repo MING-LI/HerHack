@@ -85,50 +85,24 @@ class MapViewController: UIViewController {
     func fetchRoute() {
         let session = URLSession.shared
         
-        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)&sensor=false&mode=driving&key=" + Constants.Key)!
+        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination) else {
+            print("Failed to parse URL.")
+            return 
+        }
         
-        let task = session.dataTask(with: url, completionHandler: {
+        session.dataTask(with: url, completionHandler: {
             (data, response, error) in
             
-            if response != nil {
-                var jsonData : Any?
-                do {
-                    jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                } catch let error1 as NSError {
-                    _ = error1
-                    jsonData = nil
-                } catch {
-                    fatalError()
-                }
-                
-                if jsonData != nil {
-                    if let _jsonData = jsonData as? NSDictionary {
-                        guard let routes = _jsonData["routes"] as? [Any] else {
-                            return
-                        }
-                        
-                        guard let route = routes[0] as? [String: Any] else {
-                            return
-                        }
-
-                        guard let overview_polyline = route["overview_polyline"] as? [String: Any] else {
-                            return
-                        }
-
-                        guard let polyLineString = overview_polyline["points"] as? String else {
-                            return
-                        }
-                        
-                        self.drawPath(from: polyLineString)
-                    }
-                }else {
-                    print("json data is nil")
-                }
-            }else {
-                print("response is nil")
-            }
-        })
-        task.resume()
+            guard let `data` = data,
+                let jsonData = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
+                let routes = jsonData["routes"] as? [Any],
+                let route = routes[0] as? [String: Any],
+                let overview_polyline = route["overview_polyline"] as? [String: Any],
+                let polyLineString = overview_polyline["points"] as? String
+                else { return }
+            
+            self.drawPath(from: polyLineString)
+        }).resume()
     }
     
     func drawPath(from polyStr: String) {
