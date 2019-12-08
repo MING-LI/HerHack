@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
         for marker in self.markers {
             bounds = bounds.includingCoordinate(marker.position)
         }
-        mapView.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 50.0 , left: 50.0 ,bottom: 50.0 ,right: 50.0)))
+        self.mapView.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 50.0 , left: 50.0 ,bottom: 50.0 ,right: 50.0)))
     }
     
     func fetchRoute() {
@@ -101,7 +101,7 @@ class MapViewController: UIViewController {
                 let polyLineString = overview_polyline["points"] as? String
                 else {
                     let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                         self.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alert, animated: true, completion: nil)
