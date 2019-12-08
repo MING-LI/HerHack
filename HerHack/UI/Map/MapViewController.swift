@@ -62,9 +62,9 @@ class MapViewController: UIViewController {
         searchRouteView.isUserInteractionEnabled = true
         
         NSLayoutConstraint.activate([
-            searchRouteView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            searchRouteView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            searchRouteView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            searchRouteView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            searchRouteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchRouteView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
@@ -79,16 +79,16 @@ class MapViewController: UIViewController {
         for marker in self.markers {
             bounds = bounds.includingCoordinate(marker.position)
         }
-        self.mapView.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 50.0 , left: 50.0 ,bottom: 50.0 ,right: 50.0)))
+        self.mapView.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0)))
     }
     
     func fetchRoute() {
-        let session = URLSession.shared
-        
         guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination) else {
             print("Failed to parse URL.")
-            return 
+            return
         }
+        
+        let session = URLSession.shared
         
         session.dataTask(with: url, completionHandler: {
             (data, response, error) in
@@ -107,7 +107,6 @@ class MapViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                     return
             }
-            
             self.drawPath(from: polyLineString)
         }).resume()
     }

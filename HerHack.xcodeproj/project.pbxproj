@@ -116,21 +116,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1BC05EF6239BC219003EA539 /* MapScreen */ = {
+		1BC05EF6239BC219003EA539 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				1BC05F01239BCF55003EA539 /* HHTextField.swift */,
 				1BC05EF7239BC2D4003EA539 /* MapViewController.swift */,
 				1BC05EFE239BC93A003EA539 /* SearchRouteView.swift */,
 			);
-			path = MapScreen;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		1BC05F00239BCF37003EA539 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				1BC05EF6239BC219003EA539 /* MapScreen */,
-				D26E07BB239A41F800C028BF /* Carpool Screen */,
+				D26E07BB239A41F800C028BF /* Carpool */,
+				1BC05EF6239BC219003EA539 /* Map */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -234,13 +234,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D26E07BB239A41F800C028BF /* Carpool Screen */ = {
+		D26E07BB239A41F800C028BF /* Carpool */ = {
 			isa = PBXGroup;
 			children = (
 				BB13DCDC2387F0930050B345 /* CarpoolListViewContoller.swift */,
 				D26E07B9239A41E100C028BF /* CarpoolListCell.swift */,
 			);
-			path = "Carpool Screen";
+			path = Carpool;
 			sourceTree = "<group>";
 		};
 		D2C1277F239CC49400D308C0 /* API */ = {
