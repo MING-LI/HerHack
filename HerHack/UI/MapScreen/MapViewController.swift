@@ -65,7 +65,7 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController: HHTextFieldProtocol {
+extension MapViewController: HHTextFieldDelegate {
     func didClickedTextField(textField: HHTextField) {
         self.searchRouteTextField = textField
         let acController = GMSAutocompleteViewController()

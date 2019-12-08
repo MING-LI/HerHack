@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol HHTextFieldProtocol {
-    func didClickedTextField(textField: HHTextField)
-}
-
 class SearchRouteView: UIView {
     
-    var delegate: HHTextFieldProtocol
+    var delegate: HHTextFieldDelegate
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
@@ -49,7 +45,7 @@ class SearchRouteView: UIView {
         return button
     }()
     
-    init(delegate: HHTextFieldProtocol) {
+    init(delegate: HHTextFieldDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
         setupViews()
