@@ -20,7 +20,7 @@ class FirestoreService {
     }
     
     func retrieveData(from collection: String, completion: @escaping ([QueryDocumentSnapshot]) -> ()) {
-        self.db.collection(collection).getDocuments() { (querySnapshot, err) in
+        self.db.collection(collection).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
