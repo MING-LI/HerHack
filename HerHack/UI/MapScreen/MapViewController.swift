@@ -140,8 +140,6 @@ class MapViewController: UIViewController {
             polyline.map = self.mapView // Google MapView
         })
     }
-    
-    
 }
 
 extension MapViewController: SearchRouteViewProtocol {
