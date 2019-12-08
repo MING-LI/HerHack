@@ -27,6 +27,7 @@ class SearchRouteView: UIView {
     lazy var sourceTextField: HHTextField = {
         let txtfld = HHTextField()
         txtfld.setIcon(UIImage.init(named: "current")!)
+        txtfld.tag = 0
         txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
         return txtfld
     }()
@@ -34,6 +35,7 @@ class SearchRouteView: UIView {
     lazy var destTextField: HHTextField = {
         let txtfld = HHTextField()
         txtfld.text = "Destination"
+        txtfld.tag = 1
         txtfld.setIcon(UIImage.init(named: "location")!)
         txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
         return txtfld

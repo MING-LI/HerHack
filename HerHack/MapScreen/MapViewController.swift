@@ -12,6 +12,9 @@ import GooglePlaces
 
 class MapViewController: UIViewController {
     
+    var source: CLLocationCoordinate2D?
+    var destination: CLLocationCoordinate2D?
+    
     let hk = CLLocationCoordinate2D(latitude: 22.3193, longitude:114.1694)
     
     let camera: GMSCameraPosition
@@ -76,6 +79,9 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
         self.searchRouteTextField.text = place.name
+        if(self.searchRouteTextField.tag == 0) {
+            
+        }
         
         // Dismiss the GMSAutocompleteViewController when something is selected
         dismiss(animated: true, completion: nil)
