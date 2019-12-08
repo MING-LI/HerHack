@@ -6,18 +6,18 @@
 //  Copyright © 2019 pdni. All rights reserved.
 //
 
-import SwiftyJSON
-
-struct CarpoolList {
+class CarpoolList {
     
     var carpools: [Carpool] = []
     
     public func retrieveCarpool(refreshable: DataRefreashable) {
-        FirestoreService.shared.retrieveData(from: "carpools", completion: { allCarpools in
-            for carpool in allCarpools {
-                // TODO: John's show time
+        FirestoreService.shared.retrieveData(from: "carpools", completion: { carpoolDocs in
+            for carpoolDoc in carpoolDocs {
+                var carpool = Carpool(dict: carpoolDoc.data())
+                carpool.id = carpoolDoc.documentID
+                print(carpool)
+                self.carpools.append(carpool)
             }
-            
             refreshable.refresh()
         })
     }
