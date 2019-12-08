@@ -15,6 +15,7 @@ struct CarpoolList {
     public func retrieveCarpool(refreshable: DataRefreashable) {
         FirestoreService.shared.retrieveData(from: "carpools", completion: { allCarpools in
             for carpool in allCarpools {
+                // TODO: John's show time
             }
             
             refreshable.refresh()
