@@ -13,7 +13,7 @@ struct Constants {
     static let CarpoolScreenName = "Carpool"
     static let MapViewScreenName = "Map"
     
-    static let Key = "AIzaSyCUz3lr3aamwYI1bAMj23VzqANDIvCL3Rw"
+    static let Key = ProcessInfo.processInfo.environment["google_map_api_key"]
     static let MinimumSpacing: CGFloat = 10
     static let AppMargin: CGFloat = 15
     
@@ -35,7 +35,7 @@ struct Constants {
     )
     
     static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D) -> URL? {
-        return URL(string:  "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dest.latitude),\(dest.longitude)&sensor=false&mode=driving&key=" + Constants.Key)
+        return URL(string:  "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dest.latitude),\(dest.longitude)&sensor=false&mode=driving&key=" + Constants.Key!)
     }
 }
 
