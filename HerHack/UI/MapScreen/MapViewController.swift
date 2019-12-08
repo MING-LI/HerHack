@@ -99,7 +99,14 @@ class MapViewController: UIViewController {
                 let route = routes[0] as? [String: Any],
                 let overview_polyline = route["overview_polyline"] as? [String: Any],
                 let polyLineString = overview_polyline["points"] as? String
-                else { return }
+                else {
+                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+            }
             
             self.drawPath(from: polyLineString)
         }).resume()
