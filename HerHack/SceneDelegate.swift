@@ -23,11 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         landingScreen.tabBarItem.title = Constants.CarpoolScreenName
         landingScreen.tabBarItem.image = #imageLiteral(resourceName: "car")
         
-        let googleMapScreen = UINavigationController(rootViewController: MapViewController())
-        googleMapScreen.tabBarItem.title = Constants.MapViewScreenName
-        googleMapScreen.tabBarItem.image = #imageLiteral(resourceName: "map")
+        let offerFormScreen = UINavigationController(rootViewController: OfferFormViewController())
+        offerFormScreen.tabBarItem.title = "Make an Offer"
+        offerFormScreen.tabBarItem.image = #imageLiteral(resourceName: "map")
         
-        tbvc.viewControllers = [landingScreen, googleMapScreen]
+        tbvc.viewControllers = [landingScreen, offerFormScreen]
         
         self.window?.rootViewController = tbvc
         

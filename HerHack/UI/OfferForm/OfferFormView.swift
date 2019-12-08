@@ -1,22 +1,30 @@
 //
-//  SearchRouteView.swift
+//  OfferFormView.swift
 //  HerHack
 //
-//  Created by Mimosa Poon on 7/12/2019.
+//  Created by Mimosa Poon on 8/12/2019.
 //  Copyright © 2019 pdni. All rights reserved.
 //
 
 import UIKit
+import GooglePlaces
 
-protocol SearchRouteViewProtocol {
+protocol OfferFormViewProtocol {
     func didClickedTextField(textField: HHTextField)
-    func didClickedSearch()
+    func didClickedContinue(departure: String)
 }
 
-class SearchRouteView: UIView {
+class OfferFormView: UIView {
     
-    var delegate: SearchRouteViewProtocol
+    var delegate: OfferFormViewProtocol
     
+    var timePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.timeZone = NSTimeZone.local
+        picker.datePickerMode = .dateAndTime
+        return picker
+    }()
+
     lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
         stack.axis = .vertical
@@ -42,33 +50,47 @@ class SearchRouteView: UIView {
         return txtfld
     }()
     
+    lazy var pickerToolbar: HHPickerToolbar = {
+        let toolbar = HHPickerToolbar()
+        toolbar.toolbarDelegate = self
+        return toolbar
+    }()
+    
+    lazy var departureTextField: HHTextField = {
+        let txtfld = HHTextField()
+        txtfld.text = "Departure Time"
+        txtfld.setIcon(UIImage.init(named: "clock")!)
+        txtfld.inputView = timePicker
+        txtfld.inputAccessoryView = pickerToolbar
+        return txtfld
+    }()
+    
     lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle("Search", for: .normal)
+        button.setTitle("Continue", for: .normal)
         button.backgroundColor = Constants.Colors.Red
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
         return button
     }()
     
-    init(delegate: SearchRouteViewProtocol) {
+    init(delegate: OfferFormViewProtocol) {
         self.delegate = delegate
         super.init(frame: .zero)
         setupViews()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func setupViews() {
-        self.backgroundColor = .blue
+        self.backgroundColor = .white
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        button.addTarget(self, action: #selector(onTapSearch), for: .touchDown)
+        button.addTarget(self, action: #selector(onTapContinue), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.addArrangedSubview(sourceTextField)
         stackView.addArrangedSubview(destTextField)
+        stackView.addArrangedSubview(departureTextField)
         stackView.addArrangedSubview(button)
         self.addSubview(stackView)
         
@@ -88,11 +110,36 @@ class SearchRouteView: UIView {
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
         delegate.didClickedTextField(textField: textField)
+        
     }
     
-    @objc func onTapSearch(button: UIButton) {
-        delegate.didClickedSearch()
-        self.disableSearchBtn()
+    @objc func onTapContinue(button: UIButton) {
+        if let departure = departureTextField.text {
+            delegate.didClickedContinue(departure: departure)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+extension OfferFormView: HHPickerToolbarProtocol {
+    func didTapDone() {
+        departureTextField.resignFirstResponder()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        departureTextField.text = formatter.string(from: timePicker.date)
+    }
+
+    func didTapCancel() {
+        departureTextField.resignFirstResponder()
+        departureTextField.text = ""
+    }
+}
+
+
+
 
