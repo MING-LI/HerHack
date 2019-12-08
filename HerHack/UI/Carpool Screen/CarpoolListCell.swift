@@ -248,6 +248,10 @@ class CarpoolListCell: UITableViewCell {
         self.sourceLocLabel.text = nil
         self.destLocLabel.text = nil
         self.carpoolCountLabel.text = nil
+        self.joinBtn.isEnabled = true
+        self.joinBtn.alpha = 1
+        self.statusLabel.text = nil
+        self.statusLabel.textColor = .black
     }
     
 }
