@@ -35,7 +35,17 @@ struct Constants {
     )
     
     static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D) -> URL? {
-        return URL(string:  "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dest.latitude),\(dest.longitude)&sensor=false&mode=driving&key=" + Constants.Key!)
+        let queryParams = [
+            URLQueryItem(name: "origin", value: "\(src.latitude),\(src.longitude)"),
+            URLQueryItem(name: "destination", value: "\(dest.latitude),\(dest.longitude)"),
+            URLQueryItem(name: "sensor", value: "false"),
+            URLQueryItem(name: "mode", value: "driving"),
+            URLQueryItem(name: "key", value: Constants.Key)
+        ]
+        
+        var urlComp = URLComponents(string: "https://maps.googleapis.com/maps/api/directions/json")
+        urlComp?.queryItems = queryParams
+        return urlComp?.url
     }
 }
 
