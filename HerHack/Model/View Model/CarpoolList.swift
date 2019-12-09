@@ -6,6 +6,8 @@
 //  Copyright © 2019 pdni. All rights reserved.
 //
 
+import SwiftyJSON
+
 class CarpoolList {
     
     var carpools: [Carpool] = []
@@ -13,7 +15,7 @@ class CarpoolList {
     public func retrieveCarpool(refreshable: DataRefreashable) {
         FirestoreService.shared.retrieveData(from: "carpools", completion: { carpoolDocs in
             for carpoolDoc in carpoolDocs {
-                var carpool = Carpool(dict: carpoolDoc.data())
+                var carpool = Carpool(dict: JSON(carpoolDoc.data()))
                 carpool.id = carpoolDoc.documentID
                 self.carpools.append(carpool)
             }
