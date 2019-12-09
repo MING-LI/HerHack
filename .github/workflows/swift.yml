@@ -17,7 +17,7 @@ jobs:
       shell: bash
     - name: Build
       run: |
-          xcodebuild clean build -project HerHack.xcodeproj -scheme HerHack -destination "${destination}"
+          xcodebuild clean build -workspace HerHack.xcworkspace -scheme HerHack -destination "${destination}"
       env:
          destination: ${{ matrix.destination }}
     - name: Run tests
