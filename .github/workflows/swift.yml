@@ -12,6 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: pod install
+      run: pod install
+      shell: bash
     - name: Build
       run: |
           xcodebuild clean build -project HerHack.xcodeproj -scheme HerHack -destination "${destination}"
