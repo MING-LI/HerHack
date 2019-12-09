@@ -17,20 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene as! UIWindowScene)
         self.window?.makeKeyAndVisible()
         
-        let tbvc = UITabBarController()
+        let landingScreen = UINavigationController(rootViewController: LoginFormViewController())
         
-        let landingScreen = UINavigationController(rootViewController: CarpoolListViewContoller())
-        landingScreen.tabBarItem.title = Constants.CarpoolScreenName
-        landingScreen.tabBarItem.image = #imageLiteral(resourceName: "car")
-        
-        let offerFormScreen = UINavigationController(rootViewController: OfferFormViewController())
-        offerFormScreen.tabBarItem.title = "Make an Offer"
-        offerFormScreen.tabBarItem.image = #imageLiteral(resourceName: "map")
-        
-        tbvc.viewControllers = [landingScreen, offerFormScreen]
-        
-        self.window?.rootViewController = tbvc
-        
+        self.window?.rootViewController = landingScreen
+
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

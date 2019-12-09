@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CarpoolListViewContoller: UIViewController {
+class CarpoolListViewController: UIViewController {
     
     let searchBar: UISearchBar
     let tableView: UITableView
@@ -22,7 +22,7 @@ class CarpoolListViewContoller: UIViewController {
         self.carPoolList = CarpoolList()
         
         super.init(nibName: nil, bundle: nil)
-        
+        self.navigationItem.hidesBackButton = true
         self.view.backgroundColor = .white
         
         let safeArea = self.view.layoutMarginsGuide
@@ -68,7 +68,7 @@ class CarpoolListViewContoller: UIViewController {
     
 }
 
-extension CarpoolListViewContoller: UITableViewDataSource, UITableViewDelegate {
+extension CarpoolListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarpoolCell", for: indexPath) as! CarpoolListCell
@@ -86,7 +86,7 @@ extension CarpoolListViewContoller: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension CarpoolListViewContoller: UISearchBarDelegate {
+extension CarpoolListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -103,7 +103,7 @@ extension CarpoolListViewContoller: UISearchBarDelegate {
     
 }
 
-extension CarpoolListViewContoller: DataRefreashable {
+extension CarpoolListViewController: DataRefreashable {
     
     func refresh() {
         self.filteredCarpools = self.carPoolList.carpools

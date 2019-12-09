@@ -13,10 +13,14 @@ struct CarpoolUser {
     let user_id: String
     let user_name: String
     let is_accepted : Bool?
-    
-    init(dict: JSON) {
-        self.user_id = (dict["user_id"].rawValue as! DocumentReference).documentID
-        self.user_name = dict["user_name"].stringValue
-        self.is_accepted = dict["is_accepted"].boolValue
+}
+
+extension CarpoolUser {
+    init(dict: [String:Any]) {
+        self.init(
+            user_id:(dict["user_id"] as! DocumentReference).documentID,
+            user_name:dict["user_name"] as! String,
+            is_accepted:dict["is_accepted"] as! Bool? ?? nil
+        )
     }
 }

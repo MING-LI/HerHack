@@ -18,6 +18,10 @@
 		492FD473239C30CF00573B1F /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD472239C30CF00573B1F /* FirestoreService.swift */; };
 		492FD4BF239E2DDF00573B1F /* HHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4BE239E2DDE00573B1F /* HHTextField.swift */; };
 		492FD4C1239E2E0200573B1F /* CarpoolUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4C0239E2E0100573B1F /* CarpoolUser.swift */; };
+		492FD4C9239E708F00573B1F /* LoginFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4C8239E708E00573B1F /* LoginFormViewController.swift */; };
+		492FD4CB239E709F00573B1F /* LoginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4CA239E709F00573B1F /* LoginFormView.swift */; };
+		492FD4CD239E727800573B1F /* LoginFormViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */; };
+		492FD4CF239E838E00573B1F /* HHTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4CE239E838E00573B1F /* HHTabbar.swift */; };
 		688C3A60C062137A14F73077 /* libPods-HerHackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41607AA64638F36FBAD1DA0E /* libPods-HerHackTests.a */; };
 		BA74DE1071FF8539B270ACBC /* libPods-HerHackUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6FEAA1C42707D0E4C96624 /* libPods-HerHackUITests.a */; };
 		BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCD82387F0930050B345 /* AppDelegate.swift */; };
@@ -71,6 +75,10 @@
 		492FD472239C30CF00573B1F /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		492FD4BE239E2DDE00573B1F /* HHTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HHTextField.swift; sourceTree = "<group>"; };
 		492FD4C0239E2E0100573B1F /* CarpoolUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolUser.swift; sourceTree = "<group>"; };
+		492FD4C8239E708E00573B1F /* LoginFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewController.swift; sourceTree = "<group>"; };
+		492FD4CA239E709F00573B1F /* LoginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormView.swift; sourceTree = "<group>"; };
+		492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewDelegate.swift; sourceTree = "<group>"; };
+		492FD4CE239E838E00573B1F /* HHTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHTabbar.swift; sourceTree = "<group>"; };
 		70828AFA5757239AB5A5B262 /* Pods-HerHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHack.release.xcconfig"; path = "Target Support Files/Pods-HerHack/Pods-HerHack.release.xcconfig"; sourceTree = "<group>"; };
 		A2AF7E7584F0ABA1A3C7C3BB /* Pods-HerHackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackTests.release.xcconfig"; path = "Target Support Files/Pods-HerHackTests/Pods-HerHackTests.release.xcconfig"; sourceTree = "<group>"; };
 		A94F279E521E12B41CA23404 /* Pods-HerHackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.debug.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +149,7 @@
 		1BC05F00239BCF37003EA539 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				492FD4C7239E706500573B1F /* LoginForm */,
 				1BE8547C239D31BD0094E944 /* Shared */,
 				1BE85477239D21E40094E944 /* OfferForm */,
 				D26E07BB239A41F800C028BF /* Carpool */,
@@ -163,6 +172,7 @@
 			children = (
 				492FD4BE239E2DDE00573B1F /* HHTextField.swift */,
 				1BE8547D239D32080094E944 /* HHPickerToolbar.swift */,
+				492FD4CE239E838E00573B1F /* HHTabbar.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -178,6 +188,15 @@
 				F5EC1AAE816622E71B008220 /* Pods-HerHackUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		492FD4C7239E706500573B1F /* LoginForm */ = {
+			isa = PBXGroup;
+			children = (
+				492FD4C8239E708E00573B1F /* LoginFormViewController.swift */,
+				492FD4CA239E709F00573B1F /* LoginFormView.swift */,
+			);
+			path = LoginForm;
 			sourceTree = "<group>";
 		};
 		9717F7CDE53109968AEF5F75 /* Frameworks */ = {
@@ -311,6 +330,7 @@
 				D2D26E84239CCD690071B47A /* HHTextFieldDelegate.swift */,
 				D2D26E88239D44220071B47A /* HHPickerToolbarDelegate.swift */,
 				D2D26E8A239D44530071B47A /* OfferFormViewDelegate.swift */,
+				492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -547,8 +567,10 @@
 				BB13DCDB2387F0930050B345 /* SceneDelegate.swift in Sources */,
 				1BE85479239D21FA0094E944 /* OfferFormViewController.swift in Sources */,
 				1BE85480239D389B0094E944 /* OrderForm.swift in Sources */,
+				492FD4C9239E708F00573B1F /* LoginFormViewController.swift in Sources */,
 				1BC05EF8239BC2D4003EA539 /* MapViewController.swift in Sources */,
 				D2D26E87239D431A0071B47A /* UITextField.swift in Sources */,
+				492FD4CF239E838E00573B1F /* HHTabbar.swift in Sources */,
 				D2D26E89239D44220071B47A /* HHPickerToolbarDelegate.swift in Sources */,
 				D249527C239C0C2C009382F2 /* Date.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
@@ -556,6 +578,8 @@
 				492FD467239BFBB200573B1F /* Location.swift in Sources */,
 				1BE8547E239D32080094E944 /* HHPickerToolbar.swift in Sources */,
 				492FD465239BFBA500573B1F /* User.swift in Sources */,
+				492FD4CB239E709F00573B1F /* LoginFormView.swift in Sources */,
+				492FD4CD239E727800573B1F /* LoginFormViewDelegate.swift in Sources */,
 				D2D26E85239CCD690071B47A /* HHTextFieldDelegate.swift in Sources */,
 				492FD4C1239E2E0200573B1F /* CarpoolUser.swift in Sources */,
 			);
