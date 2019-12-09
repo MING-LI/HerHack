@@ -28,8 +28,8 @@ class OfferFormView: UIView {
         return stack
     }()
     
-    lazy var sourceTextField: LocationTextField = {
-        let txtfld = LocationTextField()
+    lazy var sourceTextField: HHTextField = {
+        let txtfld = HHTextField()
         txtfld.text = "Source"
         txtfld.setIcon(UIImage.init(named: "current")!)
         txtfld.tag = 0
@@ -37,8 +37,8 @@ class OfferFormView: UIView {
         return txtfld
     }()
 
-    lazy var destTextField: LocationTextField = {
-        let txtfld = LocationTextField()
+    lazy var destTextField: HHTextField = {
+        let txtfld = HHTextField()
         txtfld.text = "Destination"
         txtfld.tag = 1
         txtfld.setIcon(UIImage.init(named: "location")!)
@@ -50,8 +50,8 @@ class OfferFormView: UIView {
         return HHPickerToolbar(delegate: self)
     }()
     
-    lazy var departureTextField: LocationTextField = {
-        let txtfld = LocationTextField()
+    lazy var departureTextField: HHTextField = {
+        let txtfld = HHTextField()
         txtfld.text = "Departure Time"
         txtfld.setIcon(UIImage.init(named: "clock")!)
         txtfld.inputView = timePicker
@@ -101,7 +101,7 @@ class OfferFormView: UIView {
         button.alpha = 0.5;
     }
     
-    @objc func onTextFieldTap(textField: LocationTextField) {
+    @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
         delegate.didClickedTextField(textField: textField)
         

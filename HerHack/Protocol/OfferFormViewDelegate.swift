@@ -7,6 +7,6 @@
 //
 
 protocol OfferFormViewDelegate {
-    func didClickedTextField(textField: LocationTextField)
+    func didClickedTextField(textField: HHTextField)
     func didClickedContinue(departure: String)
 }

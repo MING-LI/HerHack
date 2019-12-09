@@ -7,5 +7,5 @@
 //
 
 protocol HHTextFieldDelegate {
-    func didClickedTextField(textField: LocationTextField)
+    func didClickedTextField(textField: HHTextField)
 }

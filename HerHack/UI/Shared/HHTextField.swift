@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationTextField: UITextField {
+class HHTextField: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
