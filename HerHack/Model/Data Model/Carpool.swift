@@ -30,7 +30,7 @@ struct Carpool {
     let status: CarpoolStatus
     let vehicle_id: String
     
-    init(dict: JSON) {
+    init(id: String, dict: JSON) {
         let source_geopoint = dict["source_coordinates"] as! GeoPoint
         let source_coordinates = CLLocationCoordinate2D(latitude: source_geopoint.latitude, longitude: source_geopoint.longitude);
         let destination_geopoint = dict["destination_coordinates"] as! GeoPoint

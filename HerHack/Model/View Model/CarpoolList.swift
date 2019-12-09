@@ -15,8 +15,7 @@ class CarpoolList {
     public func retrieveCarpool(refreshable: DataRefreashable) {
         FirestoreService.shared.retrieveData(from: "carpools", completion: { carpoolDocs in
             for carpoolDoc in carpoolDocs {
-                var carpool = Carpool(dict: JSON(carpoolDoc.data()))
-                carpool.id = carpoolDoc.documentID
+                var carpool = Carpool(id: carpoolDoc.documentID, dict: JSON(carpoolDoc.data()))
                 self.carpools.append(carpool)
             }
             refreshable.refresh()
