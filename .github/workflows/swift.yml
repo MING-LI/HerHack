@@ -20,5 +20,3 @@ jobs:
           xcodebuild clean build -workspace HerHack.xcworkspace -scheme HerHack -destination "${destination}"
       env:
          destination: ${{ matrix.destination }}
-    - name: Run tests
-      run: swift test -v
