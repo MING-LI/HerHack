@@ -8,6 +8,7 @@ target 'HerHack' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
   target 'HerHackTests' do
     inherit! :search_paths

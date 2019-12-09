@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 class LoginFormViewController: UIViewController {
 
@@ -63,7 +64,7 @@ class LoginFormViewController: UIViewController {
         loginFormView.translatesAutoresizingMaskIntoConstraints = false
         loginFormView.snp.makeConstraints { (make) in
             make.width.equalTo(300)
-            make.width.height.equalTo(600)
+            make.height.equalTo(600)
             make.center.equalTo(view)
             make.leading.trailing.equalTo(view)
         }
@@ -76,6 +77,7 @@ extension LoginFormViewController: LoginFormViewDelegate {
     }
     
     func didClickedButton(email: String) {
-        navigationController?.pushViewController(hHTabbar, animated: true)
+        Auth.auth().signInAnonymously(completion: nil)
+//        navigationController?.pushViewController(hHTabbar, animated: true)
     }
 }

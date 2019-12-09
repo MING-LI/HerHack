@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,13 +17,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: scene as! UIWindowScene)
         self.window?.makeKeyAndVisible()
-        
-        let landingScreen = UINavigationController(rootViewController: LoginFormViewController())
-        
-        self.window?.rootViewController = landingScreen
-
+        NotificationCenter.default.addObserver(
+          self,
+          selector: #selector(userStateDidChange),
+          name: Notification.Name.AuthStateDidChange,
+          object: nil
+        )
         guard let _ = (scene as? UIWindowScene) else { return }
     }
-
+        
+    func handleStateChange() {
+        if (Auth.auth().currentUser != nil) {
+            self.window?.rootViewController = UINavigationController(rootViewController: HHTabbar())
+        } else {
+          self.window?.rootViewController = UINavigationController(rootViewController: LoginFormViewController())
+        }
+    }
+    
+    @objc func userStateDidChange() {
+        DispatchQueue.main.async {
+            self.handleStateChange()
+        }
+    }
 }
 

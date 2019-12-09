@@ -15,7 +15,6 @@ class FirestoreService {
     private var db: Firestore
     
     private init () {
-        FirebaseApp.configure()
         self.db = Firestore.firestore()
     }
     
