@@ -9,24 +9,9 @@
 import Foundation
 import CoreLocation
 import Firebase
+import SwiftyJSON
 
-struct CarpoolUser {
-    let user_id: String
-    let user_name: String
-    let is_accepted : Bool?
-}
-
-extension CarpoolUser {
-    init(dict: [String:Any]) {
-        self.init(
-            user_id:(dict["user_id"] as! DocumentReference).documentID,
-            user_name:dict["user_name"] as! String,
-            is_accepted:dict["is_accepted"] as! Bool? ?? nil
-        )
-    }
-}
-
-enum CarpoolStatus: String {
+enum CarpoolStatus {
     case OPEN, FULL, ENDED
 }
 
@@ -52,8 +37,8 @@ extension Carpool {
         let source_coordinates = CLLocationCoordinate2D(latitude: source_geopoint.latitude, longitude: source_geopoint.longitude);
         let destination_geopoint = dict["destination_coordinates"] as! GeoPoint
         let destination_coordinates = CLLocationCoordinate2D(latitude: destination_geopoint.latitude, longitude: destination_geopoint.longitude)
-        let user_offer_ride = CarpoolUser(dict: (dict["user_offer_ride"] as! NSDictionary) as! [String : Any])
-        let users_request_ride = (dict["users_request_ride"] as! [NSDictionary]).map{CarpoolUser(dict: $0 as! [String : Any])}
+        let user_offer_ride = CarpoolUser(dict: JSON(dict["user_offer_ride"]))
+        let users_request_ride = JSON(dict["users_request_ride"])
        
         self.init(
             id: nil,
@@ -65,8 +50,8 @@ extension Carpool {
             created_at:(dict["created_at"] as! Timestamp).dateValue(),
             start_at:(dict["start_at"] as! Timestamp).dateValue(),
             end_at:(dict["end_at"] as! Timestamp).dateValue(),
-            user_offer_ride:user_offer_ride,
-            users_request_ride:users_request_ride,
+            user_offer_ride: user_offer_ride,
+            users_request_ride: users_request_ride,
             status:CarpoolStatus(rawValue:dict["status"] as! String)!,
             vehicle_id:(dict["vehicle_id"] as! DocumentReference).documentID
         )
