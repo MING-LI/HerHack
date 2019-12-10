@@ -1,6 +1,9 @@
 name: Swift
 
-on: [push]
+on:
+  push:
+    branches: 
+      - master
 
 jobs:
   build:
@@ -12,10 +15,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: pod install
+      run: pod install
+      shell: bash
     - name: Build
       run: |
-          xcodebuild clean build -project HerHack.xcodeproj -scheme HerHack -destination "${destination}"
+          xcodebuild clean build -workspace HerHack.xcworkspace -scheme HerHack -destination "${destination}"
       env:
          destination: ${{ matrix.destination }}
-    - name: Run tests
-      run: swift test -v
