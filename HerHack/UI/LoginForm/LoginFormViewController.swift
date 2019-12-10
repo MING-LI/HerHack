@@ -18,7 +18,6 @@ class LoginFormViewController: UIViewController {
         return LoginFormView(delegate: self)
     }()
     
-    
     init() {
         self.hHTabbar = HHTabbar()
         super.init(nibName: nil, bundle: nil)
@@ -31,10 +30,6 @@ class LoginFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
     }
     
     func setupViews() {
@@ -73,11 +68,10 @@ class LoginFormViewController: UIViewController {
 
 extension LoginFormViewController: LoginFormViewDelegate {
     func didClickedTextField(textField: HHTextField) {
-       
+        textField.becomeFirstResponder()
     }
     
     func didClickedButton(email: String) {
         Auth.auth().signInAnonymously(completion: nil)
-//        navigationController?.pushViewController(hHTabbar, animated: true)
     }
 }

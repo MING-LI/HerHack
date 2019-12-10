@@ -15,22 +15,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        self.window = UIWindow(windowScene: scene as! UIWindowScene)
-        self.window?.makeKeyAndVisible()
         NotificationCenter.default.addObserver(
           self,
           selector: #selector(userStateDidChange),
           name: Notification.Name.AuthStateDidChange,
           object: nil
         )
+        
+        self.window = UIWindow(windowScene: scene as! UIWindowScene)
+        self.window?.makeKeyAndVisible()
+        self.handleStateChange()
         guard let _ = (scene as? UIWindowScene) else { return }
     }
         
     func handleStateChange() {
-        if (Auth.auth().currentUser != nil) {
-            self.window?.rootViewController = UINavigationController(rootViewController: HHTabbar())
+        if let user = Auth.auth().currentUser {
+            print(user)
+            self.window?.rootViewController = HHTabbar()
         } else {
-          self.window?.rootViewController = UINavigationController(rootViewController: LoginFormViewController())
+          self.window?.rootViewController = LoginFormViewController()
         }
     }
     
