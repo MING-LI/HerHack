@@ -19,7 +19,7 @@ class FirestoreService {
     }
     
     func retrieveData(from collection: String, completion: @escaping ([QueryDocumentSnapshot]) -> ()) {
-        self.db.collection(collection).addSnapshotListener { (querySnapshot, err) in
+        db.collection(collection).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Success: \(false); Error: \(err)")
             } else {
@@ -33,14 +33,37 @@ class FirestoreService {
         do {
             let data =  try JSONEncoder().encode(user)
             let newUser = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
-            self.db.collection("users").document(UserSettings.uid).setData(newUser)
+            db.collection("users").document(UserSettings.uid).setData(newUser)
         } catch {
                 print("Success: \(false); Error")
         }
     }
     
+    func joinCarpool(_ id:String, completion: @escaping ()->()) {
+        let carpoolUser = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: false)
+        db.collection("carpools").document(id).updateData([
+            "users_request_ride": FieldValue.arrayUnion([carpoolUser as Any])
+        ]) { err in
+            if let err = err {
+                print("Error joining carpool: \(err)")
+            } else { completion() }
+        }
+    }
+    
+    func quitCarpool(_ id:String, completion: @escaping ()->()) {
+        let carpoolUser = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: false)
+        db.collection("carpools").document(id).updateData([
+            "users_request_ride": FieldValue.arrayRemove([carpoolUser as Any])
+        ]) { err in
+            if let err = err {
+                print("Error quitting carpool: \(err)")
+            } else { completion() }
+        }
+    }
+    
     func createCarpool(_ data:Carpool) {
-        self.db.collection("carpools").document(data.id!).setData([
+        var ref: DocumentReference? = nil
+        ref = db.collection("carpools").addDocument(data:[
             "source": data.source,
             "source_coordinates": GeoPoint(latitude: data.source_coordinates.latitude, longitude: data.source_coordinates.longitude),
             "destination": data.destination,
@@ -50,12 +73,12 @@ class FirestoreService {
             "start_at": Timestamp(date:data.start_at),
             "end_at": Timestamp(date:data.end_at),
             "user_offer_ride": data.user_offer_ride,
-            "users_request_ride": data.users_request_ride,
+            "users_request_ride": [],
             "status": data.status,
             "vehicle_id": data.vehicle_id
         ]){ err in
             if let err = err {
-                print("Success: \(false); Error: \(err)")
+                print("Error creating carpool (\(ref!.documentID)): \(err)")
             } else { return }
         }
 

@@ -37,8 +37,8 @@ extension Carpool {
         let source_coordinates = CLLocationCoordinate2D(latitude: source_geopoint.latitude, longitude: source_geopoint.longitude);
         let destination_geopoint = dict["destination_coordinates"] as! GeoPoint
         let destination_coordinates = CLLocationCoordinate2D(latitude: destination_geopoint.latitude, longitude: destination_geopoint.longitude)
-        let user_offer_ride = CarpoolUser(dict: (dict["user_offer_ride"] as! NSDictionary) as! [String : Any])
-        let users_request_ride = (dict["users_request_ride"] as! [NSDictionary]).map{CarpoolUser(dict: $0 as! [String : Any])}
+        let user_offer_ride = CarpoolUser((dict["user_offer_ride"] as! NSDictionary) as! [String : Any])
+        let users_request_ride = (dict["users_request_ride"] as! [NSDictionary]).map{CarpoolUser( $0 as! [String : Any])}
         
         self.init(
             id: id,

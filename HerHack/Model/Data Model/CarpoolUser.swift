@@ -6,21 +6,24 @@
 //  Copyright © 2019 pdni. All rights reserved.
 //
 
-import Firebase
-import SwiftyJSON
+import Foundation
 
-struct CarpoolUser {
+struct CarpoolUser: Encodable {
     let user_id: String
     let user_name: String
     let is_accepted : Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case user_id, user_name, is_accepted
+    }
 }
 
 extension CarpoolUser {
-    init(dict: [String:Any]) {
+    init(_ fromFirestore: [String:Any]) {
         self.init(
-            user_id:(dict["user_id"] as! DocumentReference).documentID,
-            user_name:dict["user_name"] as! String,
-            is_accepted:dict["is_accepted"] as! Bool? ?? nil
+            user_id:fromFirestore["user_id"] as! String,
+            user_name:fromFirestore["user_name"] as! String,
+            is_accepted:fromFirestore["is_accepted"] as! Bool? ?? nil
         )
     }
 }

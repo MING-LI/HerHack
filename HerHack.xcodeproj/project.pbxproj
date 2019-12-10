@@ -23,6 +23,7 @@
 		492FD4CD239E727800573B1F /* LoginFormViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */; };
 		492FD4CF239E838E00573B1F /* HHTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4CE239E838E00573B1F /* HHTabbar.swift */; };
 		492FD4D5239F705000573B1F /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4D4239F705000573B1F /* UserSetting.swift */; };
+		492FD4D7239FAD6D00573B1F /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4D6239FAD6D00573B1F /* Codable.swift */; };
 		688C3A60C062137A14F73077 /* libPods-HerHackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41607AA64638F36FBAD1DA0E /* libPods-HerHackTests.a */; };
 		BA74DE1071FF8539B270ACBC /* libPods-HerHackUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6FEAA1C42707D0E4C96624 /* libPods-HerHackUITests.a */; };
 		BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCD82387F0930050B345 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewDelegate.swift; sourceTree = "<group>"; };
 		492FD4CE239E838E00573B1F /* HHTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHTabbar.swift; sourceTree = "<group>"; };
 		492FD4D4239F705000573B1F /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		492FD4D6239FAD6D00573B1F /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		70828AFA5757239AB5A5B262 /* Pods-HerHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHack.release.xcconfig"; path = "Target Support Files/Pods-HerHack/Pods-HerHack.release.xcconfig"; sourceTree = "<group>"; };
 		A2AF7E7584F0ABA1A3C7C3BB /* Pods-HerHackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackTests.release.xcconfig"; path = "Target Support Files/Pods-HerHackTests/Pods-HerHackTests.release.xcconfig"; sourceTree = "<group>"; };
 		A94F279E521E12B41CA23404 /* Pods-HerHackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.debug.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			children = (
 				D249527B239C0C2C009382F2 /* Date.swift */,
 				D2D26E86239D431A0071B47A /* UITextField.swift */,
+				492FD4D6239FAD6D00573B1F /* Codable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
 				D2D26E7E239CC8FD0071B47A /* CarpoolList.swift in Sources */,
 				492FD467239BFBB200573B1F /* Location.swift in Sources */,
+				492FD4D7239FAD6D00573B1F /* Codable.swift in Sources */,
 				1BE8547E239D32080094E944 /* HHPickerToolbar.swift in Sources */,
 				492FD465239BFBA500573B1F /* User.swift in Sources */,
 				492FD4CB239E709F00573B1F /* LoginFormView.swift in Sources */,
