@@ -21,7 +21,7 @@ class FirestoreService {
     func retrieveData(from collection: String, completion: @escaping ([QueryDocumentSnapshot]) -> ()) {
         self.db.collection(collection).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Success: \(false); Error: \(err)")
             } else {
                 guard let snapshot = querySnapshot else { return }
                 completion(snapshot.documents)
@@ -29,8 +29,18 @@ class FirestoreService {
         }
     }
     
-    func createCarpool(data:Carpool) {
-        self.db.collection("carpool").document(data.id!).setData([
+    func createUser(_ user:User) {
+        do {
+            let data =  try JSONEncoder().encode(user)
+            let newUser = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
+            self.db.collection("users").document(UserSettings.uid).setData(newUser)
+        } catch {
+                print("Success: \(false); Error")
+        }
+    }
+    
+    func createCarpool(_ data:Carpool) {
+        self.db.collection("carpools").document(data.id!).setData([
             "source": data.source,
             "source_coordinates": GeoPoint(latitude: data.source_coordinates.latitude, longitude: data.source_coordinates.longitude),
             "destination": data.destination,
@@ -45,10 +55,8 @@ class FirestoreService {
             "vehicle_id": data.vehicle_id
         ]){ err in
             if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-            }
+                print("Success: \(false); Error: \(err)")
+            } else { return }
         }
 
     }

@@ -12,7 +12,6 @@ class HHTabbar: UITabBarController {
     
     required init() {
         super.init(nibName: nil, bundle: Bundle.main)
-        self.navigationItem.hidesBackButton = true
         setContentView()
     }
     

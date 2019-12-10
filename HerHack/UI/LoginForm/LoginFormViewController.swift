@@ -5,7 +5,6 @@
 //  Created by JohnC on 9/12/2019.
 //  Copyright © 2019 pdni. All rights reserved.
 //
-
 import UIKit
 import SnapKit
 import Firebase
@@ -67,11 +66,21 @@ class LoginFormViewController: UIViewController {
 }
 
 extension LoginFormViewController: LoginFormViewDelegate {
-    func didClickedTextField(textField: HHTextField) {
+    func didClickedTextField(_ textField: HHTextField) {
         textField.becomeFirstResponder()
     }
     
-    func didClickedButton(email: String) {
-        Auth.auth().signInAnonymously(completion: nil)
+    func returnFromTextField(_ textField: HHTextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func didClickedButton(name:String, email: String) {
+        UserSettings.name = name
+        let newUser = User(name: name, email: email)
+        Auth.auth().createUser(withEmail: email, password: "testing") { (result, error) in
+            UserSettings.uid = result?.user.uid
+            FirestoreService.shared.createUser(newUser)
+        }
     }
 }

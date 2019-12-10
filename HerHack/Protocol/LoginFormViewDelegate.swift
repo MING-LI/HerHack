@@ -7,6 +7,7 @@
 //
 
 protocol LoginFormViewDelegate {
-    func didClickedTextField(textField: HHTextField)
-    func didClickedButton(email: String)
+    func didClickedTextField(_ textField: HHTextField)
+    func didClickedButton(name:String, email: String)
+    func returnFromTextField(_ textField: HHTextField) -> Bool
 }

@@ -87,13 +87,15 @@ class LoginFormView: UIView {
     
     
     @objc func onTextFieldTap(textField: HHTextField) {
-        delegate.didClickedTextField(textField: textField)
+        delegate.didClickedTextField(textField)
     }
     
     @objc func onTapButton(button: UIButton) {
-        if let email = emailTextField.text {
-            delegate.didClickedButton(email: email)
-        }
+        let nameFieldvalue:String? = nameTextField.text
+        let emailFieldvalue:String? = emailTextField.text
+        guard let name = nameFieldvalue else { return print("Alert: Please enter the name") }
+        guard let email = emailFieldvalue else { return print("Alert: Please enter the email") }
+        delegate.didClickedButton(name:name, email:email)
     }
     
     required init?(coder: NSCoder) {

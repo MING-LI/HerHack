@@ -8,8 +8,11 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
     var name: String
     var email: String
-    var contact: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case name, email
+    }
 }

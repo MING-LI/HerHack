@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     func handleStateChange() {
         if let user = Auth.auth().currentUser {
-            print(user)
+            UserSettings.uid = user.uid
             self.window?.rootViewController = HHTabbar()
         } else {
           self.window?.rootViewController = LoginFormViewController()
