@@ -19,10 +19,8 @@ class HHTabbar: UITabBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var contentView: UIView?
-    
     func setContentView() {
-        let carpoolListScreen = UINavigationController(rootViewController: CarpoolListViewController())
+        let carpoolListScreen = CarpoolListViewController()
         carpoolListScreen.tabBarItem.title = Constants.CarpoolScreenName
         carpoolListScreen.tabBarItem.image = #imageLiteral(resourceName: "car")
         

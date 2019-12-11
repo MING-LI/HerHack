@@ -10,6 +10,7 @@ import UIKit
 
 class CarpoolListViewController: UIViewController {
     
+    let greetingLabel: UILabel
     let searchBar: UISearchBar
     let tableView: UITableView
     
@@ -17,6 +18,7 @@ class CarpoolListViewController: UIViewController {
     var filteredCarpools: [Carpool] = []
     
     init() {
+        self.greetingLabel = UILabel()
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
         self.carPoolList = CarpoolList()
@@ -27,9 +29,19 @@ class CarpoolListViewController: UIViewController {
         
         let safeArea = self.view.layoutMarginsGuide
         
+        self.view.addSubview(self.greetingLabel)
+        self.greetingLabel.text = "Hi, \(UserSettings.name ?? "User")"
+        self.greetingLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        self.greetingLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(safeArea.snp.top)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints({ make in
-            make.top.equalTo(safeArea.snp.top)
+            make.top.equalTo(greetingLabel.snp.bottom)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         })
@@ -59,7 +71,7 @@ class CarpoolListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = Constants.CarpoolScreenName
+//        self.title = "Hi, \(UserSettings.name ?? "User")"
     }
     
     override func viewWillAppear(_ animated: Bool) {

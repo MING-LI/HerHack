@@ -19,7 +19,7 @@ class OfferFormView: UIView {
         picker.datePickerMode = .dateAndTime
         return picker
     }()
-
+    
     lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
         stack.axis = .vertical
@@ -48,6 +48,15 @@ class OfferFormView: UIView {
     
     lazy var pickerToolbar: HHPickerToolbar = {
         return HHPickerToolbar(delegate: self)
+    }()
+    
+    lazy var seatTextField: HHTextField = {
+        let txtfld = HHTextField()
+        txtfld.text = "No. of Seats"
+        txtfld.setIcon(UIImage.init(named: "user")!)
+//        txtfld.inputView = numPicker
+        txtfld.inputAccessoryView = pickerToolbar
+        return txtfld
     }()
     
     lazy var departureTextField: HHTextField = {
@@ -84,6 +93,7 @@ class OfferFormView: UIView {
         
         stackView.addArrangedSubview(sourceTextField)
         stackView.addArrangedSubview(destTextField)
+        stackView.addArrangedSubview(seatTextField)
         stackView.addArrangedSubview(departureTextField)
         stackView.addArrangedSubview(button)
         self.addSubview(stackView)
@@ -104,7 +114,6 @@ class OfferFormView: UIView {
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
         delegate.didClickedTextField(textField: textField)
-        
     }
     
     @objc func onTapContinue(button: UIButton) {
@@ -133,7 +142,3 @@ extension OfferFormView: HHPickerToolbarDelegate {
         departureTextField.text = ""
     }
 }
-
-
-
-

@@ -16,13 +16,13 @@ final class UserSettings {
     
   static var uid: String! {
     get {
-      return UserDefaults.standard.string(forKey: SettingKey.name.rawValue)
+      return UserDefaults.standard.string(forKey: SettingKey.uid.rawValue)
     }
     set {
       if let value = newValue {
-        UserDefaults.standard.set(value, forKey: SettingKey.name.rawValue)
+        UserDefaults.standard.set(value, forKey: SettingKey.uid.rawValue)
       } else {
-        UserDefaults.standard.removeObject(forKey: SettingKey.name.rawValue)
+        UserDefaults.standard.removeObject(forKey: SettingKey.uid.rawValue)
       }
     }
   }
