@@ -10,8 +10,9 @@ import UIKit
 import GooglePlaces
 
 class OfferFormView: UIView {
-    
+
     var delegate: OfferFormViewDelegate
+    
     
     var timePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -70,8 +71,6 @@ class OfferFormView: UIView {
         return txtfld
     }()
     
-    
-    
     lazy var button: UIButton = {
         let button = UIButton()
         button.setTitle("Continue", for: .normal)
@@ -125,9 +124,7 @@ class OfferFormView: UIView {
     }
     
     @objc func onTapContinue(button: UIButton) {
-        if let departure = departureTextField.text {
-            delegate.didClickedContinue(departure: departure)
-        }
+        delegate.didClickedContinue(departure: timePicker.date)
     }
     
     required init?(coder: NSCoder) {
@@ -138,14 +135,13 @@ class OfferFormView: UIView {
 
 extension OfferFormView: HHPickerToolbarDelegate {
     func didTapDone(_ textField: HHTextField) {
-        print(textField)
         textField.resignFirstResponder()
-        if textField == departureTextField {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        departureTextField.text = formatter.string(from: timePicker.date)
-        } else {
-            textField.text = String(numPicker.selectedRow(inComponent: 0)+1)
+        switch textField {
+            case departureTextField:
+                departureTextField.text = timePicker.date.toString(format: "yyyy-MM-dd HH:mm")
+            case seatTextField:
+                textField.text = String(numPicker.selectedRow(inComponent: 0)+1)
+            default: return
         }
     }
 

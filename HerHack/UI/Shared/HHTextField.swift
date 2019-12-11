@@ -9,7 +9,7 @@
 import UIKit
 
 class HHTextField: UITextField {
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.MinimumSpacing, height: Constants.MinimumSpacing))
@@ -29,7 +29,7 @@ class HHTextField: UITextField {
         ])
         
     }
-    
+
     convenience init() {
         self.init(frame: CGRect.zero)
     }
@@ -39,4 +39,3 @@ class HHTextField: UITextField {
     }
     
 }
-

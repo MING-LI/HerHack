@@ -13,13 +13,15 @@ class OfferFormViewController: UIViewController {
     
     var scrollView = UIScrollView()
     var searchRouteTextField = HHTextField()
-    var source = CLLocationCoordinate2D()
-    var destination = CLLocationCoordinate2D()
-    let seatPicker = Array(1...7)
+
     let mapViewController = MapViewController()
+    
     lazy var offerFormView: OfferFormView = {
         return OfferFormView(delegate: self)
     }()
+    
+    let seatPicker = Array(1...7)
+    var offerFormData = OfferFormData()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -67,23 +69,25 @@ extension OfferFormViewController: OfferFormViewDelegate {
         present(acController, animated: true, completion: nil)
     }
     
-    func didClickedContinue(departure: String) {
-        
+    func didClickedContinue(departure: Date) {
+        offerFormData.start_at = departure
         navigationController?.pushViewController(mapViewController, animated: true)
-        mapViewController.updateRoute(source: source, destination: destination)
+        mapViewController.didReceiveData(offerFormData)
+        mapViewController.updateRoute(source: offerFormData.source_coordinates, destination: offerFormData.destination_coordinates)
     }
 }
 
 
 extension OfferFormViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
-        self.searchRouteTextField.text = place.name
-        
-        if(self.searchRouteTextField.tag == 0) {
-            self.source = place.coordinate
-        }else if(self.searchRouteTextField.tag == 1) {
-            self.destination = place.coordinate
+
+        searchRouteTextField.text = place.name
+        if(searchRouteTextField.tag == 0) {
+            offerFormData.source = place.name ?? ""
+            offerFormData.source_coordinates = place.coordinate
+        }else if(searchRouteTextField.tag == 1) {
+            offerFormData.destination = place.name ?? ""
+            offerFormData.destination_coordinates = place.coordinate
         }
         
         dismiss(animated: true, completion: nil)
@@ -108,6 +112,7 @@ extension OfferFormViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        offerFormData.offered_seats = seatPicker[row]
         return
     }
     
@@ -115,3 +120,4 @@ extension OfferFormViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         return String(seatPicker[row])
     }
 }
+

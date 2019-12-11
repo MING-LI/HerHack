@@ -28,7 +28,7 @@ struct Carpool {
     let user_offer_ride: CarpoolUser
     let users_request_ride: [CarpoolUser]
     let status: CarpoolStatus
-    let vehicle_id: String
+    let vehicle_id: String?
 }
 
 extension Carpool {

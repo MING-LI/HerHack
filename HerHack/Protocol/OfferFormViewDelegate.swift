@@ -6,7 +6,9 @@
 //  Copyright © 2019 pdni. All rights reserved.
 //
 
+import Foundation
+
 protocol OfferFormViewDelegate {
     func didClickedTextField(textField: HHTextField)
-    func didClickedContinue(departure: String)
+    func didClickedContinue(departure: Date)
 }

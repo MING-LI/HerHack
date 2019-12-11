@@ -9,16 +9,19 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import SnapKit
 
 class MapViewController: UIViewController {
     
     open var source: CLLocationCoordinate2D
     open var destination: CLLocationCoordinate2D
+    var distanceAndDuration: DistanceAndDuration?
+    var carpool: Carpool?
+    var estimatedArrivalTime: Date?
     
     let hk = CLLocationCoordinate2D(latitude: 22.3193, longitude:114.1694)
-    
     let camera: GMSCameraPosition
-    
+
     var markers = [GMSMarker]()
     var bounds = GMSCoordinateBounds()
     
@@ -33,7 +36,25 @@ class MapViewController: UIViewController {
         self.camera = GMSCameraPosition.camera(withLatitude: hk.latitude, longitude: hk.longitude, zoom: 13.0)
         self.source = CLLocationCoordinate2D()
         self.destination = CLLocationCoordinate2D()
+        self.carpool = nil
+        self.distanceAndDuration = nil
+        self.estimatedArrivalTime = nil
+
         super.init(nibName: nil, bundle: nil)
+        
+        let createCarpoolHandler = { () in
+            if let carpool = self.carpool {
+               FirestoreService.shared.createCarpool(carpool)
+            } else { return }
+        }
+        let button = HHFloatButton("okay", buttonPressed: createCarpoolHandler)
+        self.view.addSubview(button)
+        let safeArea = view.layoutMarginsGuide
+        button.snp.makeConstraints { (make) in
+            make.width.height.equalTo(50)
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(safeArea.snp.bottom).offset(-30)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -45,6 +66,30 @@ class MapViewController: UIViewController {
         self.title = Constants.MapViewScreenName
         self.view = mapView
         mapView.delegate = self
+    }
+    
+    open func didReceiveData(_ data: OfferFormData) {
+        let user = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: nil)
+        GoogleService.shared.getDistanceAndDuration(source: data.source_coordinates, destination: data.destination_coordinates, completion: { distanceAndDuration in
+            self.distanceAndDuration = distanceAndDuration
+            self.estimatedArrivalTime = data.start_at.addingTimeInterval(TimeInterval(distanceAndDuration.duration))
+            self.carpool = Carpool(
+                id: nil,
+                source: data.source,
+                source_coordinates: self.source,
+                destination: data.destination,
+                destination_coordinates: self.destination,
+                offered_seats: data.offered_seats,
+                created_at: Date(),
+                start_at: data.start_at,
+                end_at: self.estimatedArrivalTime!,
+                user_offer_ride: user,
+                users_request_ride: [],
+                status: CarpoolStatus.OPEN,
+                vehicle_id: ""
+            )
+            self.setPromptView()
+        })
     }
     
     open func updateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
@@ -110,6 +155,30 @@ class MapViewController: UIViewController {
             polyline.map = self.mapView // Google MapView
         })
     }
+    
+    func setPromptView() {
+        let lbl = UILabel()
+            lbl.layer.cornerRadius = 0.5 * lbl.bounds.size.width
+            lbl.clipsToBounds = true
+            lbl.lineBreakMode = .byWordWrapping
+            lbl.numberOfLines = 0
+            lbl.font = Constants.Fonts.LargeBoldFont
+            lbl.textColor = .black
+            lbl.textAlignment = .center
+            lbl.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        if let dnd = distanceAndDuration {
+            lbl.text = """
+                Distance: \(String(dnd.distance/1000))km
+                Est. : ~\(String(dnd.duration/60))min
+                Arrival: \(String(estimatedArrivalTime!.toString(format: "hh:mm")))
+            """
+            view.addSubview(lbl)
+            lbl.snp.makeConstraints { (make) in
+                make.width.height.equalTo(200)
+                make.center.equalTo(view)
+            }
+        }
+    }
 }
 
 extension MapViewController: GMSMapViewDelegate {
@@ -118,7 +187,6 @@ extension MapViewController: GMSMapViewDelegate {
             isUpdateRoute = false
             fitBound()
             fetchRoute()
-            
         }
     }
 }
