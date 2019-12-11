@@ -10,9 +10,11 @@ import UIKit
 
 class HHPickerToolbar: UIToolbar {
     let toolbarDelegate: HHPickerToolbarDelegate
+    let textfield: HHTextField
     
-    init(delegate: HHPickerToolbarDelegate) {
+    init(delegate: HHPickerToolbarDelegate, textfield: HHTextField) {
         self.toolbarDelegate = delegate
+        self.textfield = textfield
         
         super.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
         
@@ -34,11 +36,10 @@ class HHPickerToolbar: UIToolbar {
     }
     
     @objc func doneTapped() {
-        print("doneTapped")
-        toolbarDelegate.didTapDone()
+        toolbarDelegate.didTapDone(self.textfield)
     }
     
     @objc func cancelTapped() {
-        toolbarDelegate.didTapCancel()
+        toolbarDelegate.didTapCancel(self.textfield)
     }
 }

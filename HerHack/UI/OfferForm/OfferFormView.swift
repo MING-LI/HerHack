@@ -20,6 +20,11 @@ class OfferFormView: UIView {
         return picker
     }()
     
+    var numPicker: UIPickerView = {
+        let picker = UIPickerView()
+        return picker
+    }()
+    
     lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
         stack.axis = .vertical
@@ -46,27 +51,26 @@ class OfferFormView: UIView {
         return txtfld
     }()
     
-    lazy var pickerToolbar: HHPickerToolbar = {
-        return HHPickerToolbar(delegate: self)
-    }()
-    
     lazy var seatTextField: HHTextField = {
         let txtfld = HHTextField()
-        txtfld.text = "No. of Seats"
+        txtfld.text = "Seats Available"
         txtfld.setIcon(UIImage.init(named: "user")!)
-//        txtfld.inputView = numPicker
-        txtfld.inputAccessoryView = pickerToolbar
+        txtfld.inputView = numPicker
+        txtfld.inputAccessoryView = HHPickerToolbar(delegate: self, textfield: txtfld)
         return txtfld
     }()
     
+
     lazy var departureTextField: HHTextField = {
         let txtfld = HHTextField()
         txtfld.text = "Departure Time"
         txtfld.setIcon(UIImage.init(named: "clock")!)
         txtfld.inputView = timePicker
-        txtfld.inputAccessoryView = pickerToolbar
+        txtfld.inputAccessoryView = HHPickerToolbar(delegate: self, textfield: txtfld)
         return txtfld
     }()
+    
+    
     
     lazy var button: UIButton = {
         let button = UIButton()
@@ -80,6 +84,8 @@ class OfferFormView: UIView {
     init(delegate: OfferFormViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
+        numPicker.delegate = delegate as? UIPickerViewDelegate
+        numPicker.dataSource = delegate as? UIPickerViewDataSource
         setupViews()
     }
     
@@ -113,7 +119,9 @@ class OfferFormView: UIView {
     
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
+        if textField != seatTextField {
         delegate.didClickedTextField(textField: textField)
+        } else { return }
     }
     
     @objc func onTapContinue(button: UIButton) {
@@ -129,16 +137,20 @@ class OfferFormView: UIView {
 
 
 extension OfferFormView: HHPickerToolbarDelegate {
-    func didTapDone() {
-        departureTextField.resignFirstResponder()
-        
+    func didTapDone(_ textField: HHTextField) {
+        print(textField)
+        textField.resignFirstResponder()
+        if textField == departureTextField {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         departureTextField.text = formatter.string(from: timePicker.date)
+        } else {
+            textField.text = String(numPicker.selectedRow(inComponent: 0)+1)
+        }
     }
 
-    func didTapCancel() {
-        departureTextField.resignFirstResponder()
-        departureTextField.text = ""
+    func didTapCancel(_ textField: HHTextField) {
+        textField.resignFirstResponder()
+        textField.text = ""
     }
 }

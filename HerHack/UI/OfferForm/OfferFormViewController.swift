@@ -15,6 +15,7 @@ class OfferFormViewController: UIViewController {
     var searchRouteTextField = HHTextField()
     var source = CLLocationCoordinate2D()
     var destination = CLLocationCoordinate2D()
+    let seatPicker = Array(1...7)
     let mapViewController = MapViewController()
     lazy var offerFormView: OfferFormView = {
         return OfferFormView(delegate: self)
@@ -94,5 +95,23 @@ extension OfferFormViewController: GMSAutocompleteViewControllerDelegate {
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension OfferFormViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return seatPicker.count
+    }
+    
+    func pickerView(_pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        return
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(seatPicker[row])
     }
 }

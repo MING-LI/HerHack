@@ -7,6 +7,6 @@
 //
 
 protocol HHPickerToolbarDelegate {
-    func didTapDone()
-    func didTapCancel()
+    func didTapDone(_ textField: HHTextField)
+    func didTapCancel(_ textField: HHTextField)
 }
