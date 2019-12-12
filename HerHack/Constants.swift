@@ -14,7 +14,7 @@ struct Constants {
     static let MapViewScreenName = "Map"
     
     static let Key = ProcessInfo.processInfo.environment["google_map_api_key"]
-    static let MinimumSpacing: CGFloat = 10
+    static let MinimumSpacing: CGFloat = 6
     static let AppMargin: CGFloat = 15
     
     static let Fonts = (

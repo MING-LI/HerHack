@@ -11,6 +11,13 @@ import UIKit
 class CarpoolListViewController: UIViewController {
     
     let greetingLabel: UILabel
+    
+    var avatar: UIImageView =  {
+        let image = UIImage(named: "mimosa")
+        let imageView = UIImageView(image: image)
+        return imageView
+    }()
+    
     let searchBar: UISearchBar
     let tableView: UITableView
     
@@ -31,12 +38,19 @@ class CarpoolListViewController: UIViewController {
         
         self.view.addSubview(self.greetingLabel)
         self.greetingLabel.text = "Hi, \(UserSettings.name ?? "User")"
-        self.greetingLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        self.greetingLabel.font = UIFont.boldSystemFont(ofSize: 30)
         self.greetingLabel.snp.makeConstraints { (make) in
             make.top.equalTo(safeArea.snp.top)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(100)
+            make.left.equalTo(15)
+            make.height.equalTo(70)
+        }
+        
+        self.view.addSubview(self.avatar)
+        self.avatar.snp.makeConstraints { (make) in
+            make.top.equalTo(safeArea.snp.top).offset(10)
+            make.right.equalTo(-15)
+            make.height.equalTo(50)
+            make.width.equalTo(50)
         }
         
         self.view.addSubview(self.searchBar)
@@ -55,10 +69,12 @@ class CarpoolListViewController: UIViewController {
             make.left.right.bottom.equalToSuperview()
         })
         
+        self.tableView.contentInset = UIEdgeInsets(top: Constants.MinimumSpacing, left: 0, bottom: 0, right: 0)
         self.tableView.backgroundColor = Constants.Colors.PaleGreyColor
         self.tableView.register(CarpoolListCell.self, forCellReuseIdentifier: "CarpoolCell")
         self.tableView.separatorStyle = .none
         self.tableView.allowsSelection = false
+        self.tableView.rowHeight = 180
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
