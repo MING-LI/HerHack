@@ -39,3 +39,11 @@ class HHTextField: UITextField {
     }
     
 }
+
+extension HHTextField: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}

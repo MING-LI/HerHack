@@ -30,6 +30,7 @@ class FirestoreService {
     }
     
     func createUser(_ user:User) {
+        print(user)
         do {
             let data =  try JSONEncoder().encode(user)
             let newUser = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
@@ -74,8 +75,7 @@ class FirestoreService {
             "end_at": Timestamp(date:data.end_at),
             "user_offer_ride": data.user_offer_ride,
             "users_request_ride": [],
-            "status": data.status,
-            "vehicle_id": data.vehicle_id
+            "status": data.status
         ]){ err in
             if let err = err {
                 print("Error creating carpool (\(ref!.documentID)): \(err)")

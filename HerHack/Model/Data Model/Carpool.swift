@@ -28,7 +28,6 @@ struct Carpool {
     let user_offer_ride: CarpoolUser
     let users_request_ride: [CarpoolUser]
     let status: CarpoolStatus
-    let vehicle_id: String?
 }
 
 extension Carpool {
@@ -52,8 +51,7 @@ extension Carpool {
             end_at:(dict["end_at"] as! Timestamp).dateValue(),
             user_offer_ride:user_offer_ride,
             users_request_ride:users_request_ride,
-            status:CarpoolStatus(rawValue:dict["status"] as! String)!,
-            vehicle_id:(dict["vehicle_id"] as! DocumentReference).documentID
+            status:CarpoolStatus(rawValue:dict["status"] as! String)!
         )
     }
 }

@@ -71,7 +71,6 @@ extension LoginFormViewController: LoginFormViewDelegate {
     }
     
     func returnFromTextField(_ textField: HHTextField) -> Bool {
-        textField.resignFirstResponder()
         return true
     }
     

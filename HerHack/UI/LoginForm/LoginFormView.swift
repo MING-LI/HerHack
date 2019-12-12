@@ -27,6 +27,7 @@ class LoginFormView: UIView {
         txtfld.setIcon(UIImage.init(named: "user")!)
         txtfld.tag = 0
         txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
+        txtfld.addTarget(self, action: #selector(afterTextFieldEdit), for: .editingDidEndOnExit)
         return txtfld
     }()
 
@@ -36,6 +37,7 @@ class LoginFormView: UIView {
         txtfld.tag = 1
         txtfld.setIcon(UIImage.init(named: "email")!)
         txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
+        txtfld.addTarget(self, action: #selector(afterTextFieldEdit), for: .editingDidEndOnExit)
         return txtfld
     }()
     
@@ -88,6 +90,10 @@ class LoginFormView: UIView {
     
     @objc func onTextFieldTap(textField: HHTextField) {
         delegate.didClickedTextField(textField)
+    }
+    
+    @objc func afterTextFieldEdit(textField: HHTextField){
+        textField.textFieldShouldReturn(textField)
     }
     
     @objc func onTapButton(button: UIButton) {

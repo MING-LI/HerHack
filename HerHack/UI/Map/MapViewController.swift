@@ -85,8 +85,7 @@ class MapViewController: UIViewController {
                 end_at: self.estimatedArrivalTime!,
                 user_offer_ride: user,
                 users_request_ride: [],
-                status: CarpoolStatus.OPEN,
-                vehicle_id: ""
+                status: CarpoolStatus.OPEN
             )
             self.setPromptView()
         })

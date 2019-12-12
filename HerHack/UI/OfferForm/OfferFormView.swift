@@ -119,7 +119,7 @@ class OfferFormView: UIView {
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
         if textField != seatTextField {
-        delegate.didClickedTextField(textField: textField)
+            delegate.didClickedTextField(textField: textField)
         } else { return }
     }
     
