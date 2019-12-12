@@ -44,7 +44,9 @@ class MapViewController: UIViewController {
         
         let createCarpoolHandler = { () in
             if let carpool = self.carpool {
-               FirestoreService.shared.createCarpool(carpool)
+                FirestoreService.shared.createCarpool(carpool, completion: {
+                    self.navigationController?.pushViewController(CarpoolListViewController(), animated: true)
+                })
             } else { return }
         }
         let button = HHFloatButton("okay", buttonPressed: createCarpoolHandler)

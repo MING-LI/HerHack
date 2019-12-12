@@ -62,9 +62,9 @@ class FirestoreService {
         }
     }
     
-    func createCarpool(_ data:Carpool) {
+    func createCarpool(_ data:Carpool, completion:@escaping ()->()) {
         var ref: DocumentReference? = nil
-        ref = db.collection("carpools").addDocument(data:[
+        let data:[String:Any] = [
             "source": data.source,
             "source_coordinates": GeoPoint(latitude: data.source_coordinates.latitude, longitude: data.source_coordinates.longitude),
             "destination": data.destination,
@@ -73,13 +73,14 @@ class FirestoreService {
             "created_at": Timestamp(date:data.created_at),
             "start_at": Timestamp(date:data.start_at),
             "end_at": Timestamp(date:data.end_at),
-            "user_offer_ride": data.user_offer_ride,
+            "user_offer_ride": data.user_offer_ride.dictionary,
             "users_request_ride": [],
-            "status": data.status
-        ]){ err in
+            "status": "OPEN"
+        ]
+        ref = db.collection("carpools").addDocument(data:data){ err in
             if let err = err {
                 print("Error creating carpool (\(ref!.documentID)): \(err)")
-            } else { return }
+            } else { completion() }
         }
 
     }

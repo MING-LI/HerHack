@@ -70,10 +70,6 @@ extension LoginFormViewController: LoginFormViewDelegate {
         textField.becomeFirstResponder()
     }
     
-    func returnFromTextField(_ textField: HHTextField) -> Bool {
-        return true
-    }
-    
     func didClickedButton(name:String, email: String) {
         UserSettings.name = name
         let newUser = User(name: name, email: email)
