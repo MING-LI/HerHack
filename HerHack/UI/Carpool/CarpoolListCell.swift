@@ -110,6 +110,8 @@ class CarpoolListCell: UITableViewCell {
             make.left.equalToSuperview().offset(self.padding)
             make.bottom.equalToSuperview().offset(-self.padding)
         })
+        
+        self.sourceLocLabel.numberOfLines = 0
     }
     
     fileprivate func destLocLabelStyling() {
@@ -118,6 +120,9 @@ class CarpoolListCell: UITableViewCell {
             make.right.equalToSuperview().offset(-self.padding)
             make.bottom.equalToSuperview().offset(-self.padding)
         })
+        
+        self.destLocLabel.textAlignment = .right
+        self.destLocLabel.numberOfLines = 0
     }
     
     fileprivate func carpoolCountLabelStyling() {
@@ -160,10 +165,13 @@ class CarpoolListCell: UITableViewCell {
         self.arrowLabel.snp.makeConstraints({ make in
             make.bottom.equalToSuperview().offset(-self.padding)
             make.centerX.equalToSuperview()
+            make.left.equalTo(self.sourceLocLabel.snp.right)
+            make.right.equalTo(self.destLocLabel.snp.left)
         })
         
         self.arrowLabel.text = "⟶"
         self.arrowLabel.font = Constants.Fonts.LargeBoldFont
+        self.arrowLabel.textAlignment = .center
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
