@@ -28,6 +28,7 @@ class CarpoolListCell: UITableViewCell {
     private let infoAreaRatio: CGFloat = (2/3)
     private let padding: CGFloat = Constants.MinimumSpacing
     private let infoAreaBgColor: UIColor = .white
+    private var id: String?
     
     fileprivate func addingSubViews() {
         self.addSubview(self.infoArea)
@@ -180,7 +181,7 @@ class CarpoolListCell: UITableViewCell {
         self.joinBtn = UIButton()
         
         self.arrowLabel = UILabel()
-        
+        self.id = nil
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = Constants.Colors.PaleGreyColor
@@ -211,6 +212,7 @@ class CarpoolListCell: UITableViewCell {
 
     
     func plugData(data: Carpool) {
+        self.id = data.id
         self.ownerLabel.text = data.user_offer_ride.user_name
         self.startTimeLabel.text = data.start_at.toString(format: "HH:mm a")
         self.endTimeLabel.text = data.end_at.toString(format: "HH:mm a")
@@ -219,6 +221,7 @@ class CarpoolListCell: UITableViewCell {
         self.carpoolCountLabel.text = "\(data.users_request_ride.count)/\(data.offered_seats)"
         self.joinBtn.isEnabled = data.status == .OPEN
         self.joinBtn.alpha = data.status == .OPEN ? 1 : (1/3)
+        self.joinBtn.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
         self.statusLabel.text = {
             switch (data.status) {
             case .OPEN:
@@ -254,4 +257,8 @@ class CarpoolListCell: UITableViewCell {
         self.statusLabel.textColor = .black
     }
     
+    @objc func onTapButton(){
+        guard let id = self.id else { return }
+        FirestoreService.shared.joinCarpool(id)
+    }
 }

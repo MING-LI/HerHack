@@ -40,19 +40,19 @@ class FirestoreService {
         }
     }
     
-    func joinCarpool(_ id:String, completion: @escaping ()->()) {
-        let carpoolUser = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: false)
+    func joinCarpool(_ id:String) {
+        let carpoolUser = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: false).dictionary
         db.collection("carpools").document(id).updateData([
             "users_request_ride": FieldValue.arrayUnion([carpoolUser as Any])
         ]) { err in
             if let err = err {
                 print("Error joining carpool: \(err)")
-            } else { completion() }
+            } else { return }
         }
     }
     
     func quitCarpool(_ id:String, completion: @escaping ()->()) {
-        let carpoolUser = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: false)
+        let carpoolUser = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: nil).dictionary
         db.collection("carpools").document(id).updateData([
             "users_request_ride": FieldValue.arrayRemove([carpoolUser as Any])
         ]) { err in

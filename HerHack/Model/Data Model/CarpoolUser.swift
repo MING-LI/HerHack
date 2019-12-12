@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CarpoolUser: Encodable {
+struct CarpoolUser: Codable {
     let user_id: String
     let user_name: String
     let is_accepted : Bool?

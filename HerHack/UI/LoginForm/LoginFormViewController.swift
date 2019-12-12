@@ -57,7 +57,6 @@ class LoginFormViewController: UIViewController {
         
         loginFormView.translatesAutoresizingMaskIntoConstraints = false
         loginFormView.snp.makeConstraints { (make) in
-            make.width.equalTo(300)
             make.height.equalTo(600)
             make.center.equalTo(view)
             make.leading.trailing.equalTo(view)
