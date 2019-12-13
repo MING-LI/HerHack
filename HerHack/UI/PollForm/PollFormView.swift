@@ -35,18 +35,11 @@ class PollFormView: UIView {
         return lbl
     }()
     
-//   lazy var closeButton: UILabel = {
-//        let lbl = UILabel()
-//        lbl.text = "Comment"
-//        lbl.font = Constants.Fonts.LargeBoldFont
-//        return lbl
-//    }()
-    
-   lazy var commentlabel: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Feedback"
-        lbl.font = Constants.Fonts.RegularFont
-        return lbl
+   lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named:"cancel"), for: .normal)
+        button.addTarget(self, action: #selector(onClickCancel), for: .touchUpInside)
+        return button
     }()
     
    var numPickerView: UIPickerView = {
@@ -84,9 +77,9 @@ class PollFormView: UIView {
     
     init(delegate: PollFormViewDelegate) {
         self.delegate = delegate
+        super.init(frame: .zero)
         numPickerView.delegate = delegate as? UIPickerViewDelegate
         commentTextView.delegate = delegate as? UITextViewDelegate
-        super.init(frame: .zero)
         setupViews()
     }
     
@@ -98,25 +91,32 @@ class PollFormView: UIView {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(rateTextField)
-        stackView.addArrangedSubview(commentlabel)
         stackView.addArrangedSubview(commentTextView)
         stackView.addArrangedSubview(button)
         stackView.distribution = .equalCentering
         self.addSubview(popUpBgView)
+        popUpBgView.addSubview(cancelButton)
         popUpBgView.addSubview(stackView)
         
         popUpBgView.snp.makeConstraints { (make) in
             make.width.equalTo(300)
-            make.height.equalTo(600)
             make.center.equalTo(self)
+        }
+        
+        cancelButton.snp.makeConstraints { (make) in
+            make.top.equalTo(popUpBgView.snp.top).offset(10)
+            make.trailing.equalTo(popUpBgView.snp.trailing).inset(10)
+            make.width.height.equalTo(25)
         }
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.popUpBgView).offset(20)
-            make.leading.equalTo(self.popUpBgView).offset(20)
-            make.trailing.equalTo(self.popUpBgView).offset(-20)
-            make.bottom.equalTo(self.popUpBgView).inset(20)
+            make.edges.equalTo(popUpBgView.snp.edges).inset(20)
+        }
+        
+        rateTextField.snp.remakeConstraints { (make) in
+            make.top.equalTo(label.snp.bottom).offset(20)
+            make.bottom.equalTo(commentTextView.snp.top).offset(-20)
         }
         
         commentTextView.snp.makeConstraints { (make) in
@@ -132,13 +132,16 @@ class PollFormView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    @objc func onClickCancel(){
+        delegate.didClickedCancel()
+    }
     
     @objc func onTextFieldTap(textField: HHTextField) {
         delegate.didClickedTextField(textField)
     }
     
     @objc func afterTextFieldEdit(textField: HHTextField){
-        textField.textFieldShouldReturn(textField)
+        _ = textField.textFieldShouldReturn(textField)
     }
     
     @objc func onTapButton(button: UIButton) {

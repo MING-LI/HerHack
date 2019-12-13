@@ -14,4 +14,11 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    func toPipelineFormat() -> Int{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        let dateString = formatter.string(from: self)
+        return Int(dateString)!
+    }
 }

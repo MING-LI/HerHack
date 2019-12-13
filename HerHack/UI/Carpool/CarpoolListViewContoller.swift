@@ -183,8 +183,11 @@ extension CarpoolListViewController: DataRefreashable {
 }
 
 extension CarpoolListViewController: CarpooListCellDelegate {
-    func didClickedComment() {
-        let commentPopup = PollFormViewController()
+    func didClickedComment(_ carpoolId:String) {
+        let selectedCarpool:[Carpool] = carPoolList.carpools.filter { carpool in
+            return carpool.id == carpoolId
+        }
+        let commentPopup = PollFormViewController(carpool:selectedCarpool[0])
         self.present(commentPopup, animated: true, completion: nil)
     }
 

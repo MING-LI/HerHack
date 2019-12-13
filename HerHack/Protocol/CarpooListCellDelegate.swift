@@ -9,6 +9,6 @@
 import Foundation
 
 protocol CarpooListCellDelegate {
-    func didClickedComment()
+    func didClickedComment(_ carpoolId:String)
 }
 
