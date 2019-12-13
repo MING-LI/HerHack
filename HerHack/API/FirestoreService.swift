@@ -30,13 +30,26 @@ class FirestoreService {
     }
     
     func createUser(_ user:User) {
-        print(user)
         do {
             let data =  try JSONEncoder().encode(user)
             let newUser = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
             db.collection("users").document(UserSettings.uid).setData(newUser)
         } catch {
                 print("Success: \(false); Error")
+        }
+    }
+    
+    func retrieveUserBy(_ id:String, completion: @escaping (User)->() ) {
+        let user = db.collection("users").document(id)
+        user.getDocument { (document, error) in
+            if error != nil {
+                 print("Document does not exist")
+            } else {
+                guard let doc = document else { return }
+                let data = doc.data() as! [String:String]
+                let user = User(name: data["name"]!, email: data["email"]!)
+                return completion(user)
+            }
         }
     }
     
