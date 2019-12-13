@@ -175,6 +175,7 @@ extension OfferFormView: HHPickerToolbarDelegate {
                 departureTextField.text = timePicker.date.toString(format: "yyyy-MM-dd HH:mm")
             case seatTextField:
                 textField.text = String(numPicker.selectedRow(inComponent: 0)+1)
+                delegate.didSelectedSeat(textFieldText: textField.text ?? "0")
             default: return
         }
     }
