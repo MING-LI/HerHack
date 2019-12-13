@@ -47,7 +47,7 @@ class MapViewController: UIViewController {
         let createCarpoolHandler = { () in
             if let carpool = self.carpool {
                 FirestoreService.shared.createCarpool(carpool, completion: {
-                    self.navigationController?.pushViewController(CarpoolListViewController(), animated: true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 })
             } else { return }
         }
