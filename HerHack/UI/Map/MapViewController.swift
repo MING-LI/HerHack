@@ -177,6 +177,7 @@ class MapViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.dismiss(animated: true, completion: nil)
             }))
+            self.present(alertCtrl, animated: true, completion: nil)
         }
     }
 }
