@@ -68,13 +68,13 @@ extension PollFormViewController: PollFormViewDelegate {
             "Rating":newComment.rating,
             "Comment":newComment.comment
         ]
-        GoogleService.shared.postToPipeline(data:data, completion:{
-            let alert = UIAlertController(title: "Success", message: "Thanks for your Feedback", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        })
+//        GoogleService.shared.postToPipeline(data:data, completion:{
+//            let alert = UIAlertController(title: "Success", message: "Thanks for your Feedback", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+//                self.dismiss(animated: true, completion: nil)
+//            }))
+//            self.present(alert, animated: true, completion: nil)
+//        })
     }
 }
 

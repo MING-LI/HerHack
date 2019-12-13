@@ -14,22 +14,12 @@ class OfferFormViewController: UIViewController {
     var scrollView = UIScrollView()
     var searchRouteTextField = HHTextField()
     
-    let mapViewController = MapViewController()
-    
     lazy var offerFormView: OfferFormView = {
         return OfferFormView(delegate: self)
     }()
     
     let seatPicker = Array(1...7)
     var offerFormData = OfferFormData()
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +67,12 @@ extension OfferFormViewController: OfferFormViewDelegate {
     
     func didClickedContinue(departure: Date) {
         offerFormData.start_at = departure
-        navigationController?.pushViewController(mapViewController, animated: true)
-        mapViewController.didReceiveData(offerFormData)
+        let vc = MapViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        vc.didReceiveData(offerFormData)
         print( "----------------Way Pointss-----------------")
         print( offerFormData.wayPoints)
-        mapViewController.updateRoute(source: offerFormData.source_coordinates, destination: offerFormData.destination_coordinates, wayPoints: offerFormData.wayPoints)
+        vc.updateRoute(source: offerFormData.source_coordinates, destination: offerFormData.destination_coordinates, wayPoints: offerFormData.wayPoints)
     }
 }
 

@@ -10,22 +10,19 @@ import SnapKit
 import Firebase
 
 class LoginFormViewController: UIViewController {
-
-    let hHTabbar: UITabBarController
     
     lazy var loginFormView: LoginFormView = {
         return LoginFormView(delegate: self)
     }()
     
     init() {
-        self.hHTabbar = HHTabbar()
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -42,24 +39,24 @@ class LoginFormViewController: UIViewController {
         view.addSubview(imageViewBackground)
         view.sendSubviewToBack(imageViewBackground)
         
-//        let label = UILabel()
-//        label.text = "Free Rider"
-//        label.font = UIFont.boldSystemFont(ofSize: 60)
-//        label.textColor = Constants.Colors.GreyColor
+        //        let label = UILabel()
+        //        label.text = "Free Rider"
+        //        label.font = UIFont.boldSystemFont(ofSize: 60)
+        //        label.textColor = Constants.Colors.GreyColor
         
-//        view.addSubview(label)
+        //        view.addSubview(label)
         view.addSubview(loginFormView)
         
         /*label.snp.makeConstraints { (make) in
-            make.top.equalTo(100)
-            make.centerX.equalToSuperview()
-        }*/
+         make.top.equalTo(100)
+         make.centerX.equalToSuperview()
+         }*/
         
         loginFormView.translatesAutoresizingMaskIntoConstraints = false
         loginFormView.snp.makeConstraints { (make) in
             make.height.equalTo(300)
             make.bottom.equalToSuperview().offset(-230)
-//            make.center.equalTo(view)
+            //            make.center.equalTo(view)
             make.leading.trailing.equalTo(view)
         }
     }

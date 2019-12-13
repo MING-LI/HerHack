@@ -29,10 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
         
     func handleStateChange() {
-        guard UserSettings.name != nil, (self.window != nil) else {
-            self.window?.rootViewController = LoginFormViewController()
-            return
-        }
         if let user = Auth.auth().currentUser {
             UserSettings.uid = user.uid
             FirestoreService.shared.retrieveUserBy(user.uid, completion: { user in
@@ -46,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @objc func userStateDidChange() {
         DispatchQueue.main.async {
-            self.handleStateChange()
+//            self.handleStateChange()
         }
     }
 }

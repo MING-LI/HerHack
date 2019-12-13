@@ -15,10 +15,9 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let key = ProcessInfo.processInfo.environment["google_map_api_key"]
         FirebaseApp.configure()
-        GMSServices.provideAPIKey(key!)
-        GMSPlacesClient.provideAPIKey(key!)
+        GMSServices.provideAPIKey(Constants.Key ?? "")
+        GMSPlacesClient.provideAPIKey(Constants.Key ?? "")
         return true
     }
 

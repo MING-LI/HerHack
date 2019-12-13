@@ -20,7 +20,7 @@ class HHTabbar: UITabBarController {
     }
     
     func setContentView() {
-        let carpoolListScreen = CarpoolListViewController()
+        let carpoolListScreen = UINavigationController(rootViewController: CarpoolListViewController())
         carpoolListScreen.tabBarItem.title = Constants.CarpoolScreenName
         carpoolListScreen.tabBarItem.image = #imageLiteral(resourceName: "car")
         

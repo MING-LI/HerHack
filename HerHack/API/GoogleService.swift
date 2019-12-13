@@ -13,7 +13,7 @@ import CoreLocation
 
 class GoogleService {
     
-    public static let shared = GoogleService()
+//    public static let shared = GoogleService()
     
     private let key: String
     

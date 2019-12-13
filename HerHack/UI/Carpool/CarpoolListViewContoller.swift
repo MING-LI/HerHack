@@ -14,26 +14,12 @@ class CarpoolListViewController: UIViewController {
     
     let locationManager: CLLocationManager
     let greetingLabel: UILabel
-    var sections: Int {
-        get {
-            let hasJoined = self.filteredCarpools.contains(where: { carpool in
-                carpool.users_request_ride.contains(where: { user in
-                    UserSettings.uid == user.user_id
-                })
-            })
-            if hasJoined {
-                return 2
-            } else {
-                return 1
-            }
-        }
-    }
     
-    var avatar: UIImageView =  {
-        let image = UIImage(named: "mimosa")
-        let imageView = UIImageView(image: image)
-        return imageView
-    }()
+//    var avatar: UIImageView =  {
+//        let image = UIImage(named: "mimosa")
+//        let imageView = UIImageView(image: image)
+//        return imageView
+//    }()
     
     let searchBar: UISearchBar
     let tableView: UITableView
@@ -63,13 +49,13 @@ class CarpoolListViewController: UIViewController {
             make.height.equalTo(70)
         }
         
-        self.view.addSubview(self.avatar)
-        self.avatar.snp.makeConstraints { (make) in
-            make.top.equalTo(safeArea.snp.top).offset(10)
-            make.right.equalTo(-15)
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-        }
+//        self.view.addSubview(self.avatar)
+//        self.avatar.snp.makeConstraints { (make) in
+//            make.top.equalTo(safeArea.snp.top).offset(10)
+//            make.right.equalTo(-15)
+//            make.height.equalTo(50)
+//            make.width.equalTo(50)
+//        }
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints({ make in
@@ -126,7 +112,7 @@ extension CarpoolListViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.sections
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -204,5 +190,5 @@ extension CarpoolListViewController: CarpooListCellDelegate {
         let commentPopup = PollFormViewController(carpool:selectedCarpool[0])
         self.present(commentPopup, animated: true, completion: nil)
     }
-    
+
 }
