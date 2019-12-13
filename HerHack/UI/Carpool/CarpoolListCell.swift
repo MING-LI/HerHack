@@ -26,9 +26,8 @@ class CarpoolListCell: UITableViewCell {
     private let btnArea: UIView
     private let carpoolCountLabel: UILabel
     private let joinBtn: UIButton
+    private let commentBtn: UIButton
     private let statusLabel: UILabel
-    
-    private let arrowLabel: UILabel
     
     private let infoAreaRatio: CGFloat = (2/3)
     private let cellPadding: CGFloat = Constants.MinimumSpacing
@@ -48,13 +47,13 @@ class CarpoolListCell: UITableViewCell {
         self.infoArea.addSubview(self.sourceLocLabel)
         self.infoArea.addSubview(self.destImageView)
         self.infoArea.addSubview(self.destLocLabel)
-        self.infoArea.addSubview(self.arrowLabel)
         self.infoArea.addSubview(self.dotlineView)
         
         self.addSubview(self.btnArea)
         self.btnArea.addSubview(self.carpoolCountLabel)
         self.btnArea.addSubview(self.joinBtn)
         self.btnArea.addSubview(self.statusLabel)
+        self.btnArea.addSubview(self.commentBtn)
     }
     
     fileprivate func infoAreaStyling() {
@@ -211,7 +210,7 @@ class CarpoolListCell: UITableViewCell {
         self.joinBtn.snp.makeConstraints({ make in
             make.top.equalTo(self.carpoolCountLabel.snp.bottom).offset(self.padding)
             make.left.equalToSuperview().offset(self.padding)
-            make.right.bottom.equalToSuperview().offset(-self.padding)
+            make.right.equalToSuperview().offset(-self.padding)
         })
         
         self.joinBtn.titleLabel?.font = Constants.Fonts.SmallFont
@@ -220,6 +219,22 @@ class CarpoolListCell: UITableViewCell {
         
         DispatchQueue.main.async {
             self.joinBtn.layer.cornerRadius = self.joinBtn.frame.height / 12
+        }
+    }
+    
+    fileprivate func commentBtnStyling() {
+        self.commentBtn.snp.makeConstraints({ make in
+            make.top.equalTo(self.joinBtn.snp.bottom).offset(self.padding)
+            make.left.equalToSuperview().offset(self.padding)
+            make.right.bottom.equalToSuperview().offset(-self.padding)
+        })
+        
+        self.commentBtn.titleLabel?.font = Constants.Fonts.SmallFont
+        self.commentBtn.setTitle("Join", for: .normal)
+        self.commentBtn.backgroundColor = Constants.Colors.Blue
+        
+        DispatchQueue.main.async {
+            self.commentBtn.layer.cornerRadius = self.joinBtn.frame.height / 12
         }
     }
     
@@ -257,8 +272,8 @@ class CarpoolListCell: UITableViewCell {
         self.btnArea = UIView()
         self.carpoolCountLabel = UILabel()
         self.joinBtn = UIButton()
+        self.commentBtn = UIButton()
         
-        self.arrowLabel = UILabel()
         self.id = nil
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -284,11 +299,10 @@ class CarpoolListCell: UITableViewCell {
         
         self.carpoolCountLabelStyling()
         self.joinBtnStyling()
+        self.commentBtnStyling()
         self.statusLabelStyling()
         
         self.dotlineViewStyling()
-        
-//        self.arrowLabelStyling()
     }
     
     required init?(coder: NSCoder) {

@@ -91,7 +91,7 @@ class MapViewController: UIViewController {
                 users_request_ride: [],
                 status: CarpoolStatus.OPEN
             )
-            self.setPromptView()
+            self.promptView()
         })
     }
     
@@ -164,28 +164,19 @@ class MapViewController: UIViewController {
         })
     }
     
-    func setPromptView() {
-        let lbl = UILabel()
-            lbl.layer.cornerRadius = 0.5 * lbl.bounds.size.width
-            lbl.clipsToBounds = true
-            lbl.lineBreakMode = .byWordWrapping
-            lbl.numberOfLines = 0
-            lbl.font = Constants.Fonts.LargeBoldFont
-            lbl.textColor = .black
-            lbl.textAlignment = .center
-            lbl.backgroundColor = UIColor(white: 1, alpha: 0.5)
+    func promptView() {
         if let dnd = distanceAndDuration {
-            lbl.text = """
+            let content = """
                 Distance: \(String(dnd.distance/1000))km
                 Est. : ~\(String(dnd.duration/60))min
                 Arrival: \(String(estimatedArrivalTime!.toString(format: "hh:mm")))
             """
-            view.addSubview(lbl)
-            lbl.snp.makeConstraints { (make) in
-                make.top.equalToSuperview()
-                make.width.equalToSuperview()
-                make.height.equalTo(200)
-            }
+            
+            let alertCtrl = UIAlertController(title: nil, message: content, preferredStyle: .alert)
+            alertCtrl.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.dismiss(animated: true, completion: nil)
+            }))
         }
     }
 }
