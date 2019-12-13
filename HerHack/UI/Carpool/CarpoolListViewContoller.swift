@@ -36,7 +36,7 @@ class CarpoolListViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.hidesBackButton = true
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Constants.Colors.PaleGreyColor
         
         let safeArea = self.view.layoutMarginsGuide
         
@@ -68,9 +68,9 @@ class CarpoolListViewController: UIViewController {
         self.greetingLabel.font = Constants.Fonts.LargeBoldFont
         self.greetingLabel.textAlignment = .center
         self.greetingLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.searchBar.snp.bottom).offset(Constants.MinimumSpacing)
-            make.left.equalToSuperview().offset(Constants.MinimumSpacing)
-            make.right.equalToSuperview().offset(-Constants.MinimumSpacing)
+            make.top.equalTo(self.searchBar.snp.bottom).offset(Constants.MinimumSpacing * 2)
+            make.left.equalToSuperview().offset(Constants.MinimumSpacing * 2)
+            make.right.equalToSuperview().offset(-Constants.MinimumSpacing * 2)
         }
         self.greetingLabel.backgroundColor = Constants.Colors.PaleGreyColor
         
