@@ -15,11 +15,11 @@ class CarpoolListViewController: UIViewController {
     let locationManager: CLLocationManager
     let greetingLabel: UILabel
     
-//    var avatar: UIImageView =  {
-//        let image = UIImage(named: "mimosa")
-//        let imageView = UIImageView(image: image)
-//        return imageView
-//    }()
+    //    var avatar: UIImageView =  {
+    //        let image = UIImage(named: "mimosa")
+    //        let imageView = UIImageView(image: image)
+    //        return imageView
+    //    }()
     
     let searchBar: UISearchBar
     let tableView: UITableView
@@ -40,26 +40,19 @@ class CarpoolListViewController: UIViewController {
         
         let safeArea = self.view.layoutMarginsGuide
         
-        self.view.addSubview(self.greetingLabel)
-        self.greetingLabel.text = "Hi, \(UserSettings.name ?? "User")"
-        self.greetingLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        self.greetingLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(safeArea.snp.top)
-            make.left.equalTo(15)
-            make.height.equalTo(70)
-        }
         
-//        self.view.addSubview(self.avatar)
-//        self.avatar.snp.makeConstraints { (make) in
-//            make.top.equalTo(safeArea.snp.top).offset(10)
-//            make.right.equalTo(-15)
-//            make.height.equalTo(50)
-//            make.width.equalTo(50)
-//        }
+        
+        //        self.view.addSubview(self.avatar)
+        //        self.avatar.snp.makeConstraints { (make) in
+        //            make.top.equalTo(safeArea.snp.top).offset(10)
+        //            make.right.equalTo(-15)
+        //            make.height.equalTo(50)
+        //            make.width.equalTo(50)
+        //        }
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints({ make in
-            make.top.equalTo(greetingLabel.snp.bottom)
+            make.top.equalTo(safeArea.snp.top)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         })
@@ -69,9 +62,22 @@ class CarpoolListViewController: UIViewController {
         self.searchBar.showsBookmarkButton = true
         self.searchBar.setImage(#imageLiteral(resourceName: "location"), for: .bookmark, state: .normal)
         
+        
+        self.view.addSubview(self.greetingLabel)
+        self.greetingLabel.text = "Welcome back, \(UserSettings.name ?? "User") 👋🏻"
+        self.greetingLabel.font = Constants.Fonts.LargeBoldFont
+        self.greetingLabel.textAlignment = .center
+        self.greetingLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.searchBar.snp.bottom).offset(Constants.MinimumSpacing)
+            make.left.equalToSuperview().offset(Constants.MinimumSpacing)
+            make.right.equalToSuperview().offset(-Constants.MinimumSpacing)
+        }
+        
+        
+        
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints({ make in
-            make.top.equalTo(self.searchBar.snp.bottom)
+            make.top.equalTo(self.greetingLabel.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         })
         
@@ -190,5 +196,5 @@ extension CarpoolListViewController: CarpooListCellDelegate {
         let commentPopup = PollFormViewController(carpool:selectedCarpool[0])
         self.present(commentPopup, animated: true, completion: nil)
     }
-
+    
 }
