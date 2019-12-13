@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
+import GoogleMaps
 
 class CarpoolListViewController: UIViewController {
     
+    let locationManager: CLLocationManager
     let greetingLabel: UILabel
     
     var avatar: UIImageView =  {
@@ -29,6 +32,7 @@ class CarpoolListViewController: UIViewController {
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
         self.carPoolList = CarpoolList()
+        self.locationManager = CLLocationManager()
         
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.hidesBackButton = true
@@ -62,6 +66,8 @@ class CarpoolListViewController: UIViewController {
         
         self.searchBar.delegate = self
         self.searchBar.placeholder = "Find a carpool"
+        self.searchBar.showsBookmarkButton = true
+        self.searchBar.setImage(#imageLiteral(resourceName: "location"), for: .bookmark, state: .normal)
         
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints({ make in
@@ -111,6 +117,7 @@ extension CarpoolListViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredCarpools.count
     }
+    
 }
 
 extension CarpoolListViewController: UISearchBarDelegate {
@@ -126,6 +133,27 @@ extension CarpoolListViewController: UISearchBarDelegate {
         }
         
         self.tableView.reloadData()
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.startUpdatingLocation()
+            guard let loc = self.locationManager.location else { return }
+            GMSGeocoder().reverseGeocodeCoordinate(loc.coordinate, completionHandler: { [weak self] response, result in
+                guard let `self` = self,
+                let locString = response?.firstResult()?.locality else { return }
+                self.searchBar.becomeFirstResponder()
+                self.searchBar.text = locString
+                self.searchBar(self.searchBar, textDidChange: locString)
+            })
+        }
     }
     
 }
