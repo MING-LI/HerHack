@@ -232,7 +232,7 @@ class CarpoolListCell: UITableViewCell {
         })
         
         self.commentBtn.titleLabel?.font = Constants.Fonts.SmallFont
-        self.commentBtn.setTitle("Join", for: .normal)
+        self.commentBtn.setTitle("Comment", for: .normal)
         self.commentBtn.backgroundColor = Constants.Colors.Blue
         
         DispatchQueue.main.async {
