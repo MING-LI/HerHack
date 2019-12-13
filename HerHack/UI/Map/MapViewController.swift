@@ -47,7 +47,7 @@ class MapViewController: UIViewController {
         let createCarpoolHandler = { () in
             if let carpool = self.carpool {
                 FirestoreService.shared.createCarpool(carpool, completion: {
-                    self.navigationController?.pushViewController(CarpoolListViewController(), animated: true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 })
             } else { return }
         }
@@ -177,6 +177,7 @@ class MapViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.dismiss(animated: true, completion: nil)
             }))
+            self.present(alertCtrl, animated: true, completion: nil)
         }
     }
 }

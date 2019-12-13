@@ -162,7 +162,7 @@ extension CarpoolListViewController: UISearchBarDelegate {
                 addArr.append(firstResult.administrativeArea ?? "")
                 addArr.append(firstResult.country ?? "")
                 
-                let locString = addArr.joined(separator: ", ")
+                let locString = addArr.joined(separator: " ")
                 
                 self.searchBar.becomeFirstResponder()
                 self.searchBar.text = locString
