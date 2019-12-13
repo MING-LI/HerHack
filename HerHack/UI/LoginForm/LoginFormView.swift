@@ -64,7 +64,7 @@ class LoginFormView: UIView {
     
     func setupViews() {
         self.backgroundColor = .none
-        stackView.addArrangedSubview(imageView)
+//        stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(nameTextField)
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(button)
@@ -78,10 +78,10 @@ class LoginFormView: UIView {
             make.center.equalTo(self.snp.center)
         }
         
-        imageView.snp.makeConstraints { (make) in
+        /*imageView.snp.makeConstraints { (make) in
             make.width.equalTo(imageView.snp.height)
             make.width.height.equalToSuperview().priority(.high)
-        }
+        }*/
         
         button.addTarget(self, action: #selector(onTapButton), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -13,6 +13,7 @@ struct OfferFormData {
     var source: String = ""
     var source_coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
     var destination: String = ""
+    var wayPoints = [CLLocationCoordinate2D]()
     var destination_coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
     var offered_seats : Int = 0
     var start_at: Date = Date()

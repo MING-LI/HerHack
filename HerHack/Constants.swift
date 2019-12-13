@@ -34,9 +34,11 @@ struct Constants {
         Blue: UIColor(red: 34/255.0, green: 108/255.0, blue: 224/255.0, alpha: 1)
     )
     
-    static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D) -> URL? {
+    static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) -> URL? {
+        print(wayPoints[0])
         let queryParams = [
             URLQueryItem(name: "origin", value: "\(src.latitude),\(src.longitude)"),
+            URLQueryItem(name: "waypoints", value: "\(wayPoints[0].latitude),\(wayPoints[0].longitude)"),
             URLQueryItem(name: "destination", value: "\(dest.latitude),\(dest.longitude)"),
             URLQueryItem(name: "sensor", value: "false"),
             URLQueryItem(name: "mode", value: "driving"),
