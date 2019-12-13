@@ -72,6 +72,7 @@ class CarpoolListViewController: UIViewController {
             make.left.equalToSuperview().offset(Constants.MinimumSpacing)
             make.right.equalToSuperview().offset(-Constants.MinimumSpacing)
         }
+        self.greetingLabel.backgroundColor = .clear
         
         
         
