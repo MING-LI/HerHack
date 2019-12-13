@@ -13,7 +13,7 @@ class OfferFormViewController: UIViewController {
     
     var scrollView = UIScrollView()
     var searchRouteTextField = HHTextField()
-
+    
     let mapViewController = MapViewController()
     
     lazy var offerFormView: OfferFormView = {
@@ -30,7 +30,7 @@ class OfferFormViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Make an Offer"
@@ -62,11 +62,17 @@ class OfferFormViewController: UIViewController {
 }
 
 extension OfferFormViewController: OfferFormViewDelegate {
+    
     func didClickedTextField(textField: HHTextField) {
         searchRouteTextField = textField
         let acController = GMSAutocompleteViewController()
         acController.delegate = self
         present(acController, animated: true, completion: nil)
+    }
+    
+    func didSelectedSeat(textFieldText: String) {
+        let textFieldInt = Int(textFieldText)
+        offerFormData.offered_seats = textFieldInt ?? 0
     }
     
     func didClickedContinue(departure: Date) {
@@ -82,7 +88,7 @@ extension OfferFormViewController: OfferFormViewDelegate {
 
 extension OfferFormViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-
+        
         searchRouteTextField.text = place.name
         if(searchRouteTextField.tag == 0) {
             print("Add source!!!!!!!")

@@ -36,7 +36,7 @@ class GoogleService {
         }
     }
     
-    func postToPipeline(data: [String:Any] ){
+    func postToPipeline(data: [String:Any] ,completion:@escaping ()->()){
         let headers: HTTPHeaders = [
                 "Content-Type": "application/json"
             ]
@@ -46,7 +46,7 @@ class GoogleService {
            parameters: data,
            encoding: JSONEncoding.default,
            headers: headers).responseString { response in
-            print(response)
+            completion()
         }
     }
 }

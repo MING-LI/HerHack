@@ -11,9 +11,7 @@ import SnapKit
 
 class PollFormView: UIView {
     
-    var delegate: PollFormViewDelegate
-    
-    
+   var delegate: PollFormViewDelegate
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView(frame: CGRect.zero)
@@ -30,21 +28,28 @@ class PollFormView: UIView {
         return view
     }()
     
-    var label: UILabel = {
+   lazy var label: UILabel = {
         let lbl = UILabel()
         lbl.text = "Comment"
         lbl.font = Constants.Fonts.LargeBoldFont
         return lbl
     }()
     
-    var commentlabel: UILabel = {
+//   lazy var closeButton: UILabel = {
+//        let lbl = UILabel()
+//        lbl.text = "Comment"
+//        lbl.font = Constants.Fonts.LargeBoldFont
+//        return lbl
+//    }()
+    
+   lazy var commentlabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "Feedback"
         lbl.font = Constants.Fonts.RegularFont
         return lbl
     }()
     
-    var numPickerView: UIPickerView = {
+   var numPickerView: UIPickerView = {
         let picker = UIPickerView()
         return picker
     }()

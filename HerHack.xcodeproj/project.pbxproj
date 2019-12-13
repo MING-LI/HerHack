@@ -32,6 +32,7 @@
 		4974F99723A32BA700F1BA4E /* PollFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99623A32BA700F1BA4E /* PollFormView.swift */; };
 		4974F99923A32F2C00F1BA4E /* PollFormViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */; };
 		4974F99B23A331E900F1BA4E /* CommentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99A23A331E900F1BA4E /* CommentForm.swift */; };
+		4974F99D23A3632E00F1BA4E /* CarpooListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99C23A3632E00F1BA4E /* CarpooListCellDelegate.swift */; };
 		688C3A60C062137A14F73077 /* libPods-HerHackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41607AA64638F36FBAD1DA0E /* libPods-HerHackTests.a */; };
 		BA74DE1071FF8539B270ACBC /* libPods-HerHackUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6FEAA1C42707D0E4C96624 /* libPods-HerHackUITests.a */; };
 		BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCD82387F0930050B345 /* AppDelegate.swift */; };
@@ -99,6 +100,7 @@
 		4974F99623A32BA700F1BA4E /* PollFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormView.swift; sourceTree = "<group>"; };
 		4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormViewDelegate.swift; sourceTree = "<group>"; };
 		4974F99A23A331E900F1BA4E /* CommentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForm.swift; sourceTree = "<group>"; };
+		4974F99C23A3632E00F1BA4E /* CarpooListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpooListCellDelegate.swift; sourceTree = "<group>"; };
 		70828AFA5757239AB5A5B262 /* Pods-HerHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHack.release.xcconfig"; path = "Target Support Files/Pods-HerHack/Pods-HerHack.release.xcconfig"; sourceTree = "<group>"; };
 		A2AF7E7584F0ABA1A3C7C3BB /* Pods-HerHackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackTests.release.xcconfig"; path = "Target Support Files/Pods-HerHackTests/Pods-HerHackTests.release.xcconfig"; sourceTree = "<group>"; };
 		A94F279E521E12B41CA23404 /* Pods-HerHackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.debug.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				D2D26E8A239D44530071B47A /* OfferFormViewDelegate.swift */,
 				492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */,
 				4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */,
+				4974F99C23A3632E00F1BA4E /* CarpooListCellDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4974F99D23A3632E00F1BA4E /* CarpooListCellDelegate.swift in Sources */,
 				492FD4E723A1824300573B1F /* Geolocation.swift in Sources */,
 				1BE8547B239D25BA0094E944 /* OfferFormView.swift in Sources */,
 				BB13DCDD2387F0930050B345 /* CarpoolListViewContoller.swift in Sources */,
