@@ -69,7 +69,7 @@ class LoginFormView: UIView {
         stackView.addArrangedSubview(nameTextField)
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(button)
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalCentering
         self.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
