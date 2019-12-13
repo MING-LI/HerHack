@@ -138,20 +138,32 @@ extension CarpoolListViewController: UISearchBarDelegate {
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
-
+        
         // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
-
+        
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             self.locationManager.startUpdatingLocation()
             guard let loc = self.locationManager.location else { return }
             GMSGeocoder().reverseGeocodeCoordinate(loc.coordinate, completionHandler: { [weak self] response, result in
                 guard let `self` = self,
-                let locString = response?.firstResult()?.locality else { return }
-                self.searchBar.becomeFirstResponder()
-                self.searchBar.text = locString
-                self.searchBar(self.searchBar, textDidChange: locString)
+                    let firstResult = response?.firstResult() else { return }
+                var locString: String? = nil
+                
+                locString = firstResult.thoroughfare
+                locString = firstResult.subLocality
+                locString = firstResult.locality
+                locString = firstResult.administrativeArea
+                locString = firstResult.country
+                
+                if let `locString` = locString {
+                    self.searchBar.becomeFirstResponder()
+                    self.searchBar.text = locString
+                    self.searchBar(self.searchBar, textDidChange: locString)
+                } else {
+                    // Show error
+                }
             })
         }
     }
