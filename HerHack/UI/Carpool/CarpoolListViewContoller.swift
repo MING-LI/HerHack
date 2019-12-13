@@ -107,6 +107,7 @@ extension CarpoolListViewController: UITableViewDataSource, UITableViewDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarpoolCell", for: indexPath) as! CarpoolListCell
         let data = self.filteredCarpools[indexPath.row]
         cell.plugData(data: data)
+        cell.delegate = self
         return cell
     }
     
@@ -179,4 +180,12 @@ extension CarpoolListViewController: DataRefreashable {
         self.filteredCarpools = self.carPoolList.carpools
         self.tableView.reloadData()
     }
+}
+
+extension CarpoolListViewController: CarpooListCellDelegate {
+    func didClickedComment() {
+        let commentPopup = PollFormViewController()
+        self.present(commentPopup, animated: true, completion: nil)
+    }
+
 }
