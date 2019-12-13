@@ -135,6 +135,10 @@ extension CarpoolListViewController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print()
+    }
+    
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -149,21 +153,20 @@ extension CarpoolListViewController: UISearchBarDelegate {
             GMSGeocoder().reverseGeocodeCoordinate(loc.coordinate, completionHandler: { [weak self] response, result in
                 guard let `self` = self,
                     let firstResult = response?.firstResult() else { return }
-                var locString: String? = nil
                 
-                locString = firstResult.thoroughfare
-                locString = firstResult.subLocality
-                locString = firstResult.locality
-                locString = firstResult.administrativeArea
-                locString = firstResult.country
+                var addArr = [String]()
                 
-                if let `locString` = locString {
-                    self.searchBar.becomeFirstResponder()
-                    self.searchBar.text = locString
-                    self.searchBar(self.searchBar, textDidChange: locString)
-                } else {
-                    // Show error
-                }
+                addArr.append(firstResult.thoroughfare ?? "")
+                addArr.append(firstResult.subLocality ?? "")
+                addArr.append(firstResult.locality ?? "")
+                addArr.append(firstResult.administrativeArea ?? "")
+                addArr.append(firstResult.country ?? "")
+                
+                let locString = addArr.joined(separator: ", ")
+                
+                self.searchBar.becomeFirstResponder()
+                self.searchBar.text = locString
+                self.searchBar(self.searchBar, textDidChange: locString)
             })
         }
     }

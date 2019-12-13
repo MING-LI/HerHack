@@ -29,6 +29,9 @@
 		492FD4E723A1824300573B1F /* Geolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4E623A1824300573B1F /* Geolocation.swift */; };
 		492FD4E923A18DFB00573B1F /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4E823A18DFB00573B1F /* GoogleResponse.swift */; };
 		4974F99223A321CD00F1BA4E /* PollFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99123A321CD00F1BA4E /* PollFormViewController.swift */; };
+		4974F99723A32BA700F1BA4E /* PollFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99623A32BA700F1BA4E /* PollFormView.swift */; };
+		4974F99923A32F2C00F1BA4E /* PollFormViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */; };
+		4974F99B23A331E900F1BA4E /* CommentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99A23A331E900F1BA4E /* CommentForm.swift */; };
 		688C3A60C062137A14F73077 /* libPods-HerHackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41607AA64638F36FBAD1DA0E /* libPods-HerHackTests.a */; };
 		BA74DE1071FF8539B270ACBC /* libPods-HerHackUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6FEAA1C42707D0E4C96624 /* libPods-HerHackUITests.a */; };
 		BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13DCD82387F0930050B345 /* AppDelegate.swift */; };
@@ -93,6 +96,9 @@
 		492FD4E623A1824300573B1F /* Geolocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geolocation.swift; sourceTree = "<group>"; };
 		492FD4E823A18DFB00573B1F /* GoogleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponse.swift; sourceTree = "<group>"; };
 		4974F99123A321CD00F1BA4E /* PollFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormViewController.swift; sourceTree = "<group>"; };
+		4974F99623A32BA700F1BA4E /* PollFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormView.swift; sourceTree = "<group>"; };
+		4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormViewDelegate.swift; sourceTree = "<group>"; };
+		4974F99A23A331E900F1BA4E /* CommentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForm.swift; sourceTree = "<group>"; };
 		70828AFA5757239AB5A5B262 /* Pods-HerHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHack.release.xcconfig"; path = "Target Support Files/Pods-HerHack/Pods-HerHack.release.xcconfig"; sourceTree = "<group>"; };
 		A2AF7E7584F0ABA1A3C7C3BB /* Pods-HerHackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackTests.release.xcconfig"; path = "Target Support Files/Pods-HerHackTests/Pods-HerHackTests.release.xcconfig"; sourceTree = "<group>"; };
 		A94F279E521E12B41CA23404 /* Pods-HerHackUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HerHackUITests.debug.xcconfig"; path = "Target Support Files/Pods-HerHackUITests/Pods-HerHackUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				4974F99123A321CD00F1BA4E /* PollFormViewController.swift */,
+				4974F99623A32BA700F1BA4E /* PollFormView.swift */,
 			);
 			path = PollForm;
 			sourceTree = "<group>";
@@ -339,6 +346,7 @@
 				492FD464239BFBA500573B1F /* User.swift */,
 				492FD466239BFBB200573B1F /* Location.swift */,
 				492FD4E223A1650300573B1F /* OfferForm.swift */,
+				4974F99A23A331E900F1BA4E /* CommentForm.swift */,
 				492FD4E823A18DFB00573B1F /* GoogleResponse.swift */,
 			);
 			path = "Data Model";
@@ -360,6 +368,7 @@
 				D2D26E88239D44220071B47A /* HHPickerToolbarDelegate.swift */,
 				D2D26E8A239D44530071B47A /* OfferFormViewDelegate.swift */,
 				492FD4CC239E727800573B1F /* LoginFormViewDelegate.swift */,
+				4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -599,12 +608,15 @@
 				1BE85479239D21FA0094E944 /* OfferFormViewController.swift in Sources */,
 				492FD4E323A1650300573B1F /* OfferForm.swift in Sources */,
 				492FD4C9239E708F00573B1F /* LoginFormViewController.swift in Sources */,
+				4974F99723A32BA700F1BA4E /* PollFormView.swift in Sources */,
 				1BC05EF8239BC2D4003EA539 /* MapViewController.swift in Sources */,
 				D2D26E87239D431A0071B47A /* UITextField.swift in Sources */,
 				492FD4E523A17E6800573B1F /* GoogleService.swift in Sources */,
 				492FD4CF239E838E00573B1F /* HHTabbar.swift in Sources */,
 				D2D26E89239D44220071B47A /* HHPickerToolbarDelegate.swift in Sources */,
 				492FD4D5239F705000573B1F /* UserSetting.swift in Sources */,
+				4974F99B23A331E900F1BA4E /* CommentForm.swift in Sources */,
+				4974F99923A32F2C00F1BA4E /* PollFormViewDelegate.swift in Sources */,
 				D249527C239C0C2C009382F2 /* Date.swift in Sources */,
 				4974F99223A321CD00F1BA4E /* PollFormViewController.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
@@ -784,7 +796,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 822956G74L;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
 				INFOPLIST_FILE = HerHack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -804,7 +816,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 822956G74L;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
 				INFOPLIST_FILE = HerHack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
