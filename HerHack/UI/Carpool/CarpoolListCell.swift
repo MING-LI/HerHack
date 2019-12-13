@@ -27,7 +27,7 @@ class CarpoolListCell: UITableViewCell {
     private let carpoolCountLabel: UILabel
     private let joinBtn: UIButton
     private let commentBtn: UIButton
-    private let statusLabel: UILabel
+//    private let statusLabel: UILabel
     
     private let infoAreaRatio: CGFloat = (2/3)
     private let cellPadding: CGFloat = Constants.MinimumSpacing
@@ -52,7 +52,7 @@ class CarpoolListCell: UITableViewCell {
         self.addSubview(self.btnArea)
         self.btnArea.addSubview(self.carpoolCountLabel)
         self.btnArea.addSubview(self.joinBtn)
-        self.btnArea.addSubview(self.statusLabel)
+//        self.btnArea.addSubview(self.statusLabel)
         self.btnArea.addSubview(self.commentBtn)
     }
     
@@ -200,7 +200,7 @@ class CarpoolListCell: UITableViewCell {
     fileprivate func carpoolCountLabelStyling() {
         self.carpoolCountLabel.snp.makeConstraints({ make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(self.padding * 2)
         })
         
         self.carpoolCountLabel.font = Constants.Fonts.LargeBoldFont
@@ -238,16 +238,16 @@ class CarpoolListCell: UITableViewCell {
         }
     }
     
-    fileprivate func statusLabelStyling() {
-        self.statusLabel.snp.makeConstraints({ make in
-            make.top.equalToSuperview().offset(self.padding)
-            make.left.equalToSuperview().offset(self.padding)
-            make.right.equalToSuperview().offset(-self.padding)
-            make.bottom.equalTo(self.carpoolCountLabel.snp.top).offset(-self.padding)
-        })
-        
-        self.carpoolCountLabel.font = Constants.Fonts.LargeBoldFont
-    }
+//    fileprivate func statusLabelStyling() {
+//        self.statusLabel.snp.makeConstraints({ make in
+//            make.top.equalToSuperview().offset(self.padding)
+//            make.left.equalToSuperview().offset(self.padding)
+//            make.right.equalToSuperview().offset(-self.padding)
+//            make.bottom.equalTo(self.carpoolCountLabel.snp.top).offset(-self.padding)
+//        })
+//
+//        self.carpoolCountLabel.font = Constants.Fonts.LargeBoldFont
+//    }
     
     fileprivate func dotlineViewStyling() {
 //        dotlineView.frame = CGRect(x: 15 , y: 100, width: 20, height: 400)
@@ -266,7 +266,7 @@ class CarpoolListCell: UITableViewCell {
         self.sourceImageView = UIImageView()
         self.destImageView = UIImageView()
         self.destLocLabel = UILabel()
-        self.statusLabel = UILabel()
+//        self.statusLabel = UILabel()
         self.dotlineView = UIView()
         
         self.btnArea = UIView()
@@ -300,7 +300,7 @@ class CarpoolListCell: UITableViewCell {
         self.carpoolCountLabelStyling()
         self.joinBtnStyling()
         self.commentBtnStyling()
-        self.statusLabelStyling()
+//        self.statusLabelStyling()
         
         self.dotlineViewStyling()
     }
@@ -323,21 +323,21 @@ class CarpoolListCell: UITableViewCell {
         self.endTimeLabel.text = data.end_at.toString(format: "HH:mm a")
         self.sourceLocLabel.text = data.source
         self.destLocLabel.text = data.destination
-        self.carpoolCountLabel.text = "\(data.users_request_ride.count)/\(data.offered_seats)"
+        self.carpoolCountLabel.text = "👤\(data.users_request_ride.count)/\(data.offered_seats)"
         self.joinBtn.isEnabled = data.status == .OPEN
         self.joinBtn.alpha = data.status == .OPEN ? 1 : (1/3)
         self.joinBtn.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
-        self.statusLabel.text = {
-            switch (data.status) {
-            case .OPEN:
-                return "Open"
-            case .FULL:
-                return "Full"
-            case .ENDED:
-                return "Ended"
-            }
-        }()
-        self.statusLabel.textColor = {
+//        self.statusLabel.text = {
+//            switch (data.status) {
+//            case .OPEN:
+//                return "Open"
+//            case .FULL:
+//                return "Full"
+//            case .ENDED:
+//                return "Ended"
+//            }
+//        }()
+        self.statusView.backgroundColor = {
                    switch (data.status) {
                    case .OPEN:
                     return Constants.Colors.Green
@@ -358,8 +358,6 @@ class CarpoolListCell: UITableViewCell {
         self.carpoolCountLabel.text = nil
         self.joinBtn.isEnabled = true
         self.joinBtn.alpha = 1
-        self.statusLabel.text = nil
-        self.statusLabel.textColor = .black
     }
     
     @objc func onTapButton(){

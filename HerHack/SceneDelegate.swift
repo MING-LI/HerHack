@@ -39,6 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UserSettings.name = user.name
             })
             self.window?.rootViewController = HHTabbar()
+        } else {
+            self.window?.rootViewController = LoginFormViewController()
         }
     }
     
