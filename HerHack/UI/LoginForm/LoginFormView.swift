@@ -51,6 +51,7 @@ class LoginFormView: UIView {
         let button = UIButton()
         button.setTitle("Get Started", for: .normal)
         button.backgroundColor = Constants.Colors.Red
+        button.frame = CGRect(x: 100, y: 100, width: 100, height: 40)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         return button
@@ -82,6 +83,11 @@ class LoginFormView: UIView {
             make.width.equalTo(imageView.snp.height)
             make.width.height.equalToSuperview().priority(.high)
         }*/
+        
+        button.snp.makeConstraints { (make) in
+            make.height.equalTo(44)
+//            make.width.height.equalToSuperview().priority(.high)
+        }
         
         button.addTarget(self, action: #selector(onTapButton), for: .touchDown)
         button.translatesAutoresizingMaskIntoConstraints = false

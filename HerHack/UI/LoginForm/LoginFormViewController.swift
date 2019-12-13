@@ -42,23 +42,24 @@ class LoginFormViewController: UIViewController {
         view.addSubview(imageViewBackground)
         view.sendSubviewToBack(imageViewBackground)
         
-        let label = UILabel()
-        label.text = "Free Rider"
-        label.font = UIFont.boldSystemFont(ofSize: 60)
-        label.textColor = Constants.Colors.GreyColor
+//        let label = UILabel()
+//        label.text = "Free Rider"
+//        label.font = UIFont.boldSystemFont(ofSize: 60)
+//        label.textColor = Constants.Colors.GreyColor
         
-        view.addSubview(label)
+//        view.addSubview(label)
         view.addSubview(loginFormView)
         
-        label.snp.makeConstraints { (make) in
+        /*label.snp.makeConstraints { (make) in
             make.top.equalTo(100)
             make.centerX.equalToSuperview()
-        }
+        }*/
         
         loginFormView.translatesAutoresizingMaskIntoConstraints = false
         loginFormView.snp.makeConstraints { (make) in
-            make.height.equalTo(600)
-            make.center.equalTo(view)
+            make.height.equalTo(300)
+            make.bottom.equalToSuperview().offset(-230)
+//            make.center.equalTo(view)
             make.leading.trailing.equalTo(view)
         }
     }
