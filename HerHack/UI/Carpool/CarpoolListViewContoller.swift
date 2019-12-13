@@ -14,6 +14,20 @@ class CarpoolListViewController: UIViewController {
     
     let locationManager: CLLocationManager
     let greetingLabel: UILabel
+    var sections: Int {
+        get {
+            let hasJoined = self.filteredCarpools.contains(where: { carpool in
+                carpool.users_request_ride.contains(where: { user in
+                    UserSettings.uid == user.user_id
+                })
+            })
+            if hasJoined {
+                return 2
+            } else {
+                return 1
+            }
+        }
+    }
     
     var avatar: UIImageView =  {
         let image = UIImage(named: "mimosa")
@@ -112,7 +126,7 @@ extension CarpoolListViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.sections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -187,5 +201,5 @@ extension CarpoolListViewController: CarpooListCellDelegate {
         let commentPopup = PollFormViewController()
         self.present(commentPopup, animated: true, completion: nil)
     }
-
+    
 }
