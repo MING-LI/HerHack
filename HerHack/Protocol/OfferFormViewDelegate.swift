@@ -11,4 +11,5 @@ import Foundation
 protocol OfferFormViewDelegate {
     func didClickedTextField(textField: HHTextField)
     func didClickedContinue(departure: Date)
+    func didSelectedSeat(textFieldText: String)
 }

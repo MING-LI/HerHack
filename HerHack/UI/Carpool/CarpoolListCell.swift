@@ -329,6 +329,7 @@ class CarpoolListCell: UITableViewCell {
         self.joinBtn.isEnabled = data.status == .OPEN
         self.joinBtn.alpha = data.status == .OPEN ? 1 : (1/3)
         self.joinBtn.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
+        self.commentBtn.addTarget(self, action: #selector(onTapComment), for: .touchUpInside)
         self.statusView.backgroundColor = {
                    switch (data.status) {
                    case .OPEN:
