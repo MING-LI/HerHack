@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     
     open var source: CLLocationCoordinate2D
     open var destination: CLLocationCoordinate2D
+    open var wayPoints: [CLLocationCoordinate2D]
     var distanceAndDuration: DistanceAndDuration?
     var carpool: Carpool?
     var estimatedArrivalTime: Date?
@@ -36,6 +37,7 @@ class MapViewController: UIViewController {
         self.camera = GMSCameraPosition.camera(withLatitude: hk.latitude, longitude: hk.longitude, zoom: 13.0)
         self.source = CLLocationCoordinate2D()
         self.destination = CLLocationCoordinate2D()
+        self.wayPoints = [CLLocationCoordinate2D]()
         self.carpool = nil
         self.distanceAndDuration = nil
         self.estimatedArrivalTime = nil
@@ -93,14 +95,18 @@ class MapViewController: UIViewController {
         })
     }
     
-    open func updateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
+    open func updateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) {
         self.isUpdateRoute = true
         self.source = source
+        self.wayPoints = wayPoints
         self.destination = destination
         mapView.clear()
         markers = []
         addMarker(coordinate: source)
         addMarker(coordinate: destination)
+        for wayPoint in wayPoints {
+            addMarker(coordinate: wayPoint)
+        }
     }
     
     func addMarker(coordinate: CLLocationCoordinate2D) {
@@ -111,7 +117,6 @@ class MapViewController: UIViewController {
     }
     
     func fitBound() {
-        print(self.markers)
         for marker in self.markers {
             bounds = bounds.includingCoordinate(marker.position)
         }
@@ -119,7 +124,9 @@ class MapViewController: UIViewController {
     }
     
     func fetchRoute() {
-        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination) else {
+        print("source L" ,  self.source)
+        print("destination L" ,  self.destination)
+        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination, wayPoints: self.wayPoints) else {
             print("Failed to parse URL.")
             return
         }
@@ -175,8 +182,9 @@ class MapViewController: UIViewController {
             """
             view.addSubview(lbl)
             lbl.snp.makeConstraints { (make) in
-                make.width.height.equalTo(200)
-                make.center.equalTo(view)
+                make.top.equalToSuperview()
+                make.width.equalToSuperview()
+                make.height.equalTo(200)
             }
         }
     }

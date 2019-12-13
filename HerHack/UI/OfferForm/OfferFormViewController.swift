@@ -73,7 +73,9 @@ extension OfferFormViewController: OfferFormViewDelegate {
         offerFormData.start_at = departure
         navigationController?.pushViewController(mapViewController, animated: true)
         mapViewController.didReceiveData(offerFormData)
-        mapViewController.updateRoute(source: offerFormData.source_coordinates, destination: offerFormData.destination_coordinates)
+        print( "----------------Way Pointss-----------------")
+        print( offerFormData.wayPoints)
+        mapViewController.updateRoute(source: offerFormData.source_coordinates, destination: offerFormData.destination_coordinates, wayPoints: offerFormData.wayPoints)
     }
 }
 
@@ -83,11 +85,17 @@ extension OfferFormViewController: GMSAutocompleteViewControllerDelegate {
 
         searchRouteTextField.text = place.name
         if(searchRouteTextField.tag == 0) {
+            print("Add source!!!!!!!")
             offerFormData.source = place.name ?? ""
             offerFormData.source_coordinates = place.coordinate
         }else if(searchRouteTextField.tag == 1) {
+            print("Add dest!!!!!!!")
             offerFormData.destination = place.name ?? ""
             offerFormData.destination_coordinates = place.coordinate
+        }else if(searchRouteTextField.tag == 2) {
+            print("Add way pointssss!!!!!!!")
+            offerFormData.destination = place.name ?? ""
+            offerFormData.wayPoints.append(place.coordinate)
         }
         
         dismiss(animated: true, completion: nil)

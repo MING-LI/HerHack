@@ -13,5 +13,13 @@
       <ContextState
          contextName = "closure #1 in FirestoreService.retrieveData(from:completion:):FirestoreService.swift">
       </ContextState>
+      <ContextState
+         contextName = "closure #1 in CarpoolListViewController.searchBarBookmarkButtonClicked(_:):CarpoolListViewContoller.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "response?.firstResult()?">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
