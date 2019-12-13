@@ -12,6 +12,7 @@ import GooglePlaces
 class OfferFormView: UIView {
 
     var delegate: OfferFormViewDelegate
+    var wayPointStackId = 2
     
     
     var timePicker: UIDatePicker = {
@@ -33,6 +34,21 @@ class OfferFormView: UIView {
         stack.distribution = .fillEqually
         return stack
     }()
+    
+    lazy var addWayPointBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("Add way point", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel!.font = Constants.Fonts.RegularFont
+        button.frame = CGRect(x: 100, y: 100, width: 100, height: 40)
+        button.addTarget(self, action: #selector(onAddWayPointTap), for: .touchDown)
+        if let image = UIImage(named: "add.png") {
+            
+            button.setImage(image, for: .normal)
+        }
+        return button
+    }()
+    
     
     lazy var sourceTextField: HHTextField = {
         let txtfld = HHTextField()
@@ -97,6 +113,7 @@ class OfferFormView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.addArrangedSubview(sourceTextField)
+        stackView.addArrangedSubview(addWayPointBtn)
         stackView.addArrangedSubview(destTextField)
         stackView.addArrangedSubview(seatTextField)
         stackView.addArrangedSubview(departureTextField)
@@ -116,6 +133,18 @@ class OfferFormView: UIView {
         button.alpha = 0.5;
     }
     
+    func addWayPointField() {
+        let wayPointTextField: HHTextField = {
+            let txtfld = HHTextField()
+            txtfld.text = "Way Point"
+            txtfld.setIcon(UIImage.init(named: "current")!)
+            txtfld.tag = 2
+            txtfld.addTarget(self, action: #selector(onTextFieldTap), for: .touchDown)
+            return txtfld
+        }()
+        stackView.insertArrangedSubview(wayPointTextField, at: wayPointStackId)
+    }
+    
     @objc func onTextFieldTap(textField: HHTextField) {
         textField.resignFirstResponder()
         if textField != seatTextField {
@@ -126,6 +155,11 @@ class OfferFormView: UIView {
     @objc func onTapContinue(button: UIButton) {
         delegate.didClickedContinue(departure: timePicker.date)
     }
+    
+    @objc func onAddWayPointTap(button: UIButton) {
+        self.addWayPointField()
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
