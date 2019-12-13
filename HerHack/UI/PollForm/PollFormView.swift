@@ -150,7 +150,7 @@ class PollFormView: UIView {
         else { return print("Alert: Please enter the comment") }
         
         
-        delegate.didClickedButton(rating: ratingInt, comment: commentTextView.text)
+        delegate.didClickedButton(rating: ratingInt, comment: comment)
     }
 }
 
