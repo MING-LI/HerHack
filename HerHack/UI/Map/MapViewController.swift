@@ -104,6 +104,11 @@ class MapViewController: UIViewController {
         markers = []
         addMarker(coordinate: source)
         addMarker(coordinate: destination)
+        for wayPoint in wayPoints {
+            addMarker(coordinate: wayPoint)
+        }
+        
+        
     }
     
     func addMarker(coordinate: CLLocationCoordinate2D) {
