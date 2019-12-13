@@ -107,8 +107,6 @@ class MapViewController: UIViewController {
         for wayPoint in wayPoints {
             addMarker(coordinate: wayPoint)
         }
-        
-        
     }
     
     func addMarker(coordinate: CLLocationCoordinate2D) {
@@ -184,8 +182,9 @@ class MapViewController: UIViewController {
             """
             view.addSubview(lbl)
             lbl.snp.makeConstraints { (make) in
-                make.width.height.equalTo(200)
-                make.center.equalTo(view)
+                make.top.equalToSuperview()
+                make.width.equalToSuperview()
+                make.height.equalTo(200)
             }
         }
     }
