@@ -40,11 +40,12 @@ class GoogleService {
         let headers: HTTPHeaders = [
                 "Content-Type": "application/json"
             ]
+        
         AF.request("https://us-central1-agile-device-260201.cloudfunctions.net/finish-ride-func",
            method: .post,
            parameters: data,
            encoding: JSONEncoding.default,
-           headers: headers).responseJSON { response in
+           headers: headers).responseString { response in
             print(response)
         }
     }
