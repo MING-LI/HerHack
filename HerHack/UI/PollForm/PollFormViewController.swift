@@ -33,15 +33,6 @@ class PollFormViewController: UIViewController {
     
     func setupViews() {
         view.backgroundColor = .none
-        
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
-        let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        imageViewBackground.image = UIImage(named: "background")
-        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
-        view.addSubview(imageViewBackground)
-        view.sendSubviewToBack(imageViewBackground)
-        
         view.addSubview(pollFormView)
         
         pollFormView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,8 +55,8 @@ extension PollFormViewController: PollFormViewDelegate {
             "EndTime":20191213010000,
             "Dest":"114.132033,22.3707236",
             "Source":"114.157396,22.3175447",
-            "PassengerId":"Karen",
-            "DriverId":"Jean",
+            "PassengerId":"John",
+            "DriverId":"Mimosa",
             "Rating":newComment.rating,
             "Comment":newComment.comment
         ]

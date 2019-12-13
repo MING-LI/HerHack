@@ -11,6 +11,8 @@ import SnapKit
 
 class CarpoolListCell: UITableViewCell {
     
+    var delegate: CarpooListCellDelegate?
+    
     private let statusView: UIView
     private let infoArea: UIView
     private let ownerLabel: UILabel
@@ -327,16 +329,6 @@ class CarpoolListCell: UITableViewCell {
         self.joinBtn.isEnabled = data.status == .OPEN
         self.joinBtn.alpha = data.status == .OPEN ? 1 : (1/3)
         self.joinBtn.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
-//        self.statusLabel.text = {
-//            switch (data.status) {
-//            case .OPEN:
-//                return "Open"
-//            case .FULL:
-//                return "Full"
-//            case .ENDED:
-//                return "Ended"
-//            }
-//        }()
         self.statusView.backgroundColor = {
                    switch (data.status) {
                    case .OPEN:
@@ -363,6 +355,10 @@ class CarpoolListCell: UITableViewCell {
     @objc func onTapButton(){
         guard let id = self.id else { return }
         FirestoreService.shared.joinCarpool(id)
+    }
+    
+    @objc func onTapComment(){
+        delegate?.didClickedComment()
     }
     
     func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {
