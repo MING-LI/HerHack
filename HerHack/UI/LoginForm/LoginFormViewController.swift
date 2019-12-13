@@ -73,15 +73,17 @@ extension LoginFormViewController: LoginFormViewDelegate {
     func didClickedButton(name:String, email: String) { // Check if any user before create new user
         UserSettings.name = name
         Auth.auth().signIn(withEmail: email, password: "testing", completion: { (AuthDataResult, Error) in
-            if let user = AuthDataResult?.user {
-                UserSettings.uid = user.uid
+            if let err = Error {
+                print("Alert: User not found \n\(err)")
                 let newUser = User(name: name, email: email)
                 Auth.auth().createUser(withEmail: email, password: "testing") { (result, error) in
                     UserSettings.uid = result?.user.uid
                     FirestoreService.shared.createUser(newUser)
                 }
-            } else if let err = Error {
-                print(err)
+            } else {
+                if let user = AuthDataResult?.user {
+                    UserSettings.uid = user.uid
+                }
             }
         })
     }
