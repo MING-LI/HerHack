@@ -70,12 +70,21 @@ extension LoginFormViewController: LoginFormViewDelegate {
         textField.becomeFirstResponder()
     }
     
-    func didClickedButton(name:String, email: String) {
+    func didClickedButton(name:String, email: String) { // Check if any user before create new user
         UserSettings.name = name
-        let newUser = User(name: name, email: email)
-        Auth.auth().createUser(withEmail: email, password: "testing") { (result, error) in
-            UserSettings.uid = result?.user.uid
-            FirestoreService.shared.createUser(newUser)
-        }
+        Auth.auth().signIn(withEmail: email, password: "testing", completion: { (AuthDataResult, Error) in
+            if let err = Error {
+                print("Alert: User not found \n\(err)")
+                let newUser = User(name: name, email: email)
+                Auth.auth().createUser(withEmail: email, password: "testing") { (result, error) in
+                    UserSettings.uid = result?.user.uid
+                    FirestoreService.shared.createUser(newUser)
+                }
+            } else {
+                if let user = AuthDataResult?.user {
+                    UserSettings.uid = user.uid
+                }
+            }
+        })
     }
 }

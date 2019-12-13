@@ -359,7 +359,9 @@ class CarpoolListCell: UITableViewCell {
     }
     
     @objc func onTapComment(){
-        delegate?.didClickedComment()
+        if let id = self.id {
+            delegate?.didClickedComment(id)
+        }
     }
     
     func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {

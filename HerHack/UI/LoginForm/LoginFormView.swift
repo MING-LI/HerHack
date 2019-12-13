@@ -99,7 +99,7 @@ class LoginFormView: UIView {
     }
     
     @objc func afterTextFieldEdit(textField: HHTextField){
-        textField.textFieldShouldReturn(textField)
+        _ = textField.textFieldShouldReturn(textField)
     }
     
     @objc func onTapButton(button: UIButton) {

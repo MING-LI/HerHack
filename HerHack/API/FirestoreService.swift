@@ -95,6 +95,5 @@ class FirestoreService {
                 print("Error creating carpool (\(ref!.documentID)): \(err)")
             } else { completion() }
         }
-
     }
 }

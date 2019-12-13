@@ -43,7 +43,6 @@ class OfferFormView: UIView {
         button.frame = CGRect(x: 100, y: 100, width: 100, height: 40)
         button.addTarget(self, action: #selector(onAddWayPointTap), for: .touchDown)
         if let image = UIImage(named: "add.png") {
-            
             button.setImage(image, for: .normal)
         }
         return button

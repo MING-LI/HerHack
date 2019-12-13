@@ -10,13 +10,17 @@ import UIKit
 import SnapKit
 
 class PollFormViewController: UIViewController {
+    
+    let carpool: Carpool
+    
     lazy var pollFormView: PollFormView = {
         return PollFormView(delegate: self)
     }()
     
     let numPicker = Array(1...5)
     
-    init() {
+    init(carpool: Carpool) {
+        self.carpool = carpool
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,6 +48,10 @@ class PollFormViewController: UIViewController {
 
 extension PollFormViewController: PollFormViewDelegate {
      
+    func didClickedCancel(){
+        dismiss(animated: true, completion: nil)
+    }
+    
     func didClickedTextField(_ textField: HHTextField) {
         textField.becomeFirstResponder()
     }
@@ -51,12 +59,12 @@ extension PollFormViewController: PollFormViewDelegate {
     func didClickedButton(rating:Int,comment:String) {
         let newComment = CommentFormData(rating: rating, comment: comment)
         let data : [String:Any] = [
-            "StartTime":20191213000000,
-            "EndTime":20191213010000,
-            "Dest":"114.132033,22.3707236",
-            "Source":"114.157396,22.3175447",
-            "PassengerId":"John",
-            "DriverId":"Mimosa",
+            "StartTime":carpool.start_at.toPipelineFormat(),
+            "EndTime":carpool.end_at.toPipelineFormat(),
+            "Dest":carpool.destination_coordinates.toString(),
+            "Source":carpool.source_coordinates.toString(),
+            "PassengerId":UserSettings.name ?? "",
+            "DriverId":carpool.user_offer_ride.user_name,
             "Rating":newComment.rating,
             "Comment":newComment.comment
         ]
@@ -104,8 +112,7 @@ extension PollFormViewController: UITextViewDelegate {
         }
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n"
-        {
+        if text == "\n" {
             textView.resignFirstResponder()
             return false
         }
