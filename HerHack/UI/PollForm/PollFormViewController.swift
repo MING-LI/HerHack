@@ -52,10 +52,6 @@ extension PollFormViewController: PollFormViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func didClickedTextField(_ textField: HHTextField) {
-        textField.becomeFirstResponder()
-    }
-    
     func didClickedButton(rating:Int,comment:String) {
         let newComment = CommentFormData(rating: rating, comment: comment)
         let data = PipelineData(
@@ -75,25 +71,6 @@ extension PollFormViewController: PollFormViewDelegate {
 //            }))
 //            self.present(alert, animated: true, completion: nil)
 //        })
-    }
-}
-
-extension PollFormViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return numPicker.count
-    }
-
-    func pickerView(_pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        commentFormData.rating = numPicker[row]
-        return
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(numPicker[row])
     }
 }
 

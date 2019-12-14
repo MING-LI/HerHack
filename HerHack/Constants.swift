@@ -31,7 +31,8 @@ struct Constants {
         PaleGreyColor: UIColor(red: 241/255, green: 241/255, blue: 241/255, alpha: 1.0),
         Green: UIColor(red:0.00, green:0.65, blue:0.33, alpha:1.0),
         Red: UIColor(red: 219/255.0, green: 0.0/255.0, blue: 17/255.0, alpha: 1),
-        Blue: UIColor(red: 34/255.0, green: 108/255.0, blue: 224/255.0, alpha: 1)
+        Blue: UIColor(red: 34/255.0, green: 108/255.0, blue: 224/255.0, alpha: 1),
+        PaleYellow: UIColor(red: 249/255.0, green: 219/255.0, blue: 97/255.0, alpha: 1)
     )
     
 //    static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) -> URL? {
