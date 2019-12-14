@@ -25,14 +25,14 @@ class GoogleService {
         }
     }
     
-    func postToPipeline(data: [String:Any] ,completion:@escaping ()->()){
+    func postToPipeline(data: PipelineData,completion:@escaping ()->()){
         let headers: HTTPHeaders = [
                 "Content-Type": "application/json"
             ]
         
         AF.request("https://us-central1-agile-device-260201.cloudfunctions.net/finish-ride-func",
            method: .post,
-           parameters: data,
+           parameters: data.dictionary,
            encoding: JSONEncoding.default,
            headers: headers).responseString { response in
             completion()

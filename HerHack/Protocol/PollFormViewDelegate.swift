@@ -7,7 +7,6 @@
 //
 
 protocol PollFormViewDelegate {
-    func didClickedTextField(_ textField: HHTextField)
     func didClickedButton(rating:Int, comment: String)
     func didClickedCancel()
 }

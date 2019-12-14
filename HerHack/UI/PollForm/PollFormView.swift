@@ -28,33 +28,21 @@ class PollFormView: UIView {
         return view
     }()
     
-   lazy var label: UILabel = {
+    lazy var label: UILabel = {
         let lbl = UILabel()
         lbl.text = "Comment"
         lbl.font = Constants.Fonts.LargeBoldFont
         return lbl
     }()
     
-   lazy var cancelButton: UIButton = {
+    lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named:"cancel"), for: .normal)
         button.addTarget(self, action: #selector(onClickCancel), for: .touchUpInside)
         return button
     }()
     
-   var numPickerView: UIPickerView = {
-        let picker = UIPickerView()
-        return picker
-    }()
-    
-    lazy var rateTextField: HHTextField = {
-        let txtfld = HHTextField()
-        txtfld.placeholder = "Rating"
-        txtfld.setIcon(UIImage.init(named: "star")!)
-        txtfld.inputView = numPickerView
-        txtfld.inputAccessoryView = HHPickerToolbar(delegate: self, textfield: txtfld)
-        return txtfld
-    }()
+    let rating = HHRating(.zero, label: "Rating", rateImage: "star", max: 5)
     
     var commentTextView: UITextView = {
         let txtfld = UITextView()
@@ -78,7 +66,6 @@ class PollFormView: UIView {
     init(delegate: PollFormViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
-        numPickerView.delegate = delegate as? UIPickerViewDelegate
         commentTextView.delegate = delegate as? UITextViewDelegate
         setupViews()
     }
@@ -90,7 +77,7 @@ class PollFormView: UIView {
     func setupViews() {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(rateTextField)
+        stackView.addArrangedSubview(rating)
         stackView.addArrangedSubview(commentTextView)
         stackView.addArrangedSubview(button)
         stackView.distribution = .equalCentering
@@ -114,7 +101,7 @@ class PollFormView: UIView {
             make.edges.equalTo(popUpBgView.snp.edges).inset(20)
         }
         
-        rateTextField.snp.remakeConstraints { (make) in
+        rating.snp.makeConstraints { (make) in
             make.top.equalTo(label.snp.bottom).offset(20)
             make.bottom.equalTo(commentTextView.snp.top).offset(-20)
         }
@@ -136,37 +123,12 @@ class PollFormView: UIView {
         delegate.didClickedCancel()
     }
     
-    @objc func onTextFieldTap(textField: HHTextField) {
-        delegate.didClickedTextField(textField)
-    }
-    
-    @objc func afterTextFieldEdit(textField: HHTextField){
-        _ = textField.textFieldShouldReturn(textField)
-    }
-    
     @objc func onTapButton(button: UIButton) {
         let commentTextViewValue:String? = commentTextView.text
         
-        guard let comment = commentTextViewValue,
-            let ratingText = rateTextField.text,
-            let ratingInt = Int(ratingText)
-        else { return print("Alert: Please enter the comment") }
-        
-        
+        guard let ratingInt = rating.value, let comment = commentTextViewValue else {
+            return print("Alert: Please enter the comment") }
+
         delegate.didClickedButton(rating: ratingInt, comment: comment)
     }
 }
-
-extension PollFormView: HHPickerToolbarDelegate {
-    func didTapDone(_ textField: HHTextField) {
-        textField.resignFirstResponder()
-        textField.text = String(numPickerView.selectedRow(inComponent: 0)+1)
-    }
-    
-    func didTapCancel(_ textField: HHTextField) {
-        textField.resignFirstResponder()
-        textField.text = ""
-    }
-}
-
-

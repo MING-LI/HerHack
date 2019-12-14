@@ -52,22 +52,18 @@ extension PollFormViewController: PollFormViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func didClickedTextField(_ textField: HHTextField) {
-        textField.becomeFirstResponder()
-    }
-    
     func didClickedButton(rating:Int,comment:String) {
         let newComment = CommentFormData(rating: rating, comment: comment)
-        let data : [String:Any] = [
-            "StartTime":carpool.start_at.toPipelineFormat(),
-            "EndTime":carpool.end_at.toPipelineFormat(),
-            "Dest":carpool.destination_coordinates.toString(),
-            "Source":carpool.source_coordinates.toString(),
-            "PassengerId":UserSettings.name ?? "",
-            "DriverId":carpool.user_offer_ride.user_name,
-            "Rating":newComment.rating,
-            "Comment":newComment.comment
-        ]
+        let data = PipelineData(
+            StartTime: carpool.start_at.toPipelineFormat(),
+            EndTime: carpool.end_at.toPipelineFormat(),
+            Dest: carpool.destination_coordinates.toString(),
+            Source: carpool.source_coordinates.toString(),
+            PassengerId: UserSettings.name ?? "",
+            DriverId: carpool.user_offer_ride.user_name,
+            Rating: newComment.rating,
+            Comment: newComment.comment
+        )
 //        GoogleService.shared.postToPipeline(data:data, completion:{
 //            let alert = UIAlertController(title: "Success", message: "Thanks for your Feedback", preferredStyle: .alert)
 //            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -75,25 +71,6 @@ extension PollFormViewController: PollFormViewDelegate {
 //            }))
 //            self.present(alert, animated: true, completion: nil)
 //        })
-    }
-}
-
-extension PollFormViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return numPicker.count
-    }
-
-    func pickerView(_pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        commentFormData.rating = numPicker[row]
-        return
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(numPicker[row])
     }
 }
 

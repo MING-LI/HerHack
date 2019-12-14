@@ -28,6 +28,8 @@
 		492FD4E523A17E6800573B1F /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4E423A17E6800573B1F /* GoogleService.swift */; };
 		492FD4E723A1824300573B1F /* Geolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4E623A1824300573B1F /* Geolocation.swift */; };
 		492FD4E923A18DFB00573B1F /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492FD4E823A18DFB00573B1F /* GoogleResponse.swift */; };
+		49572BD823A3FC8200A3C32A /* PipelineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49572BD723A3FC8200A3C32A /* PipelineData.swift */; };
+		49572BDC23A4745C00A3C32A /* HHRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49572BDB23A4745C00A3C32A /* HHRating.swift */; };
 		4974F99223A321CD00F1BA4E /* PollFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99123A321CD00F1BA4E /* PollFormViewController.swift */; };
 		4974F99723A32BA700F1BA4E /* PollFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99623A32BA700F1BA4E /* PollFormView.swift */; };
 		4974F99923A32F2C00F1BA4E /* PollFormViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */; };
@@ -96,6 +98,8 @@
 		492FD4E423A17E6800573B1F /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
 		492FD4E623A1824300573B1F /* Geolocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geolocation.swift; sourceTree = "<group>"; };
 		492FD4E823A18DFB00573B1F /* GoogleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponse.swift; sourceTree = "<group>"; };
+		49572BD723A3FC8200A3C32A /* PipelineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineData.swift; sourceTree = "<group>"; };
+		49572BDB23A4745C00A3C32A /* HHRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HHRating.swift; sourceTree = "<group>"; };
 		4974F99123A321CD00F1BA4E /* PollFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormViewController.swift; sourceTree = "<group>"; };
 		4974F99623A32BA700F1BA4E /* PollFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormView.swift; sourceTree = "<group>"; };
 		4974F99823A32F2C00F1BA4E /* PollFormViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollFormViewDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				1BE8547D239D32080094E944 /* HHPickerToolbar.swift */,
 				492FD4CE239E838E00573B1F /* HHTabbar.swift */,
 				492FD4E023A1564200573B1F /* HHFloatButton.swift */,
+				49572BDB23A4745C00A3C32A /* HHRating.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				492FD4E223A1650300573B1F /* OfferForm.swift */,
 				4974F99A23A331E900F1BA4E /* CommentForm.swift */,
 				492FD4E823A18DFB00573B1F /* GoogleResponse.swift */,
+				49572BD723A3FC8200A3C32A /* PipelineData.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 				BB13DCDD2387F0930050B345 /* CarpoolListViewContoller.swift in Sources */,
 				BB13DCD92387F0930050B345 /* AppDelegate.swift in Sources */,
 				492FD473239C30CF00573B1F /* FirestoreService.swift in Sources */,
+				49572BDC23A4745C00A3C32A /* HHRating.swift in Sources */,
 				D2D26E82239CCD310071B47A /* DataRefreashable.swift in Sources */,
 				D26E07BA239A41E100C028BF /* CarpoolListCell.swift in Sources */,
 				D2D26E8B239D44530071B47A /* OfferFormViewDelegate.swift in Sources */,
@@ -625,6 +632,7 @@
 				4974F99223A321CD00F1BA4E /* PollFormViewController.swift in Sources */,
 				1BC05EFA239BC3BA003EA539 /* Constants.swift in Sources */,
 				D2D26E7E239CC8FD0071B47A /* CarpoolList.swift in Sources */,
+				49572BD823A3FC8200A3C32A /* PipelineData.swift in Sources */,
 				492FD467239BFBB200573B1F /* Location.swift in Sources */,
 				492FD4D7239FAD6D00573B1F /* Codable.swift in Sources */,
 				1BE8547E239D32080094E944 /* HHPickerToolbar.swift in Sources */,
