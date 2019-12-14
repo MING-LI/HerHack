@@ -161,17 +161,17 @@ extension CarpoolListViewController: UISearchBarDelegate {
             GMSGeocoder().reverseGeocodeCoordinate(loc.coordinate, completionHandler: { [weak self] response, result in
                 guard let `self` = self,
                     let firstResult = response?.firstResult() else { return }
-                
+
                 var addArr = [String]()
-                
+
                 addArr.append(firstResult.thoroughfare ?? "")
                 addArr.append(firstResult.subLocality ?? "")
                 addArr.append(firstResult.locality ?? "")
                 addArr.append(firstResult.administrativeArea ?? "")
                 addArr.append(firstResult.country ?? "")
-                
+
                 let locString = addArr.joined(separator: " ")
-                
+
                 self.searchBar.becomeFirstResponder()
                 self.searchBar.text = locString
                 self.searchBar(self.searchBar, textDidChange: locString)
