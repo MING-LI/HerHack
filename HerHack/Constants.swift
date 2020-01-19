@@ -37,16 +37,16 @@ struct Constants {
     
     static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) -> URL? {
         print(wayPoints[0])
-        
+   
         let allPairs = wayPoints.map({ cood in
             "via:\(cood.latitude),\(cood.longitude)"
             }).joined(separator: "|")
-        
+    
 //        let allPairs = wayPoints.reduce("", { result, cood in
 //            return result + "via:\(cood.latitude),\(cood.longitude)"
 //        })
-
-        
+//
+//        
         let queryParams = [
             URLQueryItem(name: "origin", value: "\(src.latitude),\(src.longitude)"),
             URLQueryItem(name: "waypoints", value: allPairs),
@@ -55,7 +55,7 @@ struct Constants {
             URLQueryItem(name: "mode", value: "driving"),
             URLQueryItem(name: "key", value: Constants.Key)
         ]
-        
+      
         var urlComp = URLComponents(string: "https://maps.googleapis.com/maps/api/directions/json")
         urlComp?.queryItems = queryParams
         return urlComp?.url

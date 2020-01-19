@@ -132,10 +132,10 @@ class MapViewController: UIViewController {
         }
         
         let session = URLSession.shared
-        
+      
         session.dataTask(with: url, completionHandler: {
             (data, response, error) in
-            
+           
             guard let `data` = data,
                 let jsonData = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
                 let routes = jsonData["routes"] as? [Any],
