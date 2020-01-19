@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import GoogleMaps
+import GoogleMaps
 
 struct Constants {
     static let CarpoolScreenName = "Carpool"
@@ -35,30 +35,30 @@ struct Constants {
         PaleYellow: UIColor(red: 249/255.0, green: 219/255.0, blue: 97/255.0, alpha: 1)
     )
     
-//    static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) -> URL? {
-//        print(wayPoints[0])
+    static func googleDirectionsAPI(src: CLLocationCoordinate2D, dest: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) -> URL? {
+        print(wayPoints[0])
 //        
-//        let allPairs = wayPoints.map({ cood in
-//            "via:\(cood.latitude),\(cood.longitude)"
-//            }).joined(separator: "|")
+        let allPairs = wayPoints.map({ cood in
+            "via:\(cood.latitude),\(cood.longitude)"
+            }).joined(separator: "|")
 //        
-////        let allPairs = wayPoints.reduce("", { result, cood in
-////            return result + "via:\(cood.latitude),\(cood.longitude)"
-////        })
+//        let allPairs = wayPoints.reduce("", { result, cood in
+//            return result + "via:\(cood.latitude),\(cood.longitude)"
+//        })
 //
 //        
-//        let queryParams = [
-//            URLQueryItem(name: "origin", value: "\(src.latitude),\(src.longitude)"),
-//            URLQueryItem(name: "waypoints", value: allPairs),
-//            URLQueryItem(name: "destination", value: "\(dest.latitude),\(dest.longitude)"),
-//            URLQueryItem(name: "sensor", value: "false"),
-//            URLQueryItem(name: "mode", value: "driving"),
-//            URLQueryItem(name: "key", value: Constants.Key)
-//        ]
+        let queryParams = [
+            URLQueryItem(name: "origin", value: "\(src.latitude),\(src.longitude)"),
+            URLQueryItem(name: "waypoints", value: allPairs),
+            URLQueryItem(name: "destination", value: "\(dest.latitude),\(dest.longitude)"),
+            URLQueryItem(name: "sensor", value: "false"),
+            URLQueryItem(name: "mode", value: "driving"),
+            URLQueryItem(name: "key", value: Constants.Key)
+        ]
 //        
-//        var urlComp = URLComponents(string: "https://maps.googleapis.com/maps/api/directions/json")
-//        urlComp?.queryItems = queryParams
-//        return urlComp?.url
-//    }
+        var urlComp = URLComponents(string: "https://maps.googleapis.com/maps/api/directions/json")
+        urlComp?.queryItems = queryParams
+        return urlComp?.url
+    }
 }
 

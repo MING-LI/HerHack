@@ -126,32 +126,32 @@ class MapViewController: UIViewController {
     func fetchRoute() {
         print("source L" ,  self.source)
         print("destination L" ,  self.destination)
-//        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination, wayPoints: self.wayPoints) else {
-//            print("Failed to parse URL.")
-//            return
-//        }
+        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination, wayPoints: self.wayPoints) else {
+            print("Failed to parse URL.")
+            return
+        }
 //        
-//        let session = URLSession.shared
+        let session = URLSession.shared
 //        
-//        session.dataTask(with: url, completionHandler: {
-//            (data, response, error) in
+        session.dataTask(with: url, completionHandler: {
+            (data, response, error) in
 //            
-//            guard let `data` = data,
-//                let jsonData = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
-//                let routes = jsonData["routes"] as? [Any],
-//                let route = routes[0] as? [String: Any],
-//                let overview_polyline = route["overview_polyline"] as? [String: Any],
-//                let polyLineString = overview_polyline["points"] as? String
-//                else {
-//                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//                        self.dismiss(animated: true, completion: nil)
-//                    }))
-//                    self.present(alert, animated: true, completion: nil)
-//                    return
-//            }
-//            self.drawPath(from: polyLineString)
-//        }).resume()
+            guard let `data` = data,
+                let jsonData = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
+                let routes = jsonData["routes"] as? [Any],
+                let route = routes[0] as? [String: Any],
+                let overview_polyline = route["overview_polyline"] as? [String: Any],
+                let polyLineString = overview_polyline["points"] as? String
+                else {
+                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+            }
+            self.drawPath(from: polyLineString)
+        }).resume()
     }
     
     func drawPath(from polyStr: String) {
