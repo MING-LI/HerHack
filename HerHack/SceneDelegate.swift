@@ -42,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @objc func userStateDidChange() {
         DispatchQueue.main.async {
-//            self.handleStateChange()
+            self.handleStateChange()
         }
     }
 }

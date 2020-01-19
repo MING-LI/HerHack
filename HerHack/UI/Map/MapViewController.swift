@@ -74,25 +74,25 @@ class MapViewController: UIViewController {
     
     open func didReceiveData(_ data: OfferFormData) {
         let user = CarpoolUser(user_id: UserSettings.uid, user_name: UserSettings.name, is_accepted: nil)
-//        GoogleService.shared.getDistanceAndDuration(source: data.source_coordinates, destination: data.destination_coordinates, completion: { distanceAndDuration in
-//            self.distanceAndDuration = distanceAndDuration
-//            self.estimatedArrivalTime = data.start_at.addingTimeInterval(TimeInterval(distanceAndDuration.duration))
-//            self.carpool = Carpool(
-//                id: nil,
-//                source: data.source,
-//                source_coordinates: self.source,
-//                destination: data.destination,
-//                destination_coordinates: self.destination,
-//                offered_seats: data.offered_seats,
-//                created_at: Date(),
-//                start_at: data.start_at,
-//                end_at: self.estimatedArrivalTime!,
-//                user_offer_ride: user,
-//                users_request_ride: [],
-//                status: CarpoolStatus.OPEN
-//            )
-//            self.promptView()
-//        })
+        GoogleService.shared.getDistanceAndDuration(source: data.source_coordinates, destination: data.destination_coordinates, completion: { distanceAndDuration in
+            self.distanceAndDuration = distanceAndDuration
+            self.estimatedArrivalTime = data.start_at.addingTimeInterval(TimeInterval(distanceAndDuration.duration))
+            self.carpool = Carpool(
+                id: nil,
+                source: data.source,
+                source_coordinates: self.source,
+                destination: data.destination,
+                destination_coordinates: self.destination,
+                offered_seats: data.offered_seats,
+                created_at: Date(),
+                start_at: data.start_at,
+                end_at: self.estimatedArrivalTime!,
+                user_offer_ride: user,
+                users_request_ride: [],
+                status: CarpoolStatus.OPEN
+            )
+            self.promptView()
+        })
     }
     
     open func updateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, wayPoints: [CLLocationCoordinate2D]) {
@@ -126,32 +126,32 @@ class MapViewController: UIViewController {
     func fetchRoute() {
         print("source L" ,  self.source)
         print("destination L" ,  self.destination)
-//        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination, wayPoints: self.wayPoints) else {
-//            print("Failed to parse URL.")
-//            return
-//        }
-//        
-//        let session = URLSession.shared
-//        
-//        session.dataTask(with: url, completionHandler: {
-//            (data, response, error) in
-//            
-//            guard let `data` = data,
-//                let jsonData = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
-//                let routes = jsonData["routes"] as? [Any],
-//                let route = routes[0] as? [String: Any],
-//                let overview_polyline = route["overview_polyline"] as? [String: Any],
-//                let polyLineString = overview_polyline["points"] as? String
-//                else {
-//                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-//                        self.dismiss(animated: true, completion: nil)
-//                    }))
-//                    self.present(alert, animated: true, completion: nil)
-//                    return
-//            }
-//            self.drawPath(from: polyLineString)
-//        }).resume()
+        guard let url = Constants.googleDirectionsAPI(src: self.source, dest: self.destination, wayPoints: self.wayPoints) else {
+            print("Failed to parse URL.")
+            return
+        }
+        
+        let session = URLSession.shared
+        
+        session.dataTask(with: url, completionHandler: {
+            (data, response, error) in
+            
+            guard let `data` = data,
+                let jsonData = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary,
+                let routes = jsonData["routes"] as? [Any],
+                let route = routes[0] as? [String: Any],
+                let overview_polyline = route["overview_polyline"] as? [String: Any],
+                let polyLineString = overview_polyline["points"] as? String
+                else {
+                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+            }
+            self.drawPath(from: polyLineString)
+        }).resume()
     }
     
     func drawPath(from polyStr: String) {

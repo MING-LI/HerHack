@@ -71,7 +71,8 @@ class HHRating: UIStackView {
         _ = rates.filter({ btn -> Bool in
             btn.tag <= newValue
        }).map { btn in
-           btn.isSelected = true
+        btn.isSelected = true
+        self.value = btn.tag
        }
     }
     
