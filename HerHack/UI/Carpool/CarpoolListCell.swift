@@ -316,8 +316,8 @@ class CarpoolListCell: UITableViewCell {
         self.id = data.id
         self.ownerLabel.text = data.user_offer_ride.user_name
         
-        print(data.user_offer_ride.user_name.lowercased())
-        
+//        print(data.user_offer_ride.user_name.lowercased())
+//
         let image = UIImage(named: data.user_offer_ride.user_name.lowercased())
         self.ownerImageView.image = image
         
@@ -372,7 +372,7 @@ class CarpoolListCell: UITableViewCell {
 
         let path = CGMutablePath()
         path.addLines(between: [p0, p1])
-        shapeLayer.path = path
+        shapeLayer.path = path`j
         view.layer.addSublayer(shapeLayer)
     }
 }

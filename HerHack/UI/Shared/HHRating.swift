@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 
 class HHRating: UIStackView {
-    var lbl = UILabel()
-    var rateStack = UIStackView()
-    var rates: [UIButton] = []
+    private var lbl = UILabel()
+    private var rateStack = UIStackView()
+    private var rates: [UIButton] = []
     var value: Int?
     
     init(_ frame: CGRect, label: String, rateImage: String, max:Int) {
@@ -39,13 +39,13 @@ class HHRating: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func rateStyling(_ rate:UIButton) {
+    fileprivate func rateStyling(_ rate:UIButton) {
         rate.snp.makeConstraints { (make) in
             make.width.height.equalTo(25)
         }
     }
     
-    func setContentView() {
+    fileprivate func setContentView() {
         self.axis = .horizontal
         self.addArrangedSubview(lbl)
         self.addArrangedSubview(rateStack)
@@ -64,7 +64,7 @@ class HHRating: UIStackView {
         }
     }
     
-    func setSelected(_ newValue:Int) {
+    fileprivate func setSelected(_ newValue:Int) {
         _ = rates.forEach { btn in
             btn.isSelected = false
         }
@@ -72,11 +72,11 @@ class HHRating: UIStackView {
             btn.tag <= newValue
        }).map { btn in
         btn.isSelected = true
-        self.value = btn.tag
        }
     }
     
-    @objc func onClick(sender:UIButton){
+    @objc fileprivate func onClick(sender:UIButton){
+        self.value = sender.tag
         setSelected(sender.tag)
     }
 }

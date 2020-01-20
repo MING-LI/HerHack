@@ -124,17 +124,12 @@ class PollFormView: UIView {
     }
     
     @objc func onTapButton(button: UIButton) {
-        let commentTextViewValue:String? = commentTextView.text
-        let ratingValue:Int? = rating.value
-        
-        guard let ratingInt = ratingValue else {
+        guard let ratingInt = rating.value else {
             return print("Alert: Please select rating")
         }
-            
-        guard let comment = commentTextViewValue else {
+        guard let comment = commentTextView.text else {
             return print("Alert: Please enter the comment")
         }
-        
         delegate.didClickedButton(rating: ratingInt, comment: comment)
     }
 }
