@@ -372,7 +372,7 @@ class CarpoolListCell: UITableViewCell {
 
         let path = CGMutablePath()
         path.addLines(between: [p0, p1])
-        shapeLayer.path = path`j
+        shapeLayer.path = path
         view.layer.addSublayer(shapeLayer)
     }
 }
